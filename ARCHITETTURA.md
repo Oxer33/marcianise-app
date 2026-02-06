@@ -68,7 +68,9 @@ lib/
     ├── tributi/
     │   └── tributi_pagamenti_screen.dart # Modulo E: Tributi e Pagamenti
     ├── sindaco/
-    │   └── comunicazioni_sindaco_screen.dart # Sez.4: Comunicazioni Sindaco
+    │   ├── comunicazioni_sindaco_screen.dart # Sez.4: Comunicazioni Sindaco
+    │   └── widgets/
+    │       └── sindaco_form_dialogs.dart     # Form dialogs (4.1, 4.2, 4.3)
     ├── scolastici/
     │   └── servizi_scolastici_screen.dart # Sez.5: Servizi Scolastici
     └── servizi/
