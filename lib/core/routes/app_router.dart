@@ -12,6 +12,8 @@ import '../../screens/servizi/contatta_uffici_screen.dart';
 import '../../screens/servizi/gestione_rifiuti_screen.dart';
 import '../../screens/servizi/servizi_online_screen.dart';
 import '../../screens/servizi/luoghi_interesse_screen.dart';
+import '../../screens/sindaco/comunicazioni_sindaco_screen.dart';
+import '../../screens/scolastici/servizi_scolastici_screen.dart';
 
 /// Router centrale dell'app
 /// Gestisce la navigazione tra tutte le schermate
@@ -45,6 +47,14 @@ class AppRouter {
       // === MODULO E: Tributi e Pagamenti ===
       case AppRoutes.tributiPagamenti:
         return _buildRoute(const TributiPagamentiScreen());
+
+      // === SEZIONE 4: Comunicazioni Sindaco ===
+      case AppRoutes.comunicazioniSindaco:
+        return _buildRoute(const ComunicazioniSindacoScreen());
+
+      // === SEZIONE 5: Servizi Scolastici ===
+      case AppRoutes.serviziScolastici:
+        return _buildRoute(const ServiziScolasticiScreen());
 
       // === SERVIZI AL CITTADINO ===
       case AppRoutes.segnalaDisservizio:

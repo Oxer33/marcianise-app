@@ -69,6 +69,22 @@ class ComuneDrawer extends StatelessWidget {
                     rotta: AppRoutes.tributiPagamenti,
                   ),
                   const Divider(),
+                  _buildSectionLabel('Struttura App'),
+                  // Sezione 4 - Comunicazioni Sindaco
+                  _buildMenuItem(
+                    context,
+                    icona: Icons.record_voice_over_rounded,
+                    titolo: 'Comunicazioni Sindaco',
+                    rotta: AppRoutes.comunicazioniSindaco,
+                  ),
+                  // Sezione 5 - Servizi Scolastici
+                  _buildMenuItem(
+                    context,
+                    icona: Icons.school_rounded,
+                    titolo: 'Servizi Scolastici',
+                    rotta: AppRoutes.serviziScolastici,
+                  ),
+                  const Divider(),
                   _buildSectionLabel('Servizi al Cittadino'),
                   _buildMenuItem(
                     context,

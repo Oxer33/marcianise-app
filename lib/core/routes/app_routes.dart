@@ -21,6 +21,12 @@ class AppRoutes {
   // === MODULO E: Tributi e Pagamenti ===
   static const String tributiPagamenti = '/tributi-pagamenti';
 
+  // === SEZIONE 4: Comunicazioni Sindaco ===
+  static const String comunicazioniSindaco = '/comunicazioni-sindaco';
+
+  // === SEZIONE 5: Servizi Scolastici ===
+  static const String serviziScolastici = '/servizi-scolastici';
+
   // === SERVIZI AL CITTADINO ===
   static const String segnalaDisservizio = '/segnala-disservizio';
   static const String prenotaUfficio = '/prenota-ufficio';
