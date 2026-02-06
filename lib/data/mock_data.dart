@@ -139,38 +139,52 @@ class MockData {
     ),
   ];
 
-  // === EVENTI ===
+  // === EVENTI (ispirati al calendario reale di Marcianise) ===
   static const List<EventoModel> eventi = [
     EventoModel(
       id: '1',
-      titolo: "Concerto d'Estate: Note Sotto le Stelle",
+      titolo: 'Referendum Costituzionale 2026',
       descrizione:
-          'Una serata magica in Piazza Umberto I dedicata alle più famose '
-          'colonne sonore del cinema italiano e internazionale.',
-      data: '25 Gen 2026',
-      ora: '15:30',
-      luogo: 'Piazza Umberto I, Marcianise',
-      categoria: 'Cultura & Musica',
+          'Giornata di voto per il Referendum Costituzionale. '
+          'Seggi aperti dalle 7:00 alle 23:00 del sabato e dalle 7:00 alle 15:00 della domenica.',
+      data: '22 Mar 2026',
+      ora: '07:00',
+      luogo: 'Seggi elettorali del Comune di Marcianise',
+      categoria: 'Istituzionale',
     ),
     EventoModel(
       id: '2',
-      titolo: "Festa dell'acqua",
-      descrizione: "Grande evento dedicato all'acqua e alla sostenibilità.",
-      data: '20 Gen 2026',
-      ora: '10:00',
-      luogo: 'Parco Comunale',
-      categoria: 'Ambiente',
+      titolo: 'Live Christmas 2025 - Iniziative in programma',
+      descrizione:
+          'Iniziative natalizie del Comune di Marcianise: '
+          'mercatini, spettacoli, luci e intrattenimento per tutte le famiglie.',
+      data: '20 Dic 2025',
+      ora: '17:00',
+      luogo: 'Centro storico, Marcianise',
+      categoria: 'Cultura & Spettacolo',
       isPassato: true,
     ),
     EventoModel(
       id: '3',
-      titolo: 'Mercato KM 0',
-      descrizione: 'Mercato dei prodotti locali a chilometro zero.',
-      data: '15 Gen 2026',
+      titolo: 'Festa Patronale San Michele Arcangelo',
+      descrizione:
+          'Celebrazioni in onore del Santo Patrono di Marcianise '
+          'con processione, fuochi e eventi culturali.',
+      data: '29 Set 2026',
       ora: '09:00',
-      luogo: 'Via Marconi',
+      luogo: 'Duomo e Centro storico, Marcianise',
+      categoria: 'Tradizione & Cultura',
+    ),
+    EventoModel(
+      id: '4',
+      titolo: 'Mercato KM 0 - Prodotti locali',
+      descrizione:
+          'Mercato dei prodotti tipici campani a chilometro zero. '
+          'Mozzarella di bufala, vino, olio e specialità locali.',
+      data: '15 Feb 2026',
+      ora: '09:00',
+      luogo: 'Piazza Umberto I, Marcianise',
       categoria: 'Gastronomia',
-      isPassato: true,
     ),
   ];
 }

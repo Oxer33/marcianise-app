@@ -137,5 +137,5 @@ lib/
 3. Il logo del comune è un placeholder circolare - sostituire con SVG/PNG reale
 4. Il widget meteo usa dati statici - integrare con API meteo (es. OpenWeatherMap)
 5. Ogni schermata servizio ha form placeholder - collegare al back office
-6. Il documento progetto MTK è in `OF-APP-CM-011225.docx` nella root
+6. Il documento progetto MTK è in `docs/OF-APP-CM-011225.docx`
 7. I 5 moduli (A-E) sono la struttura portante dell'app come da contratto MTK
