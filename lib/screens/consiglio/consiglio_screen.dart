@@ -4,6 +4,7 @@ import '../../widgets/comune_drawer.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/constants/app_constants.dart';
+import '../../core/utils/snackbar_helper.dart';
 
 /// Modulo B - Diretta live Consiglio Comunale
 /// Mostra i video delle sedute del consiglio comunale
@@ -34,6 +35,7 @@ class ConsiglioScreen extends StatelessWidget {
                   TextButton.icon(
                     onPressed: () {
                       // TODO: Implementare filtro data
+                      SnackBarHelper.showInfo(context, 'Filtro per data - funzionalità in arrivo!');
                     },
                     icon: const Icon(Icons.filter_alt_outlined, size: 18),
                     label: const Text('Filtra per data'),

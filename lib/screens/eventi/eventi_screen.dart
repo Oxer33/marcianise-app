@@ -51,6 +51,7 @@ class EventiScreen extends StatelessWidget {
                   TextButton.icon(
                     onPressed: () {
                       // TODO: Implementare filtro data
+                      SnackBarHelper.showInfo(context, 'Filtro per data - funzionalità in arrivo!');
                     },
                     icon: const Icon(Icons.filter_alt_outlined, size: 18),
                     label: const Text('Filtra per data'),
