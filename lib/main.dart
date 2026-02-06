@@ -24,7 +24,7 @@ void main() {
 }
 
 /// Widget root dell'applicazione
-/// Configura MaterialApp con tema blu, routing e titolo
+/// Configura MaterialApp con tema verde scuro istituzionale, routing e titolo
 class MarcianiseApp extends StatelessWidget {
   const MarcianiseApp({super.key});
 
@@ -34,7 +34,7 @@ class MarcianiseApp extends StatelessWidget {
       // Titolo dell'app
       title: AppConstants.comuneNomeCompleto,
 
-      // Tema blu personalizzato
+      // Tema verde scuro istituzionale personalizzato
       theme: AppTheme.lightTheme,
 
       // Rimuovi banner debug

@@ -25,7 +25,7 @@ class AppColors {
   static const Color cardService1 = Color(0xFFE8F5E9);  // Verde chiaro - Comunicazioni
   static const Color cardService2 = Color(0xFFE0F2F1);  // Teal chiaro - Consiglio
   static const Color cardService3 = Color(0xFFFFF3E0);  // Arancione chiaro - Eventi
-  static const Color cardService4 = Color(0xFFE3F2FD);  // Azzurro chiaro - Cultura
+  static const Color cardService4 = Color(0xFFE3F2FD);  // Blu chiaro - Cultura
   static const Color cardService5 = Color(0xFFFCE4EC);  // Rosa chiaro - Tributi
   static const Color cardService6 = Color(0xFFF3E5F5);  // Viola chiaro - Segnalazioni
 
