@@ -48,6 +48,26 @@ class HeroSection extends StatelessWidget {
             ),
           ),
 
+          // === OVERLAY VERDE IN ALTO per continuità con AppBar ===
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: 60,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    AppColors.primaryDark.withValues(alpha: 0.4),
+                    Colors.transparent,
+                  ],
+                ),
+              ),
+            ),
+          ),
+
           // === OVERLAY SCURO IN BASSO per leggibilità meteo ===
           Positioned(
             bottom: 0,
