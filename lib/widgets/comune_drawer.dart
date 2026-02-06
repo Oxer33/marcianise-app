@@ -207,14 +207,39 @@ class ComuneDrawer extends StatelessWidget {
     );
   }
 
-  /// Footer con info app
+  /// Footer con info app, contatti e social del comune
   Widget _buildFooter() {
     return Container(
       padding: const EdgeInsets.all(AppConstants.paddingMedium),
-      child: Text(
-        '© 2026 ${AppConstants.comuneNomeCompleto}',
-        style: AppTextStyles.bodySmall,
-        textAlign: TextAlign.center,
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(color: Colors.grey.shade200),
+        ),
+      ),
+      child: Column(
+        children: [
+          // Info sede
+          Text(
+            AppConstants.indirizzoCompleto,
+            style: AppTextStyles.bodySmall,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 4),
+          Text(
+            'Tel: ${AppConstants.telefono}',
+            style: AppTextStyles.bodySmall,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 8),
+          // Copyright
+          Text(
+            '© 2026 ${AppConstants.comuneNomeCompleto}',
+            style: AppTextStyles.bodySmall.copyWith(
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }
