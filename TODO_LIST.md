@@ -53,7 +53,7 @@
 - [x] Loading screen verde web con spinner CSS durante caricamento
 - [x] Manifest PWA completo (lang:it, categories:[government,utilities], scope)
 - [x] Meta tag viewport + lang=it in `index.html` per responsività web
-- [x] 31 test in 5 file (widget, home, navigazione, AppConstants, SnackBarHelper)
+- [x] 45 test in 6 file (widget, home, nav, AppConstants, SnackBarHelper, AppTheme)
 
 ### Da Fare UI ⏳
 
@@ -94,7 +94,7 @@
 - [ ] Setup Firebase per analytics e crash reporting
 - [ ] Configurazione per release Android (Play Store)
 - [ ] Configurazione per release iOS (App Store)
-- [x] ~~Testing automatizzato~~ 31 test in 5 file (widget, home, nav, constants, snackbar)
+- [x] ~~Testing automatizzato~~ 45 test in 6 file (widget, home, nav, constants, snackbar, theme)
 
 ---
 
@@ -120,7 +120,7 @@
 - Codice morto archiviato in `docs/codice_morto.dart`
 - 5 moduli funzionali: A (News), B (Consiglio), C (Eventi), D (Cultura), E (Tributi)
 - [Canale YouTube comune](https://www.youtube.com/channel/UCglEv_b7yTzb1hVB2HxYeGQ/videos)
-- 55+ commit su GitHub (master)
+- 60+ commit su GitHub (master)
 - Ultimo aggiornamento: 7 Febbraio 2026
 
 

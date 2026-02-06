@@ -33,7 +33,7 @@ Progetto commissionato da MTK, strutturato in **5 moduli funzionali** (A-E).
 
 ## ✅ Qualità
 
-- **31 test automatizzati** (widget + unit) in 5 file
+- **45 test automatizzati** (widget + unit) in 6 file
 - **0 errori** `flutter analyze`
 - **Build verificati:** Windows, Web
 - **Loading screen verde** per web con spinner CSS

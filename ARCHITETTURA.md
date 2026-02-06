@@ -134,12 +134,13 @@ lib/
 
 ## Test
 
-- **31 test** in 5 file:
+- **45 test** in 6 file:
   - `test/widget_test.dart` — avvio app (1 test)
   - `test/home_screen_test.dart` — AppBar, menu, notifiche, tab (4 test)
   - `test/navigation_test.dart` — drawer apertura, moduli, navigazione, etichette (4 test)
   - `test/app_constants_test.dart` — info comune, telefoni, URL servizi, dimensioni (17 test)
   - `test/snackbar_helper_test.dart` — success, error, info, warning, floating behavior (5 test)
+  - `test/app_theme_test.dart` — colori istituzionali, tema MD3, AppBar, stili testo (14 test)
 - Tutti i test passano con `flutter test`
 - Regole lint strict in `analysis_options.yaml` (prefer_const, avoid_print, etc.)
 
