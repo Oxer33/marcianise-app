@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Permesso internet per API, meteo, servizi online, PagoPA -->
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:label="Comune di Marcianise"
         android:name="${applicationName}"
