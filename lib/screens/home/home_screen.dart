@@ -6,9 +6,9 @@ import 'widgets/servizi_grid.dart';
 import 'widgets/novita_eventi_section.dart';
 
 /// Schermata principale (Home) dell'app
-/// Layout ispirato all'app blu di San Donà di Piave:
-/// 1. Hero image municipio con meteo
-/// 2. Griglia 6 servizi rapidi
+/// Layout con tema verde scuro istituzionale:
+/// 1. Hero image REALE del municipio con meteo
+/// 2. Griglia 6 servizi rapidi (5 moduli MTK + servizi cittadino)
 /// 3. Sezione Novità / Eventi in basso
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

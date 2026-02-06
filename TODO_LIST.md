@@ -14,11 +14,13 @@
 ### Completati ✅
 
 - [x] Struttura progetto Flutter modulare
-- [x] Tema blu (Material Design 3)
-- [x] Home Page con hero image, meteo, griglia servizi, novità/eventi
+- [x] Tema VERDE SCURO istituzionale (#008055) come sito comune
+- [x] Home Page con FOTO REALE municipio, meteo, griglia 5 moduli MTK, novità/eventi
 - [x] Pagina News e Avvisi con tab e filtro
-- [x] Pagina Consiglio Comunale con video
-- [x] Pagina Eventi con eventi futuri e passati
+- [x] Pagina Consiglio Comunale con video (Modulo B)
+- [x] Pagina Eventi con eventi futuri e passati (Modulo C)
+- [x] Pagina Cultura e Turismo (Modulo D) - NUOVA
+- [x] Pagina Tributi e Pagamenti con PagoPA (Modulo E) - NUOVA
 - [x] Pagina Segnala Disservizio con form
 - [x] Pagina Prenota Ufficio con lista uffici
 - [x] Pagina Contatta Uffici con contatti
@@ -32,7 +34,7 @@
 
 ### Da Fare UI ⏳
 
-- [ ] Aggiungere immagine reale del municipio nella hero section
+- [x] ~~Aggiungere immagine reale del municipio nella hero section~~ FATTO!
 - [ ] Aggiungere logo reale del Comune di Marcianise (SVG/PNG)
 - [ ] Splash screen con logo comune
 - [ ] Animazioni di transizione tra pagine
@@ -77,7 +79,7 @@
 
 - [ ] Sezione "Comunicati Stampa"
 - [ ] Chat con assistente virtuale del comune
-- [ ] Pagamento tributi in-app
+- [x] ~~Pagamento tributi in-app~~ Schermata base creata (Modulo E)
 - [ ] QR code per servizi rapidi
 - [ ] Sezione "Bandi e Concorsi"
 - [ ] Mappa interattiva della città
@@ -88,7 +90,9 @@
 
 ## Note
 
-- I dati attuali sono mock (finti) in `lib/data/mock_data.dart`
+- I dati attuali sono mock in `lib/data/mock_data.dart` (news reali dal sito comune)
 - L'app deve funzionare su tutti i dispositivi (Android, iOS, Web)
 - Il back office fornirà le API per i dati dinamici
+- Documento progetto MTK: `OF-APP-CM-011225.docx`
+- 5 moduli funzionali: A (News), B (Consiglio), C (Eventi), D (Cultura), E (Tributi)
 - Ultimo aggiornamento: 6 Febbraio 2026
