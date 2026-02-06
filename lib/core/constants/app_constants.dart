@@ -45,6 +45,13 @@ class AppConstants {
   static const int serviziCrossAxisCount = 3;
   static const double serviziSpacing = 12.0;
 
+  // === URL SERVIZI ONLINE (dal sito ufficiale) ===
+  static const String urlAnpr = 'https://www.anpr.interno.it/portale/';
+  static const String urlPagoPA = 'https://www.pagopa.gov.it/';
+  static const String urlSuap = 'https://www.impresainungiorno.gov.it/';
+  static const String urlAlboPretorio = 'https://www.comune.marcianise.ce.it/albo-pretorio/';
+  static const String urlAmmTrasparente = 'https://www.comune.marcianise.ce.it/amministrazione-trasparente/';
+
   // === ANIMAZIONI ===
   static const Duration animationFast = Duration(milliseconds: 200);
   static const Duration animationNormal = Duration(milliseconds: 350);
