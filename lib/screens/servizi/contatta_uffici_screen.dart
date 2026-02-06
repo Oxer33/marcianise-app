@@ -28,11 +28,15 @@ class ContattaUfficiScreen extends StatelessWidget {
             _buildHeader(),
             const SizedBox(height: 24),
 
+            // === SEDE PRINCIPALE (dati reali) ===
+            _buildSedeCard(),
+            const SizedBox(height: 16),
+
             // Lista contatti uffici
             _buildContattoCard(
               'Centralino',
-              '0823 635111',
-              'info@comune.marcianise.ce.it',
+              AppConstants.telefono,
+              AppConstants.email,
               'Lun-Ven: 8:30 - 14:00',
               Icons.phone_rounded,
             ),
@@ -111,6 +115,62 @@ class ContattaUfficiScreen extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  /// Card sede principale del Comune con dati reali
+  Widget _buildSedeCard() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        gradient: AppColors.headerGradient,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: AppColors.cardShadow,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Row(
+            children: [
+              Icon(Icons.location_city_rounded, color: Colors.white, size: 28),
+              SizedBox(width: 10),
+              Text(
+                'Sede Municipale',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          _buildInfoRowWhite(Icons.place_rounded, AppConstants.indirizzoCompleto),
+          const SizedBox(height: 6),
+          _buildInfoRowWhite(Icons.phone_rounded, AppConstants.telefono),
+          const SizedBox(height: 6),
+          _buildInfoRowWhite(Icons.email_rounded, AppConstants.email),
+          const SizedBox(height: 6),
+          _buildInfoRowWhite(Icons.mark_email_read_rounded, 'PEC: ${AppConstants.pec}'),
+        ],
+      ),
+    );
+  }
+
+  /// Riga info bianca (per card con sfondo scuro)
+  Widget _buildInfoRowWhite(IconData icona, String testo) {
+    return Row(
+      children: [
+        Icon(icona, size: 16, color: Colors.white70),
+        const SizedBox(width: 8),
+        Expanded(
+          child: Text(
+            testo,
+            style: const TextStyle(color: Colors.white, fontSize: 13),
+          ),
+        ),
+      ],
     );
   }
 
