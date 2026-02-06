@@ -134,8 +134,11 @@ lib/
 
 ## Test
 
-- **9 widget test** in 3 file (`test/widget_test.dart`, `test/home_screen_test.dart`, `test/navigation_test.dart`)
-- Test copertura: avvio app, AppBar, menu, notifiche, tab, drawer apertura, moduli, navigazione
+- **26 test** in 4 file:
+  - `test/widget_test.dart` — avvio app (1 test)
+  - `test/home_screen_test.dart` — AppBar, menu, notifiche, tab (4 test)
+  - `test/navigation_test.dart` — drawer apertura, moduli, navigazione, etichette (4 test)
+  - `test/app_constants_test.dart` — info comune, telefoni, URL servizi, dimensioni (17 test)
 - Tutti i test passano con `flutter test`
 
 ---
@@ -146,7 +149,7 @@ lib/
 | ----------- | ------------- | ---- | ----- |
 | Android | Verde scuro (#008055) | Verde | ✅ |
 | iOS | Verde scuro (r:0, g:0.502, b:0.333) | Verde | ✅ |
-| Web | theme-color #008055 + manifest verde | Verde | ✅ |
+| Web | Loading screen verde + spinner + lang=it + viewport | Verde | ✅ |
 | Windows | Build release funzionante | Verde | ✅ |
 
 ---
@@ -163,3 +166,7 @@ lib/
 8. Codice morto archiviato in `docs/codice_morto.dart` per riferimento
 9. [Canale YouTube comune](https://www.youtube.com/channel/UCglEv_b7yTzb1hVB2HxYeGQ/videos) per Modulo B
 10. Il tema globale include `InputDecorationTheme` e `TabBarTheme` per uniformità
+11. `SnackBarHelper` in `core/utils/` per feedback consistente (success/error/info/warning)
+12. `.editorconfig` per formattazione consistente tra editor
+13. Loading screen verde web con spinner CSS durante caricamento Flutter
+14. Manifest PWA con `lang: it`, `categories: [government, utilities]`
