@@ -23,6 +23,7 @@ class HeroSection extends StatelessWidget {
             child: Image.asset(
               'assets/images/municipio_marcianise.jpeg',
               fit: BoxFit.cover,
+              semanticLabel: 'Foto notturna del Palazzo Municipale di Marcianise illuminato',
               // Fallback in caso di errore caricamento immagine
               errorBuilder: (context, error, stackTrace) {
                 return Container(

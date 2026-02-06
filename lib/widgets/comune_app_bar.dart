@@ -93,6 +93,7 @@ class ComuneAppBar extends StatelessWidget implements PreferredSizeWidget {
             // Icona notifiche
             IconButton(
               icon: const Icon(Icons.notifications_outlined, color: Colors.white),
+              tooltip: 'Notifiche',
               onPressed: () {
                 // TODO: Implementare notifiche
               },
