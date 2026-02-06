@@ -127,7 +127,7 @@
 - 5 moduli funzionali: A (News), B (Consiglio), C (Eventi), D (Cultura), E (Tributi)
 - [Canale YouTube comune](https://www.youtube.com/channel/UCglEv_b7yTzb1hVB2HxYeGQ/videos)
 - 67+ commit su GitHub (master)
-- Ultimo aggiornamento: 7 Febbraio 2026
+- Ultimo aggiornamento: 6 Febbraio 2026
 
 
 STRUTTURA RICHIESTA DA RISPETTARE AL 100%
