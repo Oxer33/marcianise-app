@@ -38,6 +38,15 @@
 - [x] Contatti reali comune in AppConstants (Via Roma 18, tel, email, PEC, social)
 - [x] InputDecorationTheme + TabBarTheme nel tema globale
 - [x] Accessibilità: semanticLabel foto municipio, tooltip bottoni
+- [x] SnackBarHelper utility per feedback consistente (success/error/info/warning)
+- [x] Prenota Ufficio con orari apertura reali per ogni ufficio
+- [x] Servizi Online con feedback SnackBar al tap
+- [x] Luoghi di interesse reali Marcianise (Duomo, Castello/Torrione, S.Francesco)
+- [x] URL costanti servizi online centralizzati in AppConstants
+- [x] Telefoni e email uffici centralizzati in AppConstants
+- [x] Tooltip completi su tutti i pulsanti AppBar (back, menu, notifiche)
+- [x] Padding hardcoded sostituiti con AppConstants per coerenza
+- [x] `.editorconfig` per formattazione consistente tra editor
 
 ### Da Fare UI ⏳
 
@@ -78,7 +87,7 @@
 - [ ] Setup Firebase per analytics e crash reporting
 - [ ] Configurazione per release Android (Play Store)
 - [ ] Configurazione per release iOS (App Store)
-- [ ] Testing automatizzato (unit test, widget test)
+- [x] ~~Testing automatizzato~~ 9 widget test in 3 file (home, navigazione, base)
 
 ---
 
@@ -104,5 +113,5 @@
 - Codice morto archiviato in `docs/codice_morto.dart`
 - 5 moduli funzionali: A (News), B (Consiglio), C (Eventi), D (Cultura), E (Tributi)
 - [Canale YouTube comune](https://www.youtube.com/channel/UCglEv_b7yTzb1hVB2HxYeGQ/videos)
-- 27+ commit su GitHub (master)
-- Ultimo aggiornamento: 6 Febbraio 2026
+- 44+ commit su GitHub (master)
+- Ultimo aggiornamento: 7 Febbraio 2026
