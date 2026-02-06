@@ -43,18 +43,21 @@ class ComuneAppBar extends StatelessWidget implements PreferredSizeWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           // Logo del comune (placeholder circolare)
-          Container(
-            width: 36,
-            height: 36,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.white,
-              border: Border.all(color: Colors.white, width: 2),
-            ),
-            child: const Icon(
-              Icons.account_balance_rounded,
-              color: AppColors.primary,
-              size: 20,
+          Semantics(
+            label: 'Logo Comune di Marcianise',
+            child: Container(
+              width: 36,
+              height: 36,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+                border: Border.all(color: Colors.white, width: 2),
+              ),
+              child: const Icon(
+                Icons.account_balance_rounded,
+                color: AppColors.primary,
+                size: 20,
+              ),
             ),
           ),
           const SizedBox(width: 10),
