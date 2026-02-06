@@ -31,6 +31,16 @@ Progetto commissionato da MTK, strutturato in **5 moduli funzionali** (A-E).
 - Griglia 6 servizi rapidi **responsive** (3/4/6 colonne)
 - Sezione Novità e Eventi con tab
 
+## ✅ Qualità
+
+- **26 test automatizzati** (widget + unit) in 4 file
+- **0 errori** `flutter analyze`
+- **Build verificati:** Windows, Web
+- **Loading screen verde** per web con spinner CSS
+- **PWA ready** con manifest completo (lang: it, categories: government)
+- **Accessibilità:** semanticLabel, tooltip su tutti i pulsanti
+- **SnackBarHelper** per feedback UX consistente
+
 ## 🛠️ Stack Tecnologico
 
 - **Linguaggio:** Dart
