@@ -3,7 +3,7 @@
 ## Panoramica
 
 App mobile Flutter per il Comune di Marcianise (CE), con tema **VERDE SCURO istituzionale** come il [sito ufficiale](https://www.comune.marcianise.ce.it).
-Progetto commissionato da MTK, strutturato in 5 moduli funzionali (A-E) + servizi al cittadino.
+Progetto commissionato da MTK, strutturato secondo la **struttura richiesta al 100%** (5 sezioni principali) + moduli aggiuntivi + servizi al cittadino.
 Sarà collegata ad un back office per la gestione dei contenuti.
 
 ---
@@ -55,7 +55,7 @@ lib/
     │   ├── home_screen.dart           # Schermata principale
     │   └── widgets/
     │       ├── hero_section.dart      # Sezione hero con FOTO REALE municipio
-    │       ├── servizi_grid.dart      # Griglia 6 servizi
+    │       ├── servizi_grid.dart      # Griglia 8 servizi
     │       └── novita_eventi_section.dart  # Tab Novità/Eventi
     ├── news/
     │   └── news_screen.dart           # Pagina News e Avvisi
@@ -67,6 +67,10 @@ lib/
     │   └── cultura_turismo_screen.dart # Modulo D: Cultura e Turismo
     ├── tributi/
     │   └── tributi_pagamenti_screen.dart # Modulo E: Tributi e Pagamenti
+    ├── sindaco/
+    │   └── comunicazioni_sindaco_screen.dart # Sez.4: Comunicazioni Sindaco
+    ├── scolastici/
+    │   └── servizi_scolastici_screen.dart # Sez.5: Servizi Scolastici
     └── servizi/
         ├── segnala_disservizio_screen.dart
         ├── prenota_ufficio_screen.dart
@@ -83,9 +87,9 @@ lib/
 | Schermata | Modulo | File | Stato |
 | --------- | ------ | ---- | ----- |
 | Home | - | `screens/home/home_screen.dart` | ✅ Completata |
-| News e Avvisi | A | `screens/news/news_screen.dart` | ✅ Completata |
+| News e Avvisi | Sez.1 | `screens/news/news_screen.dart` | ✅ CRUD+Stat+Criticità |
 | Consiglio Comunale | B | `screens/consiglio/consiglio_screen.dart` | ✅ Completata |
-| Eventi | C | `screens/eventi/eventi_screen.dart` | ✅ Completata |
+| Eventi | Sez.2 | `screens/eventi/eventi_screen.dart` | ✅ CRUD+Geolocalizzazione |
 | Cultura e Turismo | D | `screens/cultura/cultura_turismo_screen.dart` | ✅ Completata |
 | Tributi e Pagamenti | E | `screens/tributi/tributi_pagamenti_screen.dart` | ✅ Completata |
 | Segnala Disservizio | Servizi | `screens/servizi/segnala_disservizio_screen.dart` | ✅ Completata |
@@ -93,7 +97,9 @@ lib/
 | Contatta Uffici | Servizi | `screens/servizi/contatta_uffici_screen.dart` | ✅ Completata |
 | Gestione Rifiuti | Servizi | `screens/servizi/gestione_rifiuti_screen.dart` | ✅ Completata |
 | Servizi Online | Servizi | `screens/servizi/servizi_online_screen.dart` | ✅ Completata |
-| Luoghi di Interesse | Servizi | `screens/servizi/luoghi_interesse_screen.dart` | ✅ Completata |
+| Luoghi di Interesse | Sez.3 POI | `screens/servizi/luoghi_interesse_screen.dart` | ✅ CRUD+Geo |
+| Comunicazioni Sindaco | Sez.4 | `screens/sindaco/comunicazioni_sindaco_screen.dart` | ✅ Img+Video+Comunicati |
+| Servizi Scolastici | Sez.5 | `screens/scolastici/servizi_scolastici_screen.dart` | ✅ CRUD servizi |
 
 ---
 
@@ -134,13 +140,14 @@ lib/
 
 ## Test
 
-- **45 test** in 6 file:
+- **64 test** in 7 file:
   - `test/widget_test.dart` — avvio app (1 test)
   - `test/home_screen_test.dart` — AppBar, menu, notifiche, tab (4 test)
   - `test/navigation_test.dart` — drawer apertura, moduli, navigazione, etichette (4 test)
   - `test/app_constants_test.dart` — info comune, telefoni, URL servizi, dimensioni (17 test)
   - `test/snackbar_helper_test.dart` — success, error, info, warning, floating behavior (5 test)
   - `test/app_theme_test.dart` — colori istituzionali, tema MD3, AppBar, stili testo (14 test)
+  - `test/app_router_test.dart` — 14 rotte definite, 5 generazione route (19 test)
 - Tutti i test passano con `flutter test`
 - Regole lint strict in `analysis_options.yaml` (prefer_const, avoid_print, etc.)
 

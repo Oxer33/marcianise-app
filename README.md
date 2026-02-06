@@ -33,13 +33,14 @@ Progetto commissionato da MTK, strutturato in **5 moduli funzionali** (A-E).
 
 ## ✅ Qualità
 
-- **45 test automatizzati** (widget + unit) in 6 file
+- **64 test automatizzati** (widget + unit) in 7 file
 - **0 errori** `flutter analyze`
 - **Build verificati:** Windows, Web
 - **Loading screen verde** per web con spinner CSS
 - **PWA ready** con manifest completo (lang: it, categories: government)
 - **Accessibilità:** semanticLabel, tooltip su tutti i pulsanti
 - **SnackBarHelper** per feedback UX consistente
+- **14 schermate** con struttura richiesta al 100% (5 sezioni CRUD)
 
 ## 🛠️ Stack Tecnologico
 
