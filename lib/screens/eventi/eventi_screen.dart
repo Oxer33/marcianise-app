@@ -7,7 +7,7 @@ import '../../core/theme/app_text_styles.dart';
 import '../../core/constants/app_constants.dart';
 import '../../data/mock_data.dart';
 
-/// Schermata Eventi
+/// Modulo C - Eventi, manifestazioni e iniziative del territorio
 /// Mostra gli eventi in programma e quelli passati
 /// Con filtro per data e categoria
 class EventiScreen extends StatelessWidget {

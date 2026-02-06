@@ -7,7 +7,7 @@ import '../../core/theme/app_text_styles.dart';
 import '../../core/constants/app_constants.dart';
 import '../../data/mock_data.dart';
 
-/// Schermata News e Avvisi
+/// Modulo A - Comunicazioni istituzionali e Notizie
 /// Mostra tutte le notizie e avvisi del comune
 /// Con filtro per categoria (News / Avvisi) e filtro data
 class NewsScreen extends StatefulWidget {
