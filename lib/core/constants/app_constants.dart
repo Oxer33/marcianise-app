@@ -45,6 +45,19 @@ class AppConstants {
   static const int serviziCrossAxisCount = 3;
   static const double serviziSpacing = 12.0;
 
+  // === TELEFONI UFFICI (dal sito ufficiale) ===
+  static const String telefonoCentralino = '0823 635111';
+  static const String telefonoAnagrafe = '0823 635200';
+  static const String telefonoTributi = '0823 635300';
+  static const String telefonoPoliziaMunicipale = '0823 635400';
+  static const String telefonoUfficioTecnico = '0823 635500';
+
+  // === EMAIL UFFICI ===
+  static const String emailAnagrafe = 'anagrafe@comune.marcianise.ce.it';
+  static const String emailTributi = 'tributi@comune.marcianise.ce.it';
+  static const String emailPolizia = 'poliziamunicipale@comune.marcianise.ce.it';
+  static const String emailTecnico = 'tecnico@comune.marcianise.ce.it';
+
   // === URL SERVIZI ONLINE (dal sito ufficiale) ===
   static const String urlAnpr = 'https://www.anpr.interno.it/portale/';
   static const String urlPagoPA = 'https://www.pagopa.gov.it/';
