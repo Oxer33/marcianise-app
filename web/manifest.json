@@ -1,11 +1,11 @@
 {
-    "name": "marcianise_app",
-    "short_name": "marcianise_app",
+    "name": "Comune di Marcianise",
+    "short_name": "Marcianise",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#0D47A1",
+    "theme_color": "#1565C0",
+    "description": "App ufficiale del Comune di Marcianise (CE)",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
