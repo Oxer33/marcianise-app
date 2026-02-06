@@ -1,0 +1,34 @@
+# EditorConfig - Configurazione formattazione per App Comune di Marcianise
+# Garantisce stile consistente tra tutti gli editor e sviluppatori
+# https://editorconfig.org
+
+root = true
+
+# Regole per tutti i file
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# File Dart - 2 spazi come da convenzione Flutter
+[*.dart]
+indent_size = 2
+
+# File YAML (pubspec.yaml, analysis_options.yaml)
+[*.yaml]
+indent_size = 2
+
+# File Markdown (README, ARCHITETTURA, TODO_LIST)
+[*.md]
+trim_trailing_whitespace = false
+
+# File XML (Android manifest, storyboard iOS)
+[*.xml]
+indent_size = 4
+
+# File JSON (manifest.json, package.json)
+[*.json]
+indent_size = 2
