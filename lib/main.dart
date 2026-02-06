@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'core/theme/app_theme.dart';
+import 'core/theme/app_colors.dart';
 import 'core/routes/app_router.dart';
 import 'core/routes/app_routes.dart';
 import 'core/constants/app_constants.dart';
+import 'widgets/responsive_wrapper.dart';
 
 /// Punto di ingresso dell'app Comune di Marcianise
 /// Configura il tema, il routing e avvia l'applicazione
@@ -43,6 +45,15 @@ class MarcianiseApp extends StatelessWidget {
 
       // Router centralizzato
       onGenerateRoute: AppRouter.generateRoute,
+
+      // Wrapper responsive per tablet/desktop/web
+      // Centra il contenuto e limita la larghezza su schermi grandi
+      builder: (context, child) {
+        return Container(
+          color: AppColors.scaffoldBg,
+          child: ResponsiveWrapper(child: child ?? const SizedBox()),
+        );
+      },
     );
   }
 }

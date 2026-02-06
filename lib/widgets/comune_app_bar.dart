@@ -6,25 +6,28 @@ import '../core/theme/app_text_styles.dart';
 /// Mostra il logo del comune, il titolo e il pulsante menu
 class ComuneAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String titolo;
+  final String? sottotitolo; // Es. 'MARCIANISE' sotto 'Comune di'
   final bool mostraBack;
   final List<Widget>? azioni;
 
   const ComuneAppBar({
     super.key,
     required this.titolo,
+    this.sottotitolo,
     this.mostraBack = false,
     this.azioni,
   });
 
   @override
-  Size get preferredSize => const Size.fromHeight(60);
+  Size get preferredSize => Size.fromHeight(sottotitolo != null ? 70 : 60);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: AppColors.primary,
       elevation: 0,
-      centerTitle: true,
+      centerTitle: false, // Allineato a sinistra come nello screenshot
+      toolbarHeight: sottotitolo != null ? 70 : 60,
       leading: mostraBack
           ? IconButton(
               icon: const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
@@ -53,13 +56,35 @@ class ComuneAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
           const SizedBox(width: 10),
-          // Titolo
+          // Titolo (una o due righe)
           Flexible(
-            child: Text(
-              titolo,
-              style: AppTextStyles.appBarTitle,
-              overflow: TextOverflow.ellipsis,
-            ),
+            child: sottotitolo != null
+                ? Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        titolo,
+                        style: AppTextStyles.appBarTitle.copyWith(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      Text(
+                        sottotitolo!,
+                        style: AppTextStyles.appBarTitle.copyWith(
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.0,
+                        ),
+                      ),
+                    ],
+                  )
+                : Text(
+                    titolo,
+                    style: AppTextStyles.appBarTitle,
+                    overflow: TextOverflow.ellipsis,
+                  ),
           ),
         ],
       ),

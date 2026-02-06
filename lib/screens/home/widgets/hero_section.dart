@@ -16,7 +16,7 @@ class HeroSection extends StatelessWidget {
       width: double.infinity,
       child: Stack(
         children: [
-          // === IMMAGINE MUNICIPIO (Placeholder con gradiente) ===
+          // === SFONDO GRADIENTE BLU ===
           Container(
             width: double.infinity,
             height: AppConstants.heroImageHeight,
@@ -26,63 +26,82 @@ class HeroSection extends StatelessWidget {
                 end: Alignment.bottomCenter,
                 colors: [
                   AppColors.primaryDark,
-                  AppColors.primary.withValues(alpha: 0.8),
+                  AppColors.primary.withValues(alpha: 0.9),
+                  AppColors.primary.withValues(alpha: 0.7),
                 ],
               ),
             ),
-            child: Stack(
-              children: [
-                // Placeholder icona municipio
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.account_balance_rounded,
-                        size: 80,
-                        color: Colors.white.withValues(alpha: 0.3),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Municipio di Marcianise',
-                        style: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.5),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        '(Immagine dal back office)',
-                        style: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.3),
-                          fontSize: 12,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+          ),
 
-                // === OVERLAY SCURO IN BASSO ===
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Container(
-                    height: 120,
+          // === SKYLINE SILHOUETTE CITTÀ (effetto con icone) ===
+          Positioned(
+            bottom: 60,
+            left: 0,
+            right: 0,
+            child: _buildSkylineSilhouette(),
+          ),
+
+          // === PLACEHOLDER FOTO MUNICIPIO ===
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 40),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Icona municipio grande
+                  Container(
+                    width: 90,
+                    height: 90,
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Colors.transparent,
-                          Colors.black.withValues(alpha: 0.6),
-                        ],
-                      ),
+                      color: Colors.white.withValues(alpha: 0.15),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      Icons.account_balance_rounded,
+                      size: 50,
+                      color: Colors.white.withValues(alpha: 0.6),
                     ),
                   ),
+                  const SizedBox(height: 10),
+                  Text(
+                    'Municipio di Marcianise',
+                    style: TextStyle(
+                      color: Colors.white.withValues(alpha: 0.7),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    'Immagine caricata dal back office',
+                    style: TextStyle(
+                      color: Colors.white.withValues(alpha: 0.4),
+                      fontSize: 11,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          // === OVERLAY SCURO IN BASSO per leggibilità meteo ===
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: 100,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    Colors.black.withValues(alpha: 0.5),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
 
@@ -94,6 +113,46 @@ class HeroSection extends StatelessWidget {
             child: MeteoWidget(),
           ),
         ],
+      ),
+    );
+  }
+
+  /// Costruisce una silhouette stilizzata della città
+  /// Effetto decorativo come nello screenshot blu
+  Widget _buildSkylineSilhouette() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        // Edifici stilizzati con Container
+        _buildEdificio(30, 45),
+        _buildEdificio(20, 60),
+        _buildEdificio(25, 35),
+        _buildEdificio(18, 80), // Torre/campanile
+        _buildEdificio(30, 50),
+        _buildEdificio(22, 40),
+        _buildEdificio(28, 55),
+        _buildEdificio(18, 70),
+        _buildEdificio(25, 45),
+        _buildEdificio(20, 35),
+        _buildEdificio(30, 50),
+        _buildEdificio(22, 65),
+        _buildEdificio(25, 40),
+      ],
+    );
+  }
+
+  /// Singolo "edificio" della silhouette
+  Widget _buildEdificio(double larghezza, double altezza) {
+    return Container(
+      width: larghezza,
+      height: altezza,
+      margin: const EdgeInsets.symmetric(horizontal: 1),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.08),
+        borderRadius: const BorderRadius.vertical(
+          top: Radius.circular(2),
+        ),
       ),
     );
   }

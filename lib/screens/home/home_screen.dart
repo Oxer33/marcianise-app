@@ -18,7 +18,8 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       // AppBar con menu hamburger e logo
       appBar: const ComuneAppBar(
-        titolo: 'Comune di\nMARCIANISE',
+        titolo: 'Comune di',
+        sottotitolo: 'MARCIANISE',
       ),
       // Drawer laterale
       drawer: const ComuneDrawer(),
