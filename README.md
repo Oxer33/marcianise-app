@@ -26,7 +26,8 @@ Progetto commissionato da MTK, strutturato in **5 moduli funzionali** (A-E).
 
 ### Home Page
 
-- Foto **reale** del Municipio di Marcianise (notturna)
+- **Carousel animato** con immagini ufficiali del Comune (municipio + banner)
+- **Stemma reale** del Comune in AppBar e Drawer
 - Widget previsioni meteo sovrapposto
 - Griglia 8 servizi rapidi **responsive** (4/4/8 colonne)
 - Sezione Novità e Eventi con tab

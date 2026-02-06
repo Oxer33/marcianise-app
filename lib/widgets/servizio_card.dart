@@ -15,49 +15,70 @@ class ServizioCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Navigator.of(context).pushNamed(servizio.rotta),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(AppConstants.borderRadiusMedium),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.06),
-              blurRadius: 8,
-              offset: const Offset(0, 3),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isCompact = constraints.maxWidth < 90 || constraints.maxHeight < 110;
+        final iconBoxSize = isCompact ? 48.0 : 56.0;
+        final iconSize = isCompact ? 24.0 : 30.0;
+        final spacing = isCompact ? 6.0 : 8.0;
+        final titleStyle = AppTextStyles.cardTitle.copyWith(
+          fontSize: isCompact ? 11 : 13,
+          height: isCompact ? 1.15 : 1.3,
+        );
+
+        return GestureDetector(
+          onTap: () => Navigator.of(context).pushNamed(servizio.rotta),
+          child: TweenAnimationBuilder<double>(
+            tween: Tween(begin: 0.96, end: 1),
+            duration: AppConstants.animationNormal,
+            builder: (context, value, child) => Opacity(
+              opacity: value,
+              child: Transform.scale(scale: value, child: child),
             ),
-          ],
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Icona con sfondo colorato
-            Container(
-              width: 56,
-              height: 56,
+            child: Container(
               decoration: BoxDecoration(
-                color: servizio.coloreSfondo,
-                borderRadius: BorderRadius.circular(14),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(AppConstants.borderRadiusMedium),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.06),
+                    blurRadius: 8,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
               ),
-              child: Icon(
-                servizio.icona,
-                color: servizio.coloreIcona,
-                size: 30,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Icona con sfondo colorato
+                  Container(
+                    width: iconBoxSize,
+                    height: iconBoxSize,
+                    decoration: BoxDecoration(
+                      color: servizio.coloreSfondo,
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    child: Icon(
+                      servizio.icona,
+                      color: servizio.coloreIcona,
+                      size: iconSize,
+                    ),
+                  ),
+                  SizedBox(height: spacing),
+                  // Titolo servizio
+                  Text(
+                    servizio.titolo,
+                    style: titleStyle,
+                    textAlign: TextAlign.center,
+                    maxLines: isCompact ? 1 : 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 8),
-            // Titolo servizio
-            Text(
-              servizio.titolo,
-              style: AppTextStyles.cardTitle,
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

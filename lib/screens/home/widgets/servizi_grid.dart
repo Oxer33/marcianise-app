@@ -13,9 +13,18 @@ class ServiziGrid extends StatelessWidget {
   /// Calcola il numero di colonne in base alla larghezza dello schermo
   int _calcolaColonne(double larghezza) {
     if (larghezza >= 1100) return 8; // Desktop grande: una riga unica
-    if (larghezza >= 900) return 4;  // Desktop/Tablet: 2 righe da 4+4
-    if (larghezza >= 600) return 4;  // Tablet: 2 righe da 4+4
-    return 4; // Mobile: 4 colonne x 2 righe
+    if (larghezza >= 900) return 4; // Desktop/Tablet: 2 righe da 4+4
+    if (larghezza >= 600) return 4; // Tablet: 2 righe da 4+4
+    if (larghezza < 360) return 3; // Smartphone compatti: 3 colonne
+    return 4; // Mobile standard: 4 colonne x 2 righe
+  }
+
+  /// Aspect ratio responsivo per evitare overflow su schermi piccoli
+  double _calcolaAspectRatio(double larghezza) {
+    if (larghezza < 380) return 0.65; // Più alte su smartphone compatti
+    if (larghezza < 600) return 0.75; // Mobile standard
+    if (larghezza < 900) return 0.85; // Tablet / desktop piccoli
+    return 0.95; // Desktop grande
   }
 
   @override
@@ -23,6 +32,10 @@ class ServiziGrid extends StatelessWidget {
     const servizi = MockData.servizi;
     final larghezzaSchermo = MediaQuery.of(context).size.width;
     final colonne = _calcolaColonne(larghezzaSchermo);
+    final aspectRatio = _calcolaAspectRatio(larghezzaSchermo);
+    final spacing = larghezzaSchermo < 400
+        ? AppConstants.serviziSpacing - 4
+        : AppConstants.serviziSpacing;
 
     return Container(
       // Sfondo verde chiaro istituzionale
@@ -44,9 +57,9 @@ class ServiziGrid extends StatelessWidget {
         itemCount: servizi.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: colonne,
-          crossAxisSpacing: AppConstants.serviziSpacing,
-          mainAxisSpacing: AppConstants.serviziSpacing,
-          childAspectRatio: 0.85, // Card più alte che larghe
+          crossAxisSpacing: spacing,
+          mainAxisSpacing: spacing,
+          childAspectRatio: aspectRatio, // Card responsiva, evita overflow
         ),
         itemBuilder: (context, index) {
           return ServizioCard(servizio: servizi[index]);

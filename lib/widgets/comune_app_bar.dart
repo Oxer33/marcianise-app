@@ -43,7 +43,7 @@ class ComuneAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Logo del comune (placeholder circolare)
+          // Logo ufficiale del comune (stemma)
           Semantics(
             label: 'Logo Comune di Marcianise',
             child: Container(
@@ -54,10 +54,20 @@ class ComuneAppBar extends StatelessWidget implements PreferredSizeWidget {
                 color: Colors.white,
                 border: Border.all(color: Colors.white, width: 2),
               ),
-              child: const Icon(
-                Icons.account_balance_rounded,
-                color: AppColors.primary,
-                size: 20,
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/images/stemma_marcianise.png',
+                  fit: BoxFit.cover,
+                  width: 32,
+                  height: 32,
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Icon(
+                      Icons.account_balance_rounded,
+                      color: AppColors.primary,
+                      size: 20,
+                    );
+                  },
+                ),
               ),
             ),
           ),

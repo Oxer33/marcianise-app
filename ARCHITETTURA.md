@@ -54,7 +54,7 @@ lib/
     ├── home/
     │   ├── home_screen.dart           # Schermata principale
     │   └── widgets/
-    │       ├── hero_section.dart      # Sezione hero con FOTO REALE municipio
+    │       ├── hero_section.dart      # Sezione hero: carousel immagini ufficiali
     │       ├── servizi_grid.dart      # Griglia 8 servizi
     │       └── novita_eventi_section.dart  # Tab Novità/Eventi
     ├── news/
@@ -177,8 +177,8 @@ lib/
 ## Note per Sviluppatori Futuri
 
 1. I dati sono attualmente mock in `data/mock_data.dart` - sostituire con API reali
-2. La foto del municipio è reale (`assets/images/municipio_marcianise.jpeg`) - il back office gestirà le immagini
-3. Il logo del comune è un placeholder circolare - sostituire con SVG/PNG reale
+2. Carousel hero con immagini ufficiali in `assets/images/` (municipio + banner)
+3. Logo reale del Comune: `assets/images/stemma_marcianise.png`
 4. Il widget meteo usa dati statici - integrare con API meteo (es. OpenWeatherMap)
 5. Ogni schermata servizio ha form placeholder - collegare al back office
 6. Il documento progetto MTK è in `docs/OF-APP-CM-011225.docx`

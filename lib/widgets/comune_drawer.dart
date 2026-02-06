@@ -145,7 +145,7 @@ class ComuneDrawer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Logo placeholder
+          // Logo ufficiale del comune (stemma)
           Container(
             width: 60,
             height: 60,
@@ -154,10 +154,20 @@ class ComuneDrawer extends StatelessWidget {
               color: Colors.white,
               border: Border.all(color: Colors.white, width: 3),
             ),
-            child: const Icon(
-              Icons.account_balance_rounded,
-              color: AppColors.primary,
-              size: 32,
+            child: ClipOval(
+              child: Image.asset(
+                'assets/images/stemma_marcianise.png',
+                fit: BoxFit.cover,
+                width: 54,
+                height: 54,
+                errorBuilder: (context, error, stackTrace) {
+                  return const Icon(
+                    Icons.account_balance_rounded,
+                    color: AppColors.primary,
+                    size: 32,
+                  );
+                },
+              ),
             ),
           ),
           const SizedBox(height: 12),

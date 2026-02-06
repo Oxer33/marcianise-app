@@ -65,7 +65,7 @@
 
 - [x] ~~Aggiungere immagine reale del municipio nella hero section~~ FATTO!
 - [x] ~~Accessibilità base (semanticLabel, tooltip)~~ FATTO!
-- [ ] Aggiungere logo reale del Comune di Marcianise (SVG/PNG)
+- [x] Aggiungere logo reale del Comune di Marcianise (SVG/PNG)
 - [ ] Splash screen con logo comune
 - [ ] Animazioni di transizione tra pagine
 - [ ] Pull-to-refresh nelle liste
