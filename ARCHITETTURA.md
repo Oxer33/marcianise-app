@@ -1,12 +1,14 @@
 # Architettura App - Comune di Marcianise
 
 ## Panoramica
+
 App mobile Flutter per il Comune di Marcianise, ispirata allo stile dell'app "Città di San Donà di Piave" (tema blu).
 Sarà collegata ad un back office per la gestione dei contenuti.
 
 ---
 
 ## Stack Tecnologico
+
 - **Linguaggio:** Dart
 - **Framework:** Flutter 3.38.9
 - **Stato:** StatefulWidget (futuro: Provider/Riverpod)
@@ -17,7 +19,7 @@ Sarà collegata ad un back office per la gestione dei contenuti.
 
 ## Struttura Cartelle
 
-```
+```text
 lib/
 ├── main.dart                          # Entry point dell'app
 ├── core/                              # Configurazioni globali
@@ -38,8 +40,9 @@ lib/
 ├── data/
 │   └── mock_data.dart                 # Dati finti per sviluppo
 ├── widgets/                           # Widget riutilizzabili
-│   ├── comune_app_bar.dart            # AppBar personalizzata
+│   ├── comune_app_bar.dart            # AppBar personalizzata (supporta sottotitolo)
 │   ├── comune_drawer.dart             # Menu laterale (hamburger)
+│   ├── responsive_wrapper.dart        # Wrapper responsive per tablet/desktop/web
 │   ├── servizio_card.dart             # Card servizio nella griglia
 │   ├── meteo_widget.dart              # Widget previsioni meteo
 │   ├── news_card.dart                 # Card notizia
@@ -71,7 +74,7 @@ lib/
 ## Schermate Implementate
 
 | Schermata | File | Stato |
-|-----------|------|-------|
+| --------- | ---- | ----- |
 | Home | `screens/home/home_screen.dart` | ✅ Completata |
 | News e Avvisi | `screens/news/news_screen.dart` | ✅ Completata |
 | Consiglio Comunale | `screens/consiglio/consiglio_screen.dart` | ✅ Completata |
@@ -88,6 +91,7 @@ lib/
 ## Design System
 
 ### Colori Principali
+
 - **Primary:** `#1565C0` (Blu)
 - **Primary Dark:** `#0D47A1`
 - **Primary Light:** `#42A5F5`
@@ -96,6 +100,7 @@ lib/
 - **Surface:** `#FFFFFF`
 
 ### Tipografia
+
 - Font: Roboto (default Material)
 - Heading1: 24px Bold
 - Heading2: 20px Bold
@@ -106,6 +111,7 @@ lib/
 ---
 
 ## Integrazione Back Office (DA FARE)
+
 - [ ] API REST per recupero dati dinamici
 - [ ] Autenticazione utenti (SPID/CIE)
 - [ ] Push notifications
@@ -115,6 +121,7 @@ lib/
 ---
 
 ## Note per Sviluppatori Futuri
+
 1. I dati sono attualmente mock in `data/mock_data.dart` - sostituire con API reali
 2. Le immagini sono placeholder - aggiungere immagini reali in `assets/images/`
 3. Il logo del comune è un placeholder circolare - sostituire con SVG/PNG reale
