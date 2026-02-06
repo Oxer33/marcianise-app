@@ -4,6 +4,7 @@ import '../../widgets/comune_drawer.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/constants/app_constants.dart';
+import '../../core/utils/snackbar_helper.dart';
 
 /// Schermata per segnalare un disservizio al comune
 /// L'utente potrà compilare un form con descrizione, categoria e foto
@@ -201,12 +202,7 @@ class SegnalaDisservizioScreen extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {
           // TODO: Implementare invio segnalazione al back office
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Segnalazione inviata con successo!'),
-              backgroundColor: AppColors.success,
-            ),
-          );
+          SnackBarHelper.showSuccess(context, 'Segnalazione inviata con successo!');
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,

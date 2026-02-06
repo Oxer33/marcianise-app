@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
+import '../../core/utils/snackbar_helper.dart';
 import '../../widgets/comune_app_bar.dart';
 import '../../widgets/comune_drawer.dart';
 
@@ -187,11 +188,7 @@ class TributiPagamentiScreen extends StatelessWidget {
           ElevatedButton.icon(
             onPressed: () {
               // TODO: Integrazione PagoPA
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Integrazione PagoPA in arrivo...'),
-                ),
-              );
+              SnackBarHelper.showInfo(context, 'Integrazione PagoPA in arrivo...');
             },
             icon: const Icon(Icons.payment_rounded),
             label: const Text('Vai a PagoPA'),
