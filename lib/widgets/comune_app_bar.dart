@@ -31,10 +31,12 @@ class ComuneAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: mostraBack
           ? IconButton(
               icon: const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
+              tooltip: 'Torna indietro',
               onPressed: () => Navigator.of(context).pop(),
             )
           : IconButton(
               icon: const Icon(Icons.menu_rounded, color: Colors.white),
+              tooltip: 'Apri menu',
               onPressed: () => Scaffold.of(context).openDrawer(),
             ),
       title: Row(
