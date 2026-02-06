@@ -5,9 +5,9 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/constants/app_constants.dart';
 
-/// Schermata Consiglio Comunale
+/// Modulo B - Diretta live Consiglio Comunale
 /// Mostra i video delle sedute del consiglio comunale
-/// Con video in evidenza e lista sedute precedenti
+/// Canale YouTube: https://www.youtube.com/channel/UCglEv_b7yTzb1hVB2HxYeGQ/videos
 class ConsiglioScreen extends StatelessWidget {
   const ConsiglioScreen({super.key});
 
