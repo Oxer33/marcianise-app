@@ -3,8 +3,11 @@ import '../models/evento_model.dart';
 import '../core/theme/app_colors.dart';
 import '../core/theme/app_text_styles.dart';
 import '../core/constants/app_constants.dart';
+import '../core/utils/snackbar_helper.dart';
 
-/// Card per visualizzare un singolo evento
+/// Card per visualizzare un singolo evento (sez. 2.1 + 2.3)
+/// 2.1. Visualizza Eventi
+/// 2.3. Modifica/Elimina evento (PopupMenu)
 /// Usata sia nella home che nella pagina Eventi
 class EventoCard extends StatelessWidget {
   final EventoModel evento;
@@ -49,23 +52,64 @@ class EventoCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Badge categoria
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.primary.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    evento.categoria,
-                    style: AppTextStyles.bodySmall.copyWith(
-                      color: AppColors.primary,
-                      fontWeight: FontWeight.w600,
+                // Badge categoria + menu modifica/elimina
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.primary.withValues(alpha: 0.1),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Text(
+                        evento.categoria,
+                        style: AppTextStyles.bodySmall.copyWith(
+                          color: AppColors.primary,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
-                  ),
+                    const Spacer(),
+                    // 2.3 - Menu modifica/elimina evento
+                    if (!isCompact)
+                      PopupMenuButton<String>(
+                        icon: const Icon(Icons.more_vert_rounded, color: AppColors.textSecondary, size: 18),
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                        onSelected: (value) {
+                          if (value == 'modifica') {
+                            SnackBarHelper.showInfo(context, 'Modifica "${evento.titolo}" - collegare al back office');
+                          } else if (value == 'elimina') {
+                            SnackBarHelper.showWarning(context, 'Eliminazione "${evento.titolo}" - collegare al back office');
+                          }
+                        },
+                        itemBuilder: (ctx) => [
+                          const PopupMenuItem(
+                            value: 'modifica',
+                            child: Row(
+                              children: [
+                                Icon(Icons.edit_rounded, size: 20),
+                                SizedBox(width: 8),
+                                Text('Modifica'),
+                              ],
+                            ),
+                          ),
+                          const PopupMenuItem(
+                            value: 'elimina',
+                            child: Row(
+                              children: [
+                                Icon(Icons.delete_rounded, size: 20, color: Colors.red),
+                                SizedBox(width: 8),
+                                Text('Elimina', style: TextStyle(color: Colors.red)),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                  ],
                 ),
                 const SizedBox(height: 8),
 
