@@ -8,7 +8,7 @@ import 'widgets/novita_eventi_section.dart';
 /// Schermata principale (Home) dell'app
 /// Layout con tema verde scuro istituzionale:
 /// 1. Hero image REALE del municipio con meteo
-/// 2. Griglia 6 servizi rapidi (5 moduli MTK + servizi cittadino)
+/// 2. Griglia 8 servizi rapidi (5 moduli MTK + sindaco + scolastici + servizi)
 /// 3. Sezione Novità / Eventi in basso
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
             // 1. Hero image con meteo sovrapposto
             HeroSection(),
 
-            // 2. Griglia servizi (6 card)
+            // 2. Griglia servizi (8 card)
             ServiziGrid(),
 
             // 3. Sezione Novità e Eventi
