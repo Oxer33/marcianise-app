@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.marcianise" "\0"
-            VALUE "FileDescription", "marcianise_app" "\0"
+            VALUE "CompanyName", "Comune di Marcianise" "\0"
+            VALUE "FileDescription", "App Comune di Marcianise" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "marcianise_app" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2026 com.marcianise. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 Comune di Marcianise. Tutti i diritti riservati." "\0"
             VALUE "OriginalFilename", "marcianise_app.exe" "\0"
-            VALUE "ProductName", "marcianise_app" "\0"
+            VALUE "ProductName", "App Comune di Marcianise" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
