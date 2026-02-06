@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'app_colors.dart';
 
-/// Tema principale dell'app - stile blu moderno
+/// Tema principale dell'app - stile VERDE SCURO istituzionale
 /// Configurazione centralizzata di tutti gli aspetti visivi
 class AppTheme {
   AppTheme._();

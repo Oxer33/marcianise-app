@@ -2,7 +2,8 @@
 
 ## Panoramica
 
-App mobile Flutter per il Comune di Marcianise, ispirata allo stile dell'app "Città di San Donà di Piave" (tema blu).
+App mobile Flutter per il Comune di Marcianise (CE), con tema **VERDE SCURO istituzionale** come il [sito ufficiale](https://www.comune.marcianise.ce.it).
+Progetto commissionato da MTK, strutturato in 5 moduli funzionali (A-E) + servizi al cittadino.
 Sarà collegata ad un back office per la gestione dei contenuti.
 
 ---
@@ -13,7 +14,7 @@ Sarà collegata ad un back office per la gestione dei contenuti.
 - **Framework:** Flutter 3.38.9
 - **Stato:** StatefulWidget (futuro: Provider/Riverpod)
 - **Navigazione:** Named Routes con Router centralizzato
-- **Tema:** Material Design 3 - Blu
+- **Tema:** Material Design 3 - Verde Scuro Istituzionale (#008055)
 
 ---
 
@@ -24,7 +25,7 @@ lib/
 ├── main.dart                          # Entry point dell'app
 ├── core/                              # Configurazioni globali
 │   ├── theme/
-│   │   ├── app_colors.dart            # Palette colori (blu)
+│   │   ├── app_colors.dart            # Palette colori (verde scuro)
 │   │   ├── app_text_styles.dart       # Stili testo centralizzati
 │   │   └── app_theme.dart             # ThemeData Material 3
 │   ├── constants/
@@ -51,7 +52,7 @@ lib/
     ├── home/
     │   ├── home_screen.dart           # Schermata principale
     │   └── widgets/
-    │       ├── hero_section.dart      # Sezione hero con meteo
+    │       ├── hero_section.dart      # Sezione hero con FOTO REALE municipio
     │       ├── servizi_grid.dart      # Griglia 6 servizi
     │       └── novita_eventi_section.dart  # Tab Novità/Eventi
     ├── news/
@@ -59,7 +60,11 @@ lib/
     ├── consiglio/
     │   └── consiglio_screen.dart      # Pagina Consiglio Comunale
     ├── eventi/
-    │   └── eventi_screen.dart         # Pagina Eventi
+    │   └── eventi_screen.dart         # Modulo C: Eventi
+    ├── cultura/
+    │   └── cultura_turismo_screen.dart # Modulo D: Cultura e Turismo
+    ├── tributi/
+    │   └── tributi_pagamenti_screen.dart # Modulo E: Tributi e Pagamenti
     └── servizi/
         ├── segnala_disservizio_screen.dart
         ├── prenota_ufficio_screen.dart
@@ -73,18 +78,20 @@ lib/
 
 ## Schermate Implementate
 
-| Schermata | File | Stato |
-| --------- | ---- | ----- |
-| Home | `screens/home/home_screen.dart` | ✅ Completata |
-| News e Avvisi | `screens/news/news_screen.dart` | ✅ Completata |
-| Consiglio Comunale | `screens/consiglio/consiglio_screen.dart` | ✅ Completata |
-| Eventi | `screens/eventi/eventi_screen.dart` | ✅ Completata |
-| Segnala Disservizio | `screens/servizi/segnala_disservizio_screen.dart` | ✅ Completata |
-| Prenota Ufficio | `screens/servizi/prenota_ufficio_screen.dart` | ✅ Completata |
-| Contatta Uffici | `screens/servizi/contatta_uffici_screen.dart` | ✅ Completata |
-| Gestione Rifiuti | `screens/servizi/gestione_rifiuti_screen.dart` | ✅ Completata |
-| Servizi Online | `screens/servizi/servizi_online_screen.dart` | ✅ Completata |
-| Luoghi di Interesse | `screens/servizi/luoghi_interesse_screen.dart` | ✅ Completata |
+| Schermata | Modulo | File | Stato |
+| --------- | ------ | ---- | ----- |
+| Home | - | `screens/home/home_screen.dart` | ✅ Completata |
+| News e Avvisi | A | `screens/news/news_screen.dart` | ✅ Completata |
+| Consiglio Comunale | B | `screens/consiglio/consiglio_screen.dart` | ✅ Completata |
+| Eventi | C | `screens/eventi/eventi_screen.dart` | ✅ Completata |
+| Cultura e Turismo | D | `screens/cultura/cultura_turismo_screen.dart` | ✅ Completata |
+| Tributi e Pagamenti | E | `screens/tributi/tributi_pagamenti_screen.dart` | ✅ Completata |
+| Segnala Disservizio | Servizi | `screens/servizi/segnala_disservizio_screen.dart` | ✅ Completata |
+| Prenota Ufficio | Servizi | `screens/servizi/prenota_ufficio_screen.dart` | ✅ Completata |
+| Contatta Uffici | Servizi | `screens/servizi/contatta_uffici_screen.dart` | ✅ Completata |
+| Gestione Rifiuti | Servizi | `screens/servizi/gestione_rifiuti_screen.dart` | ✅ Completata |
+| Servizi Online | Servizi | `screens/servizi/servizi_online_screen.dart` | ✅ Completata |
+| Luoghi di Interesse | Servizi | `screens/servizi/luoghi_interesse_screen.dart` | ✅ Completata |
 
 ---
 
@@ -92,11 +99,11 @@ lib/
 
 ### Colori Principali
 
-- **Primary:** `#1565C0` (Blu)
-- **Primary Dark:** `#0D47A1`
-- **Primary Light:** `#42A5F5`
-- **Accent:** `#29B6F6`
-- **Background:** `#F5F9FF`
+- **Primary:** `#008055` (Verde Scuro Istituzionale)
+- **Primary Dark:** `#005C3E`
+- **Primary Light:** `#4CAF82`
+- **Accent:** `#66BB6A`
+- **Background:** `#F5FFF8`
 - **Surface:** `#FFFFFF`
 
 ### Tipografia
@@ -117,13 +124,18 @@ lib/
 - [ ] Push notifications
 - [ ] Upload immagini per segnalazioni
 - [ ] Gestione contenuti CMS
+- [ ] Integrazione PagoPA per Modulo E
+- [ ] Streaming video Consiglio Comunale per Modulo B
+- [ ] Integrazione ANPR / Servizi Demografici
 
 ---
 
 ## Note per Sviluppatori Futuri
 
 1. I dati sono attualmente mock in `data/mock_data.dart` - sostituire con API reali
-2. Le immagini sono placeholder - aggiungere immagini reali in `assets/images/`
+2. La foto del municipio è reale (`assets/images/municipio_marcianise.jpeg`) - il back office gestirà le immagini
 3. Il logo del comune è un placeholder circolare - sostituire con SVG/PNG reale
 4. Il widget meteo usa dati statici - integrare con API meteo (es. OpenWeatherMap)
 5. Ogni schermata servizio ha form placeholder - collegare al back office
+6. Il documento progetto MTK è in `OF-APP-CM-011225.docx` nella root
+7. I 5 moduli (A-E) sono la struttura portante dell'app come da contratto MTK

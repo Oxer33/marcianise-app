@@ -20,7 +20,7 @@ class ComuneDrawer extends StatelessWidget {
             _buildHeader(),
             const Divider(height: 1),
 
-            // === MENU ITEMS ===
+            // === MENU ITEMS (organizzati per moduli progetto MTK) ===
             Expanded(
               child: ListView(
                 padding: EdgeInsets.zero,
@@ -31,26 +31,45 @@ class ComuneDrawer extends StatelessWidget {
                     titolo: 'Home',
                     rotta: AppRoutes.home,
                   ),
+                  const Divider(),
+                  _buildSectionLabel('Moduli Principali'),
+                  // Modulo A
                   _buildMenuItem(
                     context,
                     icona: Icons.newspaper_rounded,
                     titolo: 'News e Avvisi',
                     rotta: AppRoutes.newsAvvisi,
                   ),
+                  // Modulo B
                   _buildMenuItem(
                     context,
                     icona: Icons.groups_rounded,
                     titolo: 'Consiglio Comunale',
                     rotta: AppRoutes.consiglioComunale,
                   ),
+                  // Modulo C
                   _buildMenuItem(
                     context,
                     icona: Icons.event_rounded,
-                    titolo: 'Eventi',
+                    titolo: 'Eventi e Manifestazioni',
                     rotta: AppRoutes.eventi,
                   ),
+                  // Modulo D
+                  _buildMenuItem(
+                    context,
+                    icona: Icons.museum_rounded,
+                    titolo: 'Cultura e Turismo',
+                    rotta: AppRoutes.culturaTurismo,
+                  ),
+                  // Modulo E
+                  _buildMenuItem(
+                    context,
+                    icona: Icons.payment_rounded,
+                    titolo: 'Tributi e Pagamenti',
+                    rotta: AppRoutes.tributiPagamenti,
+                  ),
                   const Divider(),
-                  _buildSectionLabel('Servizi'),
+                  _buildSectionLabel('Servizi al Cittadino'),
                   _buildMenuItem(
                     context,
                     icona: Icons.warning_amber_rounded,

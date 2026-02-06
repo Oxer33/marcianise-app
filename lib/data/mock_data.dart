@@ -11,49 +11,55 @@ import '../core/routes/app_routes.dart';
 class MockData {
   MockData._();
 
-  // === SERVIZI GRIGLIA HOME ===
+  // === SERVIZI GRIGLIA HOME (allineati ai 5 moduli del progetto MTK) ===
   static const List<ServizioModel> servizi = [
+    // Modulo A: Comunicazioni istituzionali e Notizie
     ServizioModel(
-      titolo: 'Segnala\ndisservizio',
-      icona: Icons.warning_amber_rounded,
+      titolo: 'News e\nAvvisi',
+      icona: Icons.newspaper_rounded,
       coloreSfondo: AppColors.cardService1,
       coloreIcona: AppColors.primary,
-      rotta: AppRoutes.segnalaDisservizio,
+      rotta: AppRoutes.newsAvvisi,
     ),
+    // Modulo B: Diretta live Consiglio Comunale
     ServizioModel(
-      titolo: 'Prenota\nufficio',
-      icona: Icons.business_rounded,
+      titolo: 'Consiglio\nComunale',
+      icona: Icons.groups_rounded,
       coloreSfondo: AppColors.cardService2,
-      coloreIcona: Color(0xFF43A047),
-      rotta: AppRoutes.prenotaUfficio,
+      coloreIcona: Color(0xFF00695C),
+      rotta: AppRoutes.consiglioComunale,
     ),
+    // Modulo C: Eventi e manifestazioni
     ServizioModel(
-      titolo: 'Contatta\ngli uffici',
-      icona: Icons.headset_mic_rounded,
+      titolo: 'Eventi e\nManifestazioni',
+      icona: Icons.event_rounded,
       coloreSfondo: AppColors.cardService3,
       coloreIcona: Color(0xFFE65100),
-      rotta: AppRoutes.contattaUffici,
+      rotta: AppRoutes.eventi,
     ),
+    // Modulo D: Cultura e Turismo
     ServizioModel(
-      titolo: 'Gestione\ndei rifiuti',
-      icona: Icons.delete_outline_rounded,
+      titolo: 'Cultura e\nTurismo',
+      icona: Icons.museum_rounded,
       coloreSfondo: AppColors.cardService4,
-      coloreIcona: Color(0xFFC62828),
-      rotta: AppRoutes.gestioneRifiuti,
+      coloreIcona: Color(0xFF1565C0),
+      rotta: AppRoutes.culturaTurismo,
     ),
+    // Modulo E: Tributi e Pagamenti
     ServizioModel(
-      titolo: 'Servizi\nonline',
-      icona: Icons.language_rounded,
+      titolo: 'Tributi e\nPagamenti',
+      icona: Icons.payment_rounded,
       coloreSfondo: AppColors.cardService5,
-      coloreIcona: Color(0xFF00838F),
-      rotta: AppRoutes.serviziOnline,
+      coloreIcona: Color(0xFFC62828),
+      rotta: AppRoutes.tributiPagamenti,
     ),
+    // Servizi al cittadino
     ServizioModel(
-      titolo: 'Luoghi di\ninteresse',
-      icona: Icons.place_rounded,
+      titolo: 'Servizi al\nCittadino',
+      icona: Icons.person_rounded,
       coloreSfondo: AppColors.cardService6,
       coloreIcona: Color(0xFF6A1B9A),
-      rotta: AppRoutes.luoghiInteresse,
+      rotta: AppRoutes.serviziOnline,
     ),
   ];
 
@@ -82,41 +88,54 @@ class MockData {
     ),
   ];
 
-  // === NEWS E AVVISI ===
+  // === NEWS E AVVISI (dati reali dal sito www.comune.marcianise.ce.it) ===
   static const List<NewsModel> news = [
     NewsModel(
       id: '1',
-      titolo: 'Lavori in corso: Via Roma',
+      titolo: 'Lotta agli illeciti ambientali',
       descrizione:
-          'Interruzione del traffico prevista per la giornata di domani. '
-          'Si prega di utilizzare percorsi alternativi.',
-      data: '25 Gen 2026',
+          'Il Commissario Prefettizio ha impartito una direttiva per '
+          "l'istituzione del Nucleo ambientale della Polizia Municipale.",
+      data: '06 Feb 2026',
       categoria: 'avviso',
       isUrgente: true,
     ),
     NewsModel(
       id: '2',
-      titolo: 'Nuova Apertura - "Parco Giochi EcoSostenibile"',
+      titolo: 'Referendum Costituzionale 22-23 Marzo 2026',
       descrizione:
-          'Inaugurazione del nuovo parco giochi ecosostenibile in Piazza Municipio.',
-      data: '23 Gen 2026',
-      categoria: 'news',
+          'Convocazione dei comizi elettorali per il Referendum Costituzionale. '
+          'Tutte le informazioni per il voto.',
+      data: '05 Feb 2026',
+      categoria: 'avviso',
+      isUrgente: true,
     ),
     NewsModel(
       id: '3',
-      titolo: 'Bando per contributi alle famiglie',
+      titolo: 'Manutenzione straordinaria via Gaglione',
       descrizione:
-          'Pubblicato il nuovo bando per il sostegno economico alle famiglie in difficoltà.',
-      data: '20 Gen 2026',
-      categoria: 'news',
+          'Nuova modifica del traffico veicolare per lavori di '
+          'manutenzione straordinaria in via Gaglione.',
+      data: '04 Feb 2026',
+      categoria: 'avviso',
     ),
     NewsModel(
       id: '4',
-      titolo: 'Chiusura uffici per festività',
+      titolo: 'Manutenzione via M.L. King',
       descrizione:
-          'Gli uffici comunali resteranno chiusi il 6 febbraio per la festa patronale.',
-      data: '18 Gen 2026',
+          'Interventi di manutenzione in via M.L. King con modifica '
+          'temporanea del traffico veicolare.',
+      data: '03 Feb 2026',
       categoria: 'avviso',
+    ),
+    NewsModel(
+      id: '5',
+      titolo: 'Bando Home Care Premium INPS 2025-2028',
+      descrizione:
+          'Prestazioni integrative per il bando Home Care Premium INPS. '
+          'Scadenza e modalità di partecipazione.',
+      data: '01 Feb 2026',
+      categoria: 'news',
     ),
   ];
 
