@@ -28,14 +28,15 @@ class PrenotaUfficioScreen extends StatelessWidget {
             _buildHeader(),
             const SizedBox(height: 24),
 
-            // Lista uffici disponibili
+            // Lista uffici disponibili (Aree/Settori reali dal sito)
             const Text('Seleziona Ufficio', style: AppTextStyles.heading3),
             const SizedBox(height: 12),
-            _buildUfficioCard('Ufficio Anagrafe', Icons.badge_rounded, 'Piano Terra - Stanza 1'),
-            _buildUfficioCard('Ufficio Tributi', Icons.receipt_long_rounded, 'Piano 1 - Stanza 3'),
-            _buildUfficioCard('Ufficio Tecnico', Icons.engineering_rounded, 'Piano 2 - Stanza 5'),
-            _buildUfficioCard('Ufficio Stato Civile', Icons.family_restroom_rounded, 'Piano Terra - Stanza 2'),
-            _buildUfficioCard('Polizia Municipale', Icons.local_police_rounded, 'Edificio B'),
+            _buildUfficioCard('Anagrafe e Stato Civile', Icons.badge_rounded, 'Via Roma, 18 - Piano Terra'),
+            _buildUfficioCard('Ufficio Tributi (IMU/TARI)', Icons.receipt_long_rounded, 'Via Roma, 18 - Piano 1'),
+            _buildUfficioCard('Ufficio Tecnico - Edilizia', Icons.engineering_rounded, 'Via Roma, 18 - Piano 2'),
+            _buildUfficioCard('URP - Relazioni con il Pubblico', Icons.headset_mic_rounded, 'Via Roma, 18 - Piano Terra'),
+            _buildUfficioCard('Polizia Municipale', Icons.local_police_rounded, 'Via Roma, 18 - Edificio B'),
+            _buildUfficioCard('Servizi Sociali', Icons.family_restroom_rounded, 'Via Roma, 18 - Piano 1'),
             const SizedBox(height: 32),
           ],
         ),

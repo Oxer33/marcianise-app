@@ -175,7 +175,7 @@ class GestioneRifiutiScreen extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            'Via Esempio, 1 - Marcianise (CE)',
+            'Zona Industriale - Marcianise (CE)',
             style: AppTextStyles.bodyMedium,
           ),
           const SizedBox(height: 4),
