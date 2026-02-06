@@ -29,7 +29,9 @@ lib/
 │   │   ├── app_text_styles.dart       # Stili testo centralizzati
 │   │   └── app_theme.dart             # ThemeData Material 3
 │   ├── constants/
-│   │   └── app_constants.dart         # Costanti (nomi, dimensioni)
+│   │   └── app_constants.dart         # Costanti (nomi, contatti, URL, dimensioni)
+│   ├── utils/
+│   │   └── snackbar_helper.dart       # Helper SnackBar (success/error/info/warning)
 │   └── routes/
 │       ├── app_routes.dart            # Definizione percorsi
 │       └── app_router.dart            # Router centralizzato
