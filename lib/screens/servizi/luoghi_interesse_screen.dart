@@ -4,9 +4,12 @@ import '../../widgets/comune_drawer.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/constants/app_constants.dart';
+import '../../core/utils/snackbar_helper.dart';
 
-/// Schermata luoghi di interesse di Marcianise
-/// Mostra monumenti, chiese, parchi e punti di interesse
+/// Sezione 3 - Punti di Interesse (struttura richiesta)
+/// 3.1. Crea nuovo POI (nome, descrizione, geolocalizzazione)
+/// 3.2. Visualizza POI
+/// 3.3. Modifica/elimina POI
 class LuoghiInteresseScreen extends StatelessWidget {
   const LuoghiInteresseScreen({super.key});
 
@@ -18,6 +21,13 @@ class LuoghiInteresseScreen extends StatelessWidget {
         mostraBack: true,
       ),
       drawer: const ComuneDrawer(),
+      // 3.1 - FAB per creare nuovo POI
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => _mostraFormCreaPOI(context),
+        backgroundColor: AppColors.primary,
+        icon: const Icon(Icons.add_location_alt_rounded, color: Colors.white),
+        label: const Text('Crea POI', style: TextStyle(color: Colors.white)),
+      ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.all(AppConstants.paddingMedium),
@@ -28,44 +38,51 @@ class LuoghiInteresseScreen extends StatelessWidget {
             _buildHeader(),
             const SizedBox(height: 24),
 
-            // Lista luoghi di interesse reali di Marcianise
+            // Lista luoghi di interesse reali di Marcianise (3.2 Visualizza POI)
             _buildLuogoCard(
+              context,
               'Duomo dell\'Annunziata',
               'La chiesa madre di Marcianise, risalente al XIII secolo con campanile medievale.',
               Icons.church_rounded,
               'Piazza Umberto I, Marcianise',
             ),
             _buildLuogoCard(
+              context,
               'Palazzo Municipale',
               'Sede del Comune di Marcianise, edificio storico in Piazza Umberto I.',
               Icons.account_balance_rounded,
               'Via Roma, 18 - Marcianise',
             ),
             _buildLuogoCard(
+              context,
               'Castello di Marcianise (Torrione)',
               'Antico castello medievale con torre cilindrica, simbolo della città.',
               Icons.castle_rounded,
               'Via Torrione, Marcianise',
             ),
             _buildLuogoCard(
+              context,
               'Chiesa di San Francesco di Paola',
               'Chiesa settecentesca con pregevoli decorazioni barocche.',
               Icons.church_rounded,
               'Via San Francesco, Marcianise',
             ),
             _buildLuogoCard(
+              context,
               'Villa Comunale',
               'Parco pubblico principale con giardini, viali alberati e area giochi.',
               Icons.park_rounded,
               'Via Roma, Marcianise',
             ),
             _buildLuogoCard(
+              context,
               'Centro Commerciale Campania',
               'Uno dei centri commerciali più grandi del Sud Italia, a Marcianise.',
               Icons.shopping_bag_rounded,
               'SS 87 Sannitica, Marcianise',
             ),
             _buildLuogoCard(
+              context,
               'Reggia di Caserta (a 5 km)',
               'Patrimonio UNESCO, la Reggia borbonica più grande d\'Europa.',
               Icons.museum_rounded,
@@ -121,8 +138,9 @@ class LuoghiInteresseScreen extends StatelessWidget {
     );
   }
 
-  /// Card singolo luogo di interesse
+  /// 3.2 - Card singolo POI con opzioni 3.3 modifica/elimina
   Widget _buildLuogoCard(
+    BuildContext context,
     String nome,
     String descrizione,
     IconData icona,
@@ -194,7 +212,128 @@ class LuoghiInteresseScreen extends StatelessWidget {
                 ],
               ),
             ),
+            // 3.3 - Menu modifica/elimina POI
+            PopupMenuButton<String>(
+              icon: const Icon(Icons.more_vert_rounded, color: AppColors.textSecondary, size: 20),
+              onSelected: (value) {
+                if (value == 'modifica') {
+                  SnackBarHelper.showInfo(context, 'Modifica "$nome" - collegare al back office');
+                } else if (value == 'elimina') {
+                  SnackBarHelper.showWarning(context, 'Eliminazione "$nome" - collegare al back office');
+                }
+              },
+              itemBuilder: (context) => [
+                const PopupMenuItem(
+                  value: 'modifica',
+                  child: Row(
+                    children: [
+                      Icon(Icons.edit_rounded, size: 20),
+                      SizedBox(width: 8),
+                      Text('Modifica'),
+                    ],
+                  ),
+                ),
+                const PopupMenuItem(
+                  value: 'elimina',
+                  child: Row(
+                    children: [
+                      Icon(Icons.delete_rounded, size: 20, color: Colors.red),
+                      SizedBox(width: 8),
+                      Text('Elimina', style: TextStyle(color: Colors.red)),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ],
+        ),
+      ),
+    );
+  }
+
+  /// 3.1 - Form per creare nuovo POI
+  /// 3.1.1. Nome | 3.1.2. Descrizione | 3.1.3. Geolocalizzazione
+  void _mostraFormCreaPOI(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (ctx) => Padding(
+        padding: EdgeInsets.fromLTRB(
+          AppConstants.paddingMedium,
+          AppConstants.paddingMedium,
+          AppConstants.paddingMedium,
+          MediaQuery.of(ctx).viewInsets.bottom + AppConstants.paddingMedium,
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Crea Nuovo POI', style: AppTextStyles.heading2),
+              const SizedBox(height: 16),
+              // 3.1.1 - Nome
+              const TextField(
+                decoration: InputDecoration(
+                  labelText: '3.1.1 Nome del punto di interesse',
+                  prefixIcon: Icon(Icons.place_rounded),
+                ),
+              ),
+              const SizedBox(height: 12),
+              // 3.1.2 - Descrizione
+              const TextField(
+                decoration: InputDecoration(
+                  labelText: '3.1.2 Descrizione',
+                  prefixIcon: Icon(Icons.description_rounded),
+                ),
+                maxLines: 3,
+              ),
+              const SizedBox(height: 12),
+              // 3.1.3 - Geolocalizzazione
+              const Text('3.1.3 Geolocalizzazione', style: AppTextStyles.heading3),
+              const SizedBox(height: 8),
+              GestureDetector(
+                onTap: () {
+                  SnackBarHelper.showInfo(context, 'Seleziona posizione sulla mappa (collegare GPS)');
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF6A1B9A).withValues(alpha: 0.05),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: const Color(0xFF6A1B9A).withValues(alpha: 0.3),
+                    ),
+                  ),
+                  child: const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.map_rounded, color: Color(0xFF6A1B9A), size: 32),
+                      SizedBox(height: 4),
+                      Text('Tocca per selezionare posizione', style: AppTextStyles.bodySmall),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              // Bottone salva
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.pop(ctx);
+                    SnackBarHelper.showSuccess(context, 'POI creato (collegare al back office)');
+                  },
+                  icon: const Icon(Icons.save_rounded),
+                  label: const Text('Salva POI'),
+                ),
+              ),
+              const SizedBox(height: 16),
+            ],
+          ),
         ),
       ),
     );
