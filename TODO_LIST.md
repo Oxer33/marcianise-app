@@ -126,7 +126,7 @@
 - Codice morto archiviato in `docs/codice_morto.dart`
 - 5 moduli funzionali: A (News), B (Consiglio), C (Eventi), D (Cultura), E (Tributi)
 - [Canale YouTube comune](https://www.youtube.com/channel/UCglEv_b7yTzb1hVB2HxYeGQ/videos)
-- 67+ commit su GitHub (master)
+- 84+ commit su GitHub (master)
 - Ultimo aggiornamento: 6 Febbraio 2026
 
 
