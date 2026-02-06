@@ -2,26 +2,40 @@
 
 App mobile ufficiale del **Comune di Marcianise** (CE), sviluppata in Flutter/Dart.
 
-Tema blu moderno ispirato alle migliori app comunali italiane.
+Tema **verde scuro istituzionale** (#008055) come il [sito ufficiale](https://www.comune.marcianise.ce.it).
+Progetto commissionato da MTK, strutturato in **5 moduli funzionali** (A-E).
 
 ## 📱 Funzionalità
 
-- **Home Page** con immagine municipio, previsioni meteo e griglia servizi rapidi
-- **News e Avvisi** con filtro per categoria e data
-- **Consiglio Comunale** con video delle sedute
-- **Eventi** in programma e passati
+### Moduli Principali (da documento progetto MTK)
+
+- **Modulo A** - News e Avvisi istituzionali con filtro per categoria
+- **Modulo B** - Consiglio Comunale con video delle sedute
+- **Modulo C** - Eventi, manifestazioni e iniziative del territorio
+- **Modulo D** - Cultura e Turismo (chiese, monumenti, biblioteca, impianti sportivi)
+- **Modulo E** - Tributi e Pagamenti con integrazione PagoPA
+
+### Servizi al Cittadino
+
 - **Segnala Disservizio** con form completo
 - **Prenota Ufficio** con lista uffici disponibili
-- **Contatta Uffici** con numeri, email e orari
+- **Contatta Uffici** con sede municipale, numeri, email, PEC e orari
 - **Gestione Rifiuti** con calendario raccolta differenziata
 - **Servizi Online** con link ai servizi digitali
 - **Luoghi di Interesse** con monumenti e punti di interesse
+
+### Home Page
+
+- Foto **reale** del Municipio di Marcianise (notturna)
+- Widget previsioni meteo sovrapposto
+- Griglia 6 servizi rapidi **responsive** (3/4/6 colonne)
+- Sezione Novità e Eventi con tab
 
 ## 🛠️ Stack Tecnologico
 
 - **Linguaggio:** Dart
 - **Framework:** Flutter 3.38.9
-- **Design:** Material Design 3 (tema blu)
+- **Design:** Material Design 3 (tema verde scuro #008055)
 - **Piattaforme:** Android, iOS, Web, Windows
 
 ## 🚀 Come Avviare
