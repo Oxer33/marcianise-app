@@ -4,17 +4,18 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/mock_data.dart';
 import '../../../widgets/servizio_card.dart';
 
-/// Griglia dei 6 servizi rapidi nella home page
-/// Layout RESPONSIVE: 3 colonne su mobile, 4 su tablet, 6 su desktop
+/// Griglia degli 8 servizi rapidi nella home page
+/// Layout RESPONSIVE: 3 colonne su mobile, 4 su tablet, 8 su desktop
 /// Container con sfondo verde chiaro e bordi arrotondati
 class ServiziGrid extends StatelessWidget {
   const ServiziGrid({super.key});
 
   /// Calcola il numero di colonne in base alla larghezza dello schermo
   int _calcolaColonne(double larghezza) {
-    if (larghezza >= 900) return 6; // Desktop: una riga unica
-    if (larghezza >= 600) return 4; // Tablet: 2 righe da 3+3 → 4+2
-    return 3; // Mobile: 3 colonne x 2 righe
+    if (larghezza >= 1100) return 8; // Desktop grande: una riga unica
+    if (larghezza >= 900) return 4;  // Desktop/Tablet: 2 righe da 4+4
+    if (larghezza >= 600) return 4;  // Tablet: 2 righe da 4+4
+    return 4; // Mobile: 4 colonne x 2 righe
   }
 
   @override
