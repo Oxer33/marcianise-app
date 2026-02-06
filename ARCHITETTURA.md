@@ -64,7 +64,9 @@ lib/
     ├── consiglio/
     │   └── consiglio_screen.dart      # Pagina Consiglio Comunale
     ├── eventi/
-    │   └── eventi_screen.dart         # Modulo C: Eventi
+    │   ├── eventi_screen.dart         # Sez.2: Eventi
+    │   └── widgets/
+    │       └── evento_form_dialog.dart  # Form crea evento (2.2)
     ├── cultura/
     │   └── cultura_turismo_screen.dart # Modulo D: Cultura e Turismo
     ├── tributi/
