@@ -43,3 +43,8 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# File temporanei nella cartella DA CANCELLARE (non necessari nel repo)
+DA CANCELLARE/*.jpeg
+DA CANCELLARE/*.png
+DA CANCELLARE/*.docx
