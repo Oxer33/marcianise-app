@@ -64,6 +64,32 @@ class AppTheme {
         foregroundColor: AppColors.textOnPrimary,
       ),
 
+      // Input (TextField) uniformi in tutta l'app
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: AppColors.surface,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: AppColors.textSecondary.withValues(alpha: 0.2)),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: AppColors.textSecondary.withValues(alpha: 0.2)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: AppColors.primary, width: 2),
+        ),
+      ),
+
+      // TabBar uniformi in tutta l'app
+      tabBarTheme: TabBarThemeData(
+        labelColor: Colors.white,
+        unselectedLabelColor: AppColors.primary,
+        indicatorColor: AppColors.primary,
+        dividerColor: Colors.transparent,
+      ),
+
       // Font globale
       fontFamily: 'Roboto',
     );
