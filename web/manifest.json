@@ -8,6 +8,9 @@
     "description": "App ufficiale del Comune di Marcianise (CE)",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
+    "lang": "it",
+    "categories": ["government", "utilities"],
+    "scope": ".",
     "icons": [
         {
             "src": "icons/Icon-192.png",
