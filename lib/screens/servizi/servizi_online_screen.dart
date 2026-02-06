@@ -4,6 +4,7 @@ import '../../widgets/comune_drawer.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/constants/app_constants.dart';
+import '../../core/utils/snackbar_helper.dart';
 
 /// Schermata servizi online del comune
 /// Mostra i link ai servizi digitali disponibili
@@ -30,42 +31,49 @@ class ServiziOnlineScreen extends StatelessWidget {
 
             // Lista servizi online (link reali dal sito comune.marcianise.ce.it)
             _buildServizioOnlineCard(
+              context,
               'ANPR - Sportello del Cittadino',
               'Anagrafe Nazionale Popolazione Residente: certificati, cambio residenza.',
               Icons.badge_rounded,
               AppColors.primary,
             ),
             _buildServizioOnlineCard(
+              context,
               'Pagamenti Online (PagoPA)',
               'Paga tributi, IMU, TARI, multe e servizi comunali online.',
               Icons.payment_rounded,
               const Color(0xFF43A047),
             ),
             _buildServizioOnlineCard(
+              context,
               'Sportello Telematico IMU e TARI',
               'Dichiarazioni, calcolo e gestione IMU e TARI online.',
               Icons.receipt_long_rounded,
               const Color(0xFFE65100),
             ),
             _buildServizioOnlineCard(
+              context,
               'SUAP - Attività Produttive',
               'Sportello Unico Attività Produttive su impresainungiorno.gov.it.',
               Icons.store_rounded,
               const Color(0xFF6A1B9A),
             ),
             _buildServizioOnlineCard(
+              context,
               'SUE - Sportello Unico Edilizia',
               'Pratiche edilizie e urbanistiche tramite sportello telematico.',
               Icons.apartment_rounded,
               const Color(0xFF00838F),
             ),
             _buildServizioOnlineCard(
+              context,
               'Albo Pretorio Online',
               'Consulta atti, determine, delibere e ordinanze pubblicate.',
               Icons.gavel_rounded,
               const Color(0xFF795548),
             ),
             _buildServizioOnlineCard(
+              context,
               'Amministrazione Trasparente',
               'Accesso agli atti e alle informazioni sulla PA.',
               Icons.visibility_rounded,
@@ -121,8 +129,9 @@ class ServiziOnlineScreen extends StatelessWidget {
     );
   }
 
-  /// Card singolo servizio online
+  /// Card singolo servizio online con feedback al tap
   Widget _buildServizioOnlineCard(
+    BuildContext context,
     String titolo,
     String descrizione,
     IconData icona,
@@ -167,7 +176,8 @@ class ServiziOnlineScreen extends StatelessWidget {
         ),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         onTap: () {
-          // TODO: Aprire il servizio online corrispondente
+          // TODO: Aprire il servizio online con url_launcher
+          SnackBarHelper.showInfo(context, 'Apertura "$titolo" - integrazione browser in arrivo!');
         },
       ),
     );
