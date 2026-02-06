@@ -53,12 +53,28 @@ class MockData {
       coloreIcona: Color(0xFFC62828),
       rotta: AppRoutes.tributiPagamenti,
     ),
+    // Sezione 4: Comunicazioni del Sindaco
+    ServizioModel(
+      titolo: 'Comunicazioni\nSindaco',
+      icona: Icons.record_voice_over_rounded,
+      coloreSfondo: AppColors.cardService6,
+      coloreIcona: Color(0xFF6A1B9A),
+      rotta: AppRoutes.comunicazioniSindaco,
+    ),
+    // Sezione 5: Servizi Scolastici
+    ServizioModel(
+      titolo: 'Servizi\nScolastici',
+      icona: Icons.school_rounded,
+      coloreSfondo: AppColors.cardService1,
+      coloreIcona: Color(0xFF5C6BC0),
+      rotta: AppRoutes.serviziScolastici,
+    ),
     // Servizi al cittadino
     ServizioModel(
       titolo: 'Servizi al\nCittadino',
       icona: Icons.person_rounded,
-      coloreSfondo: AppColors.cardService6,
-      coloreIcona: Color(0xFF6A1B9A),
+      coloreSfondo: AppColors.cardService2,
+      coloreIcona: Color(0xFF00695C),
       rotta: AppRoutes.serviziOnline,
     ),
   ];
