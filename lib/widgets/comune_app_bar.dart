@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/theme/app_colors.dart';
 import '../core/theme/app_text_styles.dart';
+import '../core/utils/snackbar_helper.dart';
 
 /// AppBar personalizzata per tutte le schermate
 /// Mostra il logo del comune, il titolo e il pulsante menu
@@ -101,6 +102,7 @@ class ComuneAppBar extends StatelessWidget implements PreferredSizeWidget {
               tooltip: 'Notifiche',
               onPressed: () {
                 // TODO: Implementare notifiche
+                SnackBarHelper.showInfo(context, 'Notifiche push in arrivo con il back office!');
               },
             ),
           ],

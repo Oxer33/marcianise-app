@@ -45,6 +45,7 @@ class NewsCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppConstants.borderRadiusMedium),
           onTap: () {
             // TODO: Navigare al dettaglio news
+            SnackBarHelper.showInfo(context, 'Dettaglio "${news.titolo}" - funzionalità in arrivo!');
           },
           child: Padding(
             padding: const EdgeInsets.all(AppConstants.paddingMedium),

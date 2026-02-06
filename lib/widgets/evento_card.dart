@@ -45,6 +45,7 @@ class EventoCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppConstants.borderRadiusMedium),
           onTap: () {
             // TODO: Navigare al dettaglio evento
+            SnackBarHelper.showInfo(context, 'Dettaglio "${evento.titolo}" - funzionalità in arrivo!');
           },
           child: Padding(
             padding: const EdgeInsets.all(AppConstants.paddingMedium),
