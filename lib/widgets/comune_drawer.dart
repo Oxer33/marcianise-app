@@ -160,7 +160,13 @@ class ComuneDrawer extends StatelessWidget {
       horizontalTitleGap: 8,
       onTap: () {
         Navigator.of(context).pop(); // Chiudi drawer
-        Navigator.of(context).pushNamed(rotta);
+        // Usa pushNamedAndRemoveUntil per evitare stack infinito
+        // Se la rotta è Home, torna alla root
+        if (rotta == '/') {
+          Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
+        } else {
+          Navigator.of(context).pushNamed(rotta);
+        }
       },
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
