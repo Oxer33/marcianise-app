@@ -7,6 +7,7 @@ import '../../core/theme/app_text_styles.dart';
 import '../../core/constants/app_constants.dart';
 import '../../core/utils/snackbar_helper.dart';
 import '../../data/mock_data.dart';
+import 'widgets/evento_form_dialog.dart';
 
 /// Sezione 2 - Eventi (struttura richiesta)
 /// 2.1. Visualizza Eventi
@@ -31,7 +32,7 @@ class EventiScreen extends StatelessWidget {
       drawer: const ComuneDrawer(),
       // 2.2 - FAB per creare nuovo evento
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => _mostraFormCreaEvento(context),
+        onPressed: () => EventoFormDialog.mostraFormCreaEvento(context),
         backgroundColor: AppColors.primary,
         icon: const Icon(Icons.add_rounded, color: Colors.white),
         label: const Text('Crea Evento', style: TextStyle(color: Colors.white)),
@@ -144,100 +145,5 @@ class EventiScreen extends StatelessWidget {
     );
   }
 
-  /// 2.2 - Form per creare nuovo evento
-  /// 2.2.1. Titolo | 2.2.2. Contenuto | 2.2.3. Geolocalizzazione
-  void _mostraFormCreaEvento(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (ctx) => Padding(
-        padding: EdgeInsets.fromLTRB(
-          AppConstants.paddingMedium,
-          AppConstants.paddingMedium,
-          AppConstants.paddingMedium,
-          MediaQuery.of(ctx).viewInsets.bottom + AppConstants.paddingMedium,
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text('Crea Nuovo Evento', style: AppTextStyles.heading2),
-              const SizedBox(height: 16),
-              // 2.2.1 - Titolo
-              const TextField(
-                decoration: InputDecoration(
-                  labelText: '2.2.1 Titolo dell\'evento',
-                  prefixIcon: Icon(Icons.title_rounded),
-                ),
-              ),
-              const SizedBox(height: 12),
-              // 2.2.2 - Contenuto
-              const TextField(
-                decoration: InputDecoration(
-                  labelText: '2.2.2 Contenuto / Descrizione',
-                  prefixIcon: Icon(Icons.edit_note_rounded),
-                ),
-                maxLines: 3,
-              ),
-              const SizedBox(height: 12),
-              // Data evento
-              const TextField(
-                decoration: InputDecoration(
-                  labelText: 'Data evento',
-                  prefixIcon: Icon(Icons.calendar_today_rounded),
-                  hintText: 'GG/MM/AAAA',
-                ),
-              ),
-              const SizedBox(height: 12),
-              // 2.2.3 - Geolocalizzazione
-              const Text('2.2.3 Geolocalizzazione', style: AppTextStyles.heading3),
-              const SizedBox(height: 8),
-              GestureDetector(
-                onTap: () {
-                  SnackBarHelper.showInfo(context, 'Seleziona posizione sulla mappa (collegare GPS)');
-                },
-                child: Container(
-                  width: double.infinity,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: AppColors.primary.withValues(alpha: 0.05),
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: AppColors.primary.withValues(alpha: 0.3),
-                    ),
-                  ),
-                  child: const Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.map_rounded, color: AppColors.primary, size: 32),
-                      SizedBox(height: 4),
-                      Text('Tocca per selezionare posizione', style: AppTextStyles.bodySmall),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              // Bottone crea
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    Navigator.pop(ctx);
-                    SnackBarHelper.showSuccess(context, 'Evento creato (collegare al back office)');
-                  },
-                  icon: const Icon(Icons.event_available_rounded),
-                  label: const Text('Crea Evento'),
-                ),
-              ),
-              const SizedBox(height: 16),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  // Form crea evento (2.2) estratto in widgets/evento_form_dialog.dart
 }
