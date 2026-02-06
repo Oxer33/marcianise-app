@@ -47,6 +47,13 @@
 - [x] Tooltip completi su tutti i pulsanti AppBar (back, menu, notifiche)
 - [x] Padding hardcoded sostituiti con AppConstants per coerenza
 - [x] `.editorconfig` per formattazione consistente tra editor
+- [x] 34 ottimizzazioni `const` per performance widget
+- [x] Regole lint strict in `analysis_options.yaml` (prefer_const, avoid_print)
+- [x] Semantics label su logo placeholder AppBar per screen reader
+- [x] Loading screen verde web con spinner CSS durante caricamento
+- [x] Manifest PWA completo (lang:it, categories:[government,utilities], scope)
+- [x] Meta tag viewport + lang=it in `index.html` per responsività web
+- [x] 31 test in 5 file (widget, home, navigazione, AppConstants, SnackBarHelper)
 
 ### Da Fare UI ⏳
 
@@ -87,7 +94,7 @@
 - [ ] Setup Firebase per analytics e crash reporting
 - [ ] Configurazione per release Android (Play Store)
 - [ ] Configurazione per release iOS (App Store)
-- [x] ~~Testing automatizzato~~ 9 widget test in 3 file (home, navigazione, base)
+- [x] ~~Testing automatizzato~~ 31 test in 5 file (widget, home, nav, constants, snackbar)
 
 ---
 
@@ -113,7 +120,7 @@
 - Codice morto archiviato in `docs/codice_morto.dart`
 - 5 moduli funzionali: A (News), B (Consiglio), C (Eventi), D (Cultura), E (Tributi)
 - [Canale YouTube comune](https://www.youtube.com/channel/UCglEv_b7yTzb1hVB2HxYeGQ/videos)
-- 44+ commit su GitHub (master)
+- 55+ commit su GitHub (master)
 - Ultimo aggiornamento: 7 Febbraio 2026
 
 
