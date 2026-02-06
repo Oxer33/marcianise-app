@@ -130,6 +130,25 @@ lib/
 
 ---
 
+## Test
+
+- **9 widget test** in 3 file (`test/widget_test.dart`, `test/home_screen_test.dart`, `test/navigation_test.dart`)
+- Test copertura: avvio app, AppBar, menu, notifiche, tab, drawer apertura, moduli, navigazione
+- Tutti i test passano con `flutter test`
+
+---
+
+## Piattaforme
+
+| Piattaforma | Launch Screen | Tema | Stato |
+| ----------- | ------------- | ---- | ----- |
+| Android | Verde scuro (#008055) | Verde | ✅ |
+| iOS | Verde scuro (r:0, g:0.502, b:0.333) | Verde | ✅ |
+| Web | theme-color #008055 + manifest verde | Verde | ✅ |
+| Windows | Build release funzionante | Verde | ✅ |
+
+---
+
 ## Note per Sviluppatori Futuri
 
 1. I dati sono attualmente mock in `data/mock_data.dart` - sostituire con API reali
@@ -139,3 +158,6 @@ lib/
 5. Ogni schermata servizio ha form placeholder - collegare al back office
 6. Il documento progetto MTK è in `docs/OF-APP-CM-011225.docx`
 7. I 5 moduli (A-E) sono la struttura portante dell'app come da contratto MTK
+8. Codice morto archiviato in `docs/codice_morto.dart` per riferimento
+9. [Canale YouTube comune](https://www.youtube.com/channel/UCglEv_b7yTzb1hVB2HxYeGQ/videos) per Modulo B
+10. Il tema globale include `InputDecorationTheme` e `TabBarTheme` per uniformità
