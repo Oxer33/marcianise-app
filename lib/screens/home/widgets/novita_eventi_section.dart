@@ -69,10 +69,12 @@ class _NovitaEventiSectionState extends State<NovitaEventiSection>
 
           const SizedBox(height: 16),
 
-          // === CONTENUTO TAB ===
+          // === CONTENUTO TAB (altezza adattiva per schermi diversi) ===
           SizedBox(
-            // Altezza fissa per evitare layout jump
-            height: 350,
+            // Altezza adattiva: minimo 300, massimo 400 in base allo schermo
+            height: MediaQuery.of(context).size.height * 0.4 < 300
+                ? 300
+                : (MediaQuery.of(context).size.height * 0.4 > 400 ? 400 : MediaQuery.of(context).size.height * 0.4),
             child: TabBarView(
               controller: _tabController,
               children: [
