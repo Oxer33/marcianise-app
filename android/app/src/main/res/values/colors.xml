@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colore verde scuro istituzionale del Comune di Marcianise -->
+    <color name="verde_istituzionale">#FF008055</color>
+</resources>
