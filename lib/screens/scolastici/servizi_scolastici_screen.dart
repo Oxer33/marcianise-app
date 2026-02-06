@@ -4,6 +4,7 @@ import '../../core/theme/app_text_styles.dart';
 import '../../core/constants/app_constants.dart';
 import '../../core/utils/snackbar_helper.dart';
 import '../../widgets/comune_app_bar.dart';
+import 'widgets/scolastico_form_dialog.dart';
 import '../../widgets/comune_drawer.dart';
 
 /// Sezione 5 - Servizi Scolastici
@@ -23,7 +24,7 @@ class ServiziScolasticiScreen extends StatelessWidget {
       drawer: const ComuneDrawer(),
       // FAB per aggiungere nuovo servizio (5.1)
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => _mostraFormNuovoServizio(context),
+        onPressed: () => ScolasticoFormDialog.mostraFormNuovoServizio(context),
         backgroundColor: AppColors.primary,
         icon: const Icon(Icons.add_rounded, color: Colors.white),
         label: const Text('Aggiungi Servizio', style: TextStyle(color: Colors.white)),
@@ -273,60 +274,5 @@ class ServiziScolasticiScreen extends StatelessWidget {
     );
   }
 
-  /// 5.1 - Form per aggiungere un nuovo servizio scolastico
-  void _mostraFormNuovoServizio(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (ctx) => Padding(
-        padding: EdgeInsets.fromLTRB(
-          AppConstants.paddingMedium,
-          AppConstants.paddingMedium,
-          AppConstants.paddingMedium,
-          MediaQuery.of(ctx).viewInsets.bottom + AppConstants.paddingMedium,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Aggiungi Servizio Scolastico', style: AppTextStyles.heading2),
-            const SizedBox(height: 16),
-            // Nome servizio
-            const TextField(
-              decoration: InputDecoration(
-                labelText: 'Nome del servizio',
-                prefixIcon: Icon(Icons.school_rounded),
-              ),
-            ),
-            const SizedBox(height: 12),
-            // Descrizione
-            const TextField(
-              decoration: InputDecoration(
-                labelText: 'Descrizione del servizio',
-                prefixIcon: Icon(Icons.description_rounded),
-              ),
-              maxLines: 3,
-            ),
-            const SizedBox(height: 16),
-            // Bottone salva
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.pop(ctx);
-                  SnackBarHelper.showSuccess(context, 'Servizio aggiunto (collegare al back office)');
-                },
-                icon: const Icon(Icons.save_rounded),
-                label: const Text('Salva Servizio'),
-              ),
-            ),
-            const SizedBox(height: 16),
-          ],
-        ),
-      ),
-    );
-  }
+  // Form aggiungi servizio (5.1) estratto in widgets/scolastico_form_dialog.dart
 }
