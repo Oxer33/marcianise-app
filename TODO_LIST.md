@@ -23,25 +23,32 @@
 - [x] Pagina Tributi e Pagamenti con PagoPA (Modulo E) - NUOVA
 - [x] Pagina Segnala Disservizio con form
 - [x] Pagina Prenota Ufficio con lista uffici
-- [x] Pagina Contatta Uffici con contatti
-- [x] Pagina Gestione Rifiuti con calendario
-- [x] Pagina Servizi Online con lista servizi
+- [x] Pagina Contatta Uffici con sede municipale reale (indirizzo, PEC, telefono)
+- [x] Pagina Gestione Rifiuti con calendario e centro raccolta
+- [x] Pagina Servizi Online con dati reali (ANPR, PagoPA, SUAP, SUE, Albo Pretorio)
 - [x] Pagina Luoghi di Interesse
-- [x] Drawer menu laterale completo
-- [x] Widget AppBar personalizzata
+- [x] Pagina Prenota Ufficio con uffici reali (Anagrafe, Tributi, URP, Servizi Sociali)
+- [x] Drawer menu laterale con moduli A-E + footer contatti reali
+- [x] Widget AppBar personalizzata con tooltip accessibilità
 - [x] Widget meteo con previsioni 3 giorni
 - [x] Card riutilizzabili (News, Eventi, Servizi)
+- [x] Griglia servizi RESPONSIVE (3/4/6 colonne per mobile/tablet/desktop)
+- [x] Overlay gradiente verde su hero per continuità con AppBar
+- [x] Altezza tab novità/eventi adattiva per schermi diversi
+- [x] Contatti reali comune in AppConstants (Via Roma 18, tel, email, PEC, social)
+- [x] InputDecorationTheme + TabBarTheme nel tema globale
+- [x] Accessibilità: semanticLabel foto municipio, tooltip bottoni
 
 ### Da Fare UI ⏳
 
 - [x] ~~Aggiungere immagine reale del municipio nella hero section~~ FATTO!
+- [x] ~~Accessibilità base (semanticLabel, tooltip)~~ FATTO!
 - [ ] Aggiungere logo reale del Comune di Marcianise (SVG/PNG)
 - [ ] Splash screen con logo comune
 - [ ] Animazioni di transizione tra pagine
 - [ ] Pull-to-refresh nelle liste
 - [ ] Skeleton loading per contenuti in caricamento
 - [ ] Dark mode (opzionale)
-- [ ] Accessibilità (screen reader, contrasto colori)
 - [ ] Localizzazione multilingua (opzionale)
 
 ---
@@ -93,6 +100,9 @@
 - I dati attuali sono mock in `lib/data/mock_data.dart` (news reali dal sito comune)
 - L'app deve funzionare su tutti i dispositivi (Android, iOS, Web)
 - Il back office fornirà le API per i dati dinamici
-- Documento progetto MTK: `OF-APP-CM-011225.docx`
+- Documento progetto MTK: `docs/OF-APP-CM-011225.docx`
+- Codice morto archiviato in `docs/codice_morto.dart`
 - 5 moduli funzionali: A (News), B (Consiglio), C (Eventi), D (Cultura), E (Tributi)
+- [Canale YouTube comune](https://www.youtube.com/channel/UCglEv_b7yTzb1hVB2HxYeGQ/videos)
+- 27+ commit su GitHub (master)
 - Ultimo aggiornamento: 6 Febbraio 2026
