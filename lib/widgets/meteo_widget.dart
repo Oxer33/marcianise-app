@@ -10,7 +10,7 @@ class MeteoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final previsioni = MockData.meteo;
+    const previsioni = MockData.meteo;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,

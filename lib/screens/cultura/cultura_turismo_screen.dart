@@ -94,7 +94,7 @@ class CulturaTurismoScreen extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.info_outline_rounded,
                     color: AppColors.primary,
                     size: 28,
@@ -165,7 +165,7 @@ class CulturaTurismoScreen extends StatelessWidget {
             ),
           ),
           // Freccia navigazione
-          Icon(
+          const Icon(
             Icons.chevron_right_rounded,
             color: AppColors.textSecondary,
           ),

@@ -81,7 +81,7 @@ class EventoCard extends StatelessWidget {
                 // Data e ora
                 Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.calendar_today_rounded,
                       size: 14,
                       color: AppColors.textSecondary,
@@ -89,7 +89,7 @@ class EventoCard extends StatelessWidget {
                     const SizedBox(width: 4),
                     Text(evento.data, style: AppTextStyles.bodySmall),
                     const SizedBox(width: 12),
-                    Icon(
+                    const Icon(
                       Icons.access_time_rounded,
                       size: 14,
                       color: AppColors.textSecondary,
@@ -114,7 +114,7 @@ class EventoCard extends StatelessWidget {
                   // Luogo
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.place_rounded,
                         size: 14,
                         color: AppColors.primary,

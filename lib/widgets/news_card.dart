@@ -52,7 +52,7 @@ class NewsCard extends StatelessWidget {
                 // Riga data e badge urgente
                 Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.calendar_today_rounded,
                       size: 14,
                       color: AppColors.textSecondary,

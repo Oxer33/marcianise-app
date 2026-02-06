@@ -77,7 +77,7 @@ class SegnalaDisservizioScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          Text(
+          const Text(
             'Segnala un disservizio',
             style: AppTextStyles.heading2,
             textAlign: TextAlign.center,
@@ -180,7 +180,7 @@ class SegnalaDisservizioScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.camera_alt_rounded, color: AppColors.primary, size: 32),
+          const Icon(Icons.camera_alt_rounded, color: AppColors.primary, size: 32),
           const SizedBox(height: 8),
           Text(
             'Aggiungi foto',

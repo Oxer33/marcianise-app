@@ -219,13 +219,13 @@ class ComuneDrawer extends StatelessWidget {
       child: Column(
         children: [
           // Info sede
-          Text(
+          const Text(
             AppConstants.indirizzoCompleto,
             style: AppTextStyles.bodySmall,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 4),
-          Text(
+          const Text(
             'Tel: ${AppConstants.telefono}',
             style: AppTextStyles.bodySmall,
             textAlign: TextAlign.center,

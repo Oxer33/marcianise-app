@@ -83,7 +83,7 @@ class AppTheme {
       ),
 
       // TabBar uniformi in tutta l'app
-      tabBarTheme: TabBarThemeData(
+      tabBarTheme: const TabBarThemeData(
         labelColor: Colors.white,
         unselectedLabelColor: AppColors.primary,
         indicatorColor: AppColors.primary,

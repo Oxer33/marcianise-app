@@ -107,7 +107,7 @@ class TributiPagamentiScreen extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Icon(Icons.info_outline_rounded, color: AppColors.info, size: 28),
+                  const Icon(Icons.info_outline_rounded, color: AppColors.info, size: 28),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
@@ -132,7 +132,7 @@ class TributiPagamentiScreen extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           colors: [
             AppColors.primary,
             AppColors.primaryDark,
@@ -153,7 +153,7 @@ class TributiPagamentiScreen extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Text(
+                child: const Text(
                   'pagoPA',
                   style: TextStyle(
                     color: AppColors.primary,
@@ -292,7 +292,7 @@ class TributiPagamentiScreen extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(Icons.check_circle_rounded, color: AppColors.success, size: 22),
+          const Icon(Icons.check_circle_rounded, color: AppColors.success, size: 22),
           const SizedBox(width: 10),
           Expanded(
             child: Column(

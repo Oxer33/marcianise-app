@@ -92,7 +92,7 @@ class _NovitaEventiSectionState extends State<NovitaEventiSection>
 
   /// Tab con le ultime novità
   Widget _buildNovitaTab() {
-    final news = MockData.news;
+    const news = MockData.news;
 
     return Column(
       children: [
@@ -117,7 +117,7 @@ class _NovitaEventiSectionState extends State<NovitaEventiSection>
 
   /// Tab con gli eventi in arrivo
   Widget _buildEventiTab() {
-    final eventi = MockData.eventi;
+    const eventi = MockData.eventi;
 
     return Column(
       children: [

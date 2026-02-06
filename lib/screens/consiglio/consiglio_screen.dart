@@ -123,7 +123,7 @@ class ConsiglioScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Consiglio Comunale: Approvato il nuovo piano urbanistico',
                   style: AppTextStyles.heading3,
                 ),
@@ -172,7 +172,7 @@ class ConsiglioScreen extends StatelessWidget {
                 top: Radius.circular(AppConstants.borderRadiusMedium),
               ),
             ),
-            child: Center(
+            child: const Center(
               child: Icon(
                 Icons.play_circle_outline_rounded,
                 color: AppColors.primary,

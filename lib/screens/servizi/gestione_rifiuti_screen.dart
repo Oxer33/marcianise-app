@@ -77,7 +77,7 @@ class GestioneRifiutiScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          Text(
+          const Text(
             'Gestione dei rifiuti',
             style: AppTextStyles.heading2,
             textAlign: TextAlign.center,
@@ -163,22 +163,22 @@ class GestioneRifiutiScreen extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
+      child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              const Icon(Icons.location_on_rounded, color: AppColors.primary),
-              const SizedBox(width: 8),
+              Icon(Icons.location_on_rounded, color: AppColors.primary),
+              SizedBox(width: 8),
               Text('Centro Raccolta Comunale', style: AppTextStyles.heading3),
             ],
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           Text(
             'Zona Industriale - Marcianise (CE)',
             style: AppTextStyles.bodyMedium,
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: 4),
           Text(
             'Orari: Lun-Sab 8:00 - 13:00 | Mar-Gio 15:00 - 18:00',
             style: AppTextStyles.bodySmall,

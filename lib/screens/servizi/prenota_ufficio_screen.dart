@@ -70,7 +70,7 @@ class PrenotaUfficioScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          Text(
+          const Text(
             'Prenota un appuntamento',
             style: AppTextStyles.heading2,
             textAlign: TextAlign.center,

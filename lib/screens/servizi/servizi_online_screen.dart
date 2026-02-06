@@ -111,7 +111,7 @@ class ServiziOnlineScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          Text(
+          const Text(
             'Servizi Online',
             style: AppTextStyles.heading2,
             textAlign: TextAlign.center,

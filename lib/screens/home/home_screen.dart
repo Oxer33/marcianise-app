@@ -15,16 +15,16 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       // AppBar con menu hamburger e logo
-      appBar: const ComuneAppBar(
+      appBar: ComuneAppBar(
         titolo: 'Comune di',
         sottotitolo: 'MARCIANISE',
       ),
       // Drawer laterale
-      drawer: const ComuneDrawer(),
+      drawer: ComuneDrawer(),
       // Corpo della pagina - scrollabile
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

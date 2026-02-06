@@ -19,7 +19,7 @@ class ServiziGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final servizi = MockData.servizi;
+    const servizi = MockData.servizi;
     final larghezzaSchermo = MediaQuery.of(context).size.width;
     final colonne = _calcolaColonne(larghezzaSchermo);
 
