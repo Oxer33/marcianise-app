@@ -58,7 +58,9 @@ lib/
     │       ├── servizi_grid.dart      # Griglia 8 servizi
     │       └── novita_eventi_section.dart  # Tab Novità/Eventi
     ├── news/
-    │   └── news_screen.dart           # Pagina News e Avvisi
+    │   ├── news_screen.dart           # Sez.1: News e Avvisi
+    │   └── widgets/
+    │       └── notizia_form_dialog.dart  # Form crea notizia (1.1)
     ├── consiglio/
     │   └── consiglio_screen.dart      # Pagina Consiglio Comunale
     ├── eventi/
@@ -72,14 +74,18 @@ lib/
     │   └── widgets/
     │       └── sindaco_form_dialogs.dart     # Form dialogs (4.1, 4.2, 4.3)
     ├── scolastici/
-    │   └── servizi_scolastici_screen.dart # Sez.5: Servizi Scolastici
+    │   ├── servizi_scolastici_screen.dart # Sez.5: Servizi Scolastici
+    │   └── widgets/
+    │       └── scolastico_form_dialog.dart # Form aggiungi servizio (5.1)
     └── servizi/
         ├── segnala_disservizio_screen.dart
         ├── prenota_ufficio_screen.dart
         ├── contatta_uffici_screen.dart
         ├── gestione_rifiuti_screen.dart
         ├── servizi_online_screen.dart
-        └── luoghi_interesse_screen.dart
+        ├── luoghi_interesse_screen.dart
+        └── widgets/
+            └── poi_form_dialog.dart       # Form crea POI (3.1)
 ```
 
 ---
