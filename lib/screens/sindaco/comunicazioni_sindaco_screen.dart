@@ -69,18 +69,21 @@ class ComunicazioniSindacoScreen extends StatelessWidget {
             const Text('Ultimi Comunicati', style: AppTextStyles.heading2),
             const SizedBox(height: 12),
             _buildComunicatoCard(
+              context,
               'Ordinanza pulizia straordinaria centro storico',
               '5 Febbraio 2026',
               'Il sindaco ordina interventi di pulizia straordinaria nel centro storico a partire dal 10 febbraio.',
               Icons.gavel_rounded,
             ),
             _buildComunicatoCard(
+              context,
               'Auguri di buon anno alla cittadinanza',
               '1 Gennaio 2026',
               'Cari concittadini, è con grande piacere che vi porgo i miei auguri per un sereno e prospero anno nuovo.',
               Icons.celebration_rounded,
             ),
             _buildComunicatoCard(
+              context,
               'Aggiornamento lavori pubblici Via Roma',
               '20 Dicembre 2025',
               'Vi informo che i lavori di riqualificazione di Via Roma procedono secondo i tempi previsti.',
@@ -193,8 +196,9 @@ class ComunicazioniSindacoScreen extends StatelessWidget {
     );
   }
 
-  /// Card per un comunicato nella lista
+  /// Card per un comunicato nella lista (con modifica/elimina)
   Widget _buildComunicatoCard(
+    BuildContext context,
     String titolo,
     String data,
     String contenuto,
@@ -211,13 +215,47 @@ class ComunicazioniSindacoScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Riga icona + data
+          // Riga icona + titolo + menu modifica/elimina
           Row(
             children: [
               Icon(icona, color: AppColors.primary, size: 20),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(titolo, style: AppTextStyles.heading3),
+              ),
+              PopupMenuButton<String>(
+                icon: const Icon(Icons.more_vert_rounded, color: AppColors.textSecondary, size: 18),
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+                onSelected: (value) {
+                  if (value == 'modifica') {
+                    SnackBarHelper.showInfo(context, 'Modifica "$titolo" - collegare al back office');
+                  } else if (value == 'elimina') {
+                    SnackBarHelper.showWarning(context, 'Eliminazione "$titolo" - collegare al back office');
+                  }
+                },
+                itemBuilder: (ctx) => [
+                  const PopupMenuItem(
+                    value: 'modifica',
+                    child: Row(
+                      children: [
+                        Icon(Icons.edit_rounded, size: 20),
+                        SizedBox(width: 8),
+                        Text('Modifica'),
+                      ],
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 'elimina',
+                    child: Row(
+                      children: [
+                        Icon(Icons.delete_rounded, size: 20, color: Colors.red),
+                        SizedBox(width: 8),
+                        Text('Elimina', style: TextStyle(color: Colors.red)),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
