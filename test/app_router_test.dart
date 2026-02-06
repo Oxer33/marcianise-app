@@ -56,6 +56,14 @@ void main() {
     test('Luoghi di Interesse è /luoghi-interesse', () {
       expect(AppRoutes.luoghiInteresse, '/luoghi-interesse');
     });
+
+    test('Comunicazioni Sindaco (Sezione 4) è /comunicazioni-sindaco', () {
+      expect(AppRoutes.comunicazioniSindaco, '/comunicazioni-sindaco');
+    });
+
+    test('Servizi Scolastici (Sezione 5) è /servizi-scolastici', () {
+      expect(AppRoutes.serviziScolastici, '/servizi-scolastici');
+    });
   });
 
   group('AppRouter - Generazione rotte', () {
@@ -87,7 +95,7 @@ void main() {
       expect(route, isA<MaterialPageRoute>());
     });
 
-    test('Tutte le 12 rotte generano MaterialPageRoute', () {
+    test('Tutte le 14 rotte generano MaterialPageRoute', () {
       // Lista di tutte le rotte definite nell'app
       final rotte = [
         AppRoutes.home,
@@ -96,6 +104,8 @@ void main() {
         AppRoutes.eventi,
         AppRoutes.culturaTurismo,
         AppRoutes.tributiPagamenti,
+        AppRoutes.comunicazioniSindaco,
+        AppRoutes.serviziScolastici,
         AppRoutes.segnalaDisservizio,
         AppRoutes.prenotaUfficio,
         AppRoutes.contattaUffici,
