@@ -5,17 +5,26 @@ import '../../../data/mock_data.dart';
 import '../../../widgets/servizio_card.dart';
 
 /// Griglia dei 6 servizi rapidi nella home page
-/// Layout 3 colonne x 2 righe come nell'app blu di riferimento
-/// Container con sfondo azzurro chiaro e bordi arrotondati
+/// Layout RESPONSIVE: 3 colonne su mobile, 4 su tablet, 6 su desktop
+/// Container con sfondo verde chiaro e bordi arrotondati
 class ServiziGrid extends StatelessWidget {
   const ServiziGrid({super.key});
+
+  /// Calcola il numero di colonne in base alla larghezza dello schermo
+  int _calcolaColonne(double larghezza) {
+    if (larghezza >= 900) return 6; // Desktop: una riga unica
+    if (larghezza >= 600) return 4; // Tablet: 2 righe da 3+3 → 4+2
+    return 3; // Mobile: 3 colonne x 2 righe
+  }
 
   @override
   Widget build(BuildContext context) {
     final servizi = MockData.servizi;
+    final larghezzaSchermo = MediaQuery.of(context).size.width;
+    final colonne = _calcolaColonne(larghezzaSchermo);
 
     return Container(
-      // Sfondo azzurro chiaro come nello screenshot blu
+      // Sfondo verde chiaro istituzionale
       margin: const EdgeInsets.fromLTRB(
         AppConstants.paddingMedium,
         AppConstants.paddingMedium,
@@ -32,8 +41,8 @@ class ServiziGrid extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: servizi.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: AppConstants.serviziCrossAxisCount,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: colonne,
           crossAxisSpacing: AppConstants.serviziSpacing,
           mainAxisSpacing: AppConstants.serviziSpacing,
           childAspectRatio: 0.85, // Card più alte che larghe

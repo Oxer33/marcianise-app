@@ -1,5 +1,6 @@
 /// Costanti globali dell'applicazione
-/// Nome comune, URL, dimensioni, ecc.
+/// Nome comune, contatti, URL, dimensioni, ecc.
+/// Dati reali dal sito www.comune.marcianise.ce.it
 class AppConstants {
   AppConstants._();
 
@@ -7,6 +8,21 @@ class AppConstants {
   static const String comuneNome = 'Comune di';
   static const String comuneCitta = 'MARCIANISE';
   static const String comuneNomeCompleto = 'Comune di Marcianise';
+
+  // === CONTATTI REALI (dal sito ufficiale) ===
+  static const String indirizzo = 'Via Roma, 18';
+  static const String cap = '81025';
+  static const String citta = 'Marcianise (CE)';
+  static const String indirizzoCompleto = 'Via Roma, 18 - 81025 Marcianise (CE)';
+  static const String telefono = '+39 0823 635111';
+  static const String email = 'info@comune.marcianise.ce.it';
+  static const String pec = 'protocollo@pec.comune.marcianise.ce.it';
+  static const String codiceFiscale = '93012960618';
+  static const String partitaIva = '00237550611';
+  static const String sitoWeb = 'https://www.comune.marcianise.ce.it';
+  static const String facebook = 'https://www.facebook.com/marcianiseofficial/';
+  static const String instagram = 'https://www.instagram.com/cittadimarcianiseufficiale/';
+  static const String youtube = 'https://www.youtube.com/channel/UCglEv_b7yTzb1hVB2HxYeGQ/videos';
 
   // === DIMENSIONI ===
   static const double paddingSmall = 8.0;
