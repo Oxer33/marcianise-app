@@ -28,7 +28,7 @@ Progetto commissionato da MTK, strutturato in **5 moduli funzionali** (A-E).
 
 - Foto **reale** del Municipio di Marcianise (notturna)
 - Widget previsioni meteo sovrapposto
-- Griglia 6 servizi rapidi **responsive** (3/4/6 colonne)
+- Griglia 8 servizi rapidi **responsive** (4/4/8 colonne)
 - Sezione Novità e Eventi con tab
 
 ## ✅ Qualità
