@@ -5,6 +5,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/constants/app_constants.dart';
 import '../../core/utils/snackbar_helper.dart';
+import '../../core/utils/localization_extension.dart';
 
 /// Schermata per prenotare un appuntamento in un ufficio comunale
 /// L'utente potrà selezionare l'ufficio, la data e l'ora
@@ -14,8 +15,8 @@ class PrenotaUfficioScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const ComuneAppBar(
-        titolo: 'Prenota Ufficio',
+      appBar: ComuneAppBar(
+        titolo: context.l10n.screenPrenotaUfficioTitle,
         mostraBack: true,
       ),
       drawer: const ComuneDrawer(),
@@ -26,18 +27,54 @@ class PrenotaUfficioScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header con icona
-            _buildHeader(),
+            _buildHeader(context),
             const SizedBox(height: 24),
 
             // Lista uffici disponibili (Aree/Settori reali dal sito)
-            const Text('Seleziona Ufficio', style: AppTextStyles.heading3),
+            Text(context.l10n.prenotaSelectOfficeTitle, style: AppTextStyles.heading3),
             const SizedBox(height: 12),
-            _buildUfficioCard(context, 'Anagrafe e Stato Civile', Icons.badge_rounded, 'Via Roma, 18 - Piano Terra', 'Lun-Ven: 9:00-13:00'),
-            _buildUfficioCard(context, 'Ufficio Tributi (IMU/TARI)', Icons.receipt_long_rounded, 'Via Roma, 18 - Piano 1', 'Lun-Ven: 9:00-12:00 | Mar-Gio: 15:00-17:00'),
-            _buildUfficioCard(context, 'Ufficio Tecnico - Edilizia', Icons.engineering_rounded, 'Via Roma, 18 - Piano 2', 'Lun-Ven: 9:00-13:00'),
-            _buildUfficioCard(context, 'URP - Relazioni con il Pubblico', Icons.headset_mic_rounded, 'Via Roma, 18 - Piano Terra', 'Lun-Ven: 8:30-14:00'),
-            _buildUfficioCard(context, 'Polizia Municipale', Icons.local_police_rounded, 'Via Roma, 18 - Edificio B', 'Lun-Dom: 8:00-20:00'),
-            _buildUfficioCard(context, 'Servizi Sociali', Icons.family_restroom_rounded, 'Via Roma, 18 - Piano 1', 'Lun-Ven: 9:00-13:00'),
+            _buildUfficioCard(
+              context,
+              context.l10n.prenotaOfficeAnagrafeTitle,
+              Icons.badge_rounded,
+              context.l10n.prenotaOfficeAnagrafeLocation,
+              context.l10n.prenotaOfficeAnagrafeHours,
+            ),
+            _buildUfficioCard(
+              context,
+              context.l10n.prenotaOfficeTributiTitle,
+              Icons.receipt_long_rounded,
+              context.l10n.prenotaOfficeTributiLocation,
+              context.l10n.prenotaOfficeTributiHours,
+            ),
+            _buildUfficioCard(
+              context,
+              context.l10n.prenotaOfficeTecnicoTitle,
+              Icons.engineering_rounded,
+              context.l10n.prenotaOfficeTecnicoLocation,
+              context.l10n.prenotaOfficeTecnicoHours,
+            ),
+            _buildUfficioCard(
+              context,
+              context.l10n.prenotaOfficeUrpTitle,
+              Icons.headset_mic_rounded,
+              context.l10n.prenotaOfficeUrpLocation,
+              context.l10n.prenotaOfficeUrpHours,
+            ),
+            _buildUfficioCard(
+              context,
+              context.l10n.prenotaOfficePoliziaTitle,
+              Icons.local_police_rounded,
+              context.l10n.prenotaOfficePoliziaLocation,
+              context.l10n.prenotaOfficePoliziaHours,
+            ),
+            _buildUfficioCard(
+              context,
+              context.l10n.prenotaOfficeServiziSocialiTitle,
+              Icons.family_restroom_rounded,
+              context.l10n.prenotaOfficeServiziSocialiLocation,
+              context.l10n.prenotaOfficeServiziSocialiHours,
+            ),
             const SizedBox(height: 32),
           ],
         ),
@@ -46,7 +83,7 @@ class PrenotaUfficioScreen extends StatelessWidget {
   }
 
   /// Header con icona e descrizione
-  Widget _buildHeader() {
+  Widget _buildHeader(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.paddingLarge),
@@ -70,14 +107,14 @@ class PrenotaUfficioScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          const Text(
-            'Prenota un appuntamento',
+          Text(
+            context.l10n.prenotaHeaderTitle,
             style: AppTextStyles.heading2,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
           Text(
-            'Seleziona l\'ufficio e prenota comodamente il tuo appuntamento.',
+            context.l10n.prenotaHeaderSubtitle,
             style: AppTextStyles.bodyMedium.copyWith(
               color: AppColors.textSecondary,
             ),
@@ -93,15 +130,9 @@ class PrenotaUfficioScreen extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.06),
-            blurRadius: 8,
-            offset: const Offset(0, 3),
-          ),
-        ],
+        boxShadow: AppColors.cardShadow,
       ),
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -129,7 +160,7 @@ class PrenotaUfficioScreen extends StatelessWidget {
             ),
           ],
         ),
-        trailing: const Icon(
+        trailing: Icon(
           Icons.arrow_forward_ios_rounded,
           size: 16,
           color: AppColors.textSecondary,
@@ -137,7 +168,10 @@ class PrenotaUfficioScreen extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         onTap: () {
           // TODO: Navigare alla prenotazione specifica con date picker
-          SnackBarHelper.showInfo(context, 'Prenotazione per "$nome" - funzionalità in arrivo!');
+          SnackBarHelper.showInfo(
+            context,
+            context.l10n.messageBookingComingSoon(nome),
+          );
         },
       ),
     );

@@ -6,6 +6,7 @@ import '../../core/utils/snackbar_helper.dart';
 import '../../widgets/comune_app_bar.dart';
 import '../../widgets/comune_drawer.dart';
 import 'widgets/sindaco_form_dialogs.dart';
+import '../../core/utils/localization_extension.dart';
 
 /// Sezione 4 - Comunicazioni del Sindaco
 /// Struttura richiesta:
@@ -18,8 +19,8 @@ class ComunicazioniSindacoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const ComuneAppBar(
-        titolo: 'Comunicazioni Sindaco',
+      appBar: ComuneAppBar(
+        titolo: context.l10n.screenComunicazioniSindacoTitle,
         mostraBack: true,
       ),
       drawer: const ComuneDrawer(),
@@ -30,15 +31,15 @@ class ComunicazioniSindacoScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // === HEADER ===
-            _buildHeader(),
+            _buildHeader(context),
             const SizedBox(height: 24),
 
             // === 4.1 CARICA IMMAGINI ===
             _buildSezioneCard(
               context,
               icona: Icons.photo_library_rounded,
-              titolo: '4.1 Carica Immagini',
-              descrizione: 'Galleria fotografica del sindaco: eventi istituzionali, inaugurazioni e visite.',
+              titolo: context.l10n.sindacoSectionImagesTitle,
+              descrizione: context.l10n.sindacoSectionImagesDesc,
               colore: const Color(0xFF1565C0),
               onTap: () => SindacoFormDialogs.mostraFormImmagini(context),
             ),
@@ -48,8 +49,8 @@ class ComunicazioniSindacoScreen extends StatelessWidget {
             _buildSezioneCard(
               context,
               icona: Icons.videocam_rounded,
-              titolo: '4.2 Carica Video',
-              descrizione: 'Videomessaggi e dichiarazioni ufficiali del sindaco alla cittadinanza.',
+              titolo: context.l10n.sindacoSectionVideoTitle,
+              descrizione: context.l10n.sindacoSectionVideoDesc,
               colore: const Color(0xFFC62828),
               onTap: () => SindacoFormDialogs.mostraFormVideo(context),
             ),
@@ -59,35 +60,35 @@ class ComunicazioniSindacoScreen extends StatelessWidget {
             _buildSezioneCard(
               context,
               icona: Icons.article_rounded,
-              titolo: '4.3 Inserisci Comunicati',
-              descrizione: 'Comunicati stampa ufficiali, ordinanze e avvisi del sindaco.',
+              titolo: context.l10n.sindacoSectionComunicatiTitle,
+              descrizione: context.l10n.sindacoSectionComunicatiDesc,
               colore: AppColors.primary,
               onTap: () => SindacoFormDialogs.mostraFormComunicati(context),
             ),
             const SizedBox(height: 24),
 
             // === ULTIMI COMUNICATI ===
-            const Text('Ultimi Comunicati', style: AppTextStyles.heading2),
+            Text(context.l10n.sindacoLatestTitle, style: AppTextStyles.heading2),
             const SizedBox(height: 12),
             _buildComunicatoCard(
               context,
-              'Ordinanza pulizia straordinaria centro storico',
-              '5 Febbraio 2026',
-              'Il sindaco ordina interventi di pulizia straordinaria nel centro storico a partire dal 10 febbraio.',
+              context.l10n.sindacoComunicato1Title,
+              context.l10n.sindacoComunicato1Date,
+              context.l10n.sindacoComunicato1Content,
               Icons.gavel_rounded,
             ),
             _buildComunicatoCard(
               context,
-              'Auguri di buon anno alla cittadinanza',
-              '1 Gennaio 2026',
-              'Cari concittadini, è con grande piacere che vi porgo i miei auguri per un sereno e prospero anno nuovo.',
+              context.l10n.sindacoComunicato2Title,
+              context.l10n.sindacoComunicato2Date,
+              context.l10n.sindacoComunicato2Content,
               Icons.celebration_rounded,
             ),
             _buildComunicatoCard(
               context,
-              'Aggiornamento lavori pubblici Via Roma',
-              '20 Dicembre 2025',
-              'Vi informo che i lavori di riqualificazione di Via Roma procedono secondo i tempi previsti.',
+              context.l10n.sindacoComunicato3Title,
+              context.l10n.sindacoComunicato3Date,
+              context.l10n.sindacoComunicato3Content,
               Icons.construction_rounded,
             ),
             const SizedBox(height: 32),
@@ -98,7 +99,7 @@ class ComunicazioniSindacoScreen extends StatelessWidget {
   }
 
   /// Header con icona e descrizione della sezione
-  Widget _buildHeader() {
+  Widget _buildHeader(BuildContext context) {
     return Column(
       children: [
         // Icona sindaco
@@ -116,14 +117,14 @@ class ComunicazioniSindacoScreen extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
-        const Text(
-          'Comunicazioni del Sindaco',
+        Text(
+          context.l10n.sindacoHeaderTitle,
           style: AppTextStyles.heading2,
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 8),
         Text(
-          'Immagini, video e comunicati ufficiali del Sindaco di Marcianise.',
+          context.l10n.sindacoHeaderSubtitle,
           style: AppTextStyles.bodyMedium.copyWith(
             color: AppColors.textSecondary,
           ),
@@ -147,15 +148,9 @@ class ComunicazioniSindacoScreen extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(AppConstants.paddingMedium),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.surface,
           borderRadius: BorderRadius.circular(AppConstants.borderRadiusMedium),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.06),
-              blurRadius: 8,
-              offset: const Offset(0, 3),
-            ),
-          ],
+          boxShadow: AppColors.cardShadow,
         ),
         child: Row(
           children: [
@@ -187,7 +182,7 @@ class ComunicazioniSindacoScreen extends StatelessWidget {
               ),
             ),
             // Freccia
-            const Icon(
+            Icon(
               Icons.chevron_right_rounded,
               color: AppColors.textSecondary,
             ),
@@ -209,7 +204,7 @@ class ComunicazioniSindacoScreen extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(AppConstants.paddingMedium),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: AppColors.primary.withValues(alpha: 0.15)),
       ),
@@ -225,34 +220,43 @@ class ComunicazioniSindacoScreen extends StatelessWidget {
                 child: Text(titolo, style: AppTextStyles.heading3),
               ),
               PopupMenuButton<String>(
-                icon: const Icon(Icons.more_vert_rounded, color: AppColors.textSecondary, size: 18),
+                icon: Icon(Icons.more_vert_rounded, color: AppColors.textSecondary, size: 18),
                 padding: EdgeInsets.zero,
                 constraints: const BoxConstraints(),
                 onSelected: (value) {
                   if (value == 'modifica') {
-                    SnackBarHelper.showInfo(context, 'Modifica "$titolo" - collegare al back office');
+                    SnackBarHelper.showInfo(
+                      context,
+                      context.l10n.messageBackOfficeEdit(titolo),
+                    );
                   } else if (value == 'elimina') {
-                    SnackBarHelper.showWarning(context, 'Eliminazione "$titolo" - collegare al back office');
+                    SnackBarHelper.showWarning(
+                      context,
+                      context.l10n.messageBackOfficeDelete(titolo),
+                    );
                   }
                 },
                 itemBuilder: (ctx) => [
-                  const PopupMenuItem(
+                  PopupMenuItem(
                     value: 'modifica',
                     child: Row(
                       children: [
-                        Icon(Icons.edit_rounded, size: 20),
-                        SizedBox(width: 8),
-                        Text('Modifica'),
+                        const Icon(Icons.edit_rounded, size: 20),
+                        const SizedBox(width: 8),
+                        Text(context.l10n.actionEdit),
                       ],
                     ),
                   ),
-                  const PopupMenuItem(
+                  PopupMenuItem(
                     value: 'elimina',
                     child: Row(
                       children: [
-                        Icon(Icons.delete_rounded, size: 20, color: Colors.red),
-                        SizedBox(width: 8),
-                        Text('Elimina', style: TextStyle(color: Colors.red)),
+                        const Icon(Icons.delete_rounded, size: 20, color: Colors.red),
+                        const SizedBox(width: 8),
+                        Text(
+                          context.l10n.actionDelete,
+                          style: const TextStyle(color: Colors.red),
+                        ),
                       ],
                     ),
                   ),

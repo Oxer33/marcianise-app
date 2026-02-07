@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import '../../widgets/comune_app_bar.dart';
 import '../../widgets/comune_drawer.dart';
 import 'widgets/hero_section.dart';
+import 'widgets/highlights_section.dart';
 import 'widgets/servizi_grid.dart';
 import 'widgets/novita_eventi_section.dart';
+import '../../core/utils/localization_extension.dart';
 
 /// Schermata principale (Home) dell'app
 /// Layout con tema verde scuro istituzionale:
@@ -15,22 +17,25 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       // AppBar con menu hamburger e logo
       appBar: ComuneAppBar(
-        titolo: 'Comune di',
-        sottotitolo: 'MARCIANISE',
+        titolo: context.l10n.homeTitleComune,
+        sottotitolo: context.l10n.homeSubtitleCity,
       ),
       // Drawer laterale
-      drawer: ComuneDrawer(),
+      drawer: const ComuneDrawer(),
       // Corpo della pagina - scrollabile
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // 1. Hero image con meteo sovrapposto
             HeroSection(),
+
+            // 1.5 Sezione In evidenza (bento + micro-interazioni)
+            HighlightsSection(),
 
             // 2. Griglia servizi (8 card)
             ServiziGrid(),

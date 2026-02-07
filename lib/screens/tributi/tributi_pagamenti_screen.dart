@@ -5,6 +5,7 @@ import '../../core/constants/app_constants.dart';
 import '../../core/utils/snackbar_helper.dart';
 import '../../widgets/comune_app_bar.dart';
 import '../../widgets/comune_drawer.dart';
+import '../../core/utils/localization_extension.dart';
 
 /// Modulo E - Tributi e Pagamenti
 /// Gestione economica dei servizi comunali tramite PagoPA
@@ -15,8 +16,8 @@ class TributiPagamentiScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const ComuneAppBar(
-        titolo: 'Tributi e Pagamenti',
+      appBar: ComuneAppBar(
+        titolo: context.l10n.screenTributiTitle,
         mostraBack: true,
       ),
       drawer: const ComuneDrawer(),
@@ -27,10 +28,10 @@ class TributiPagamentiScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // === HEADER SEZIONE ===
-            const Text('I tuoi pagamenti', style: AppTextStyles.heading1),
+            Text(context.l10n.tributiHeaderTitle, style: AppTextStyles.heading1),
             const SizedBox(height: 8),
             Text(
-              'Consulta le scadenze, effettua pagamenti e visualizza lo storico delle transazioni.',
+              context.l10n.tributiHeaderSubtitle,
               style: AppTextStyles.bodyMedium.copyWith(
                 color: AppColors.textSecondary,
               ),
@@ -42,55 +43,55 @@ class TributiPagamentiScreen extends StatelessWidget {
             const SizedBox(height: 20),
 
             // === TRIBUTI DISPONIBILI ===
-            const Text('Tributi comunali', style: AppTextStyles.heading2),
+            Text(context.l10n.tributiSectionAvailableTitle, style: AppTextStyles.heading2),
             const SizedBox(height: 12),
 
             _buildTributoCard(
               icona: Icons.home_rounded,
-              titolo: 'IMU - Imposta Municipale',
-              scadenza: 'Scadenza: 16 Giugno 2026',
-              importo: '€ ---',
-              stato: 'In attesa',
+              titolo: context.l10n.tributiImuTitle,
+              scadenza: context.l10n.tributiImuDue,
+              importo: context.l10n.tributiAmountPending,
+              stato: context.l10n.statusPending,
             ),
             _buildTributoCard(
               icona: Icons.delete_outline_rounded,
-              titolo: 'TARI - Tassa Rifiuti',
-              scadenza: 'Scadenza: 30 Aprile 2026',
-              importo: '€ ---',
-              stato: 'In attesa',
+              titolo: context.l10n.tributiTariTitle,
+              scadenza: context.l10n.tributiTariDue,
+              importo: context.l10n.tributiAmountPending,
+              stato: context.l10n.statusPending,
             ),
             _buildTributoCard(
               icona: Icons.water_drop_rounded,
-              titolo: 'Canone Idrico',
-              scadenza: 'Scadenza: 31 Marzo 2026',
-              importo: '€ ---',
-              stato: 'In attesa',
+              titolo: context.l10n.tributiCanoneIdricoTitle,
+              scadenza: context.l10n.tributiCanoneIdricoDue,
+              importo: context.l10n.tributiAmountPending,
+              stato: context.l10n.statusPending,
             ),
             _buildTributoCard(
               icona: Icons.school_rounded,
-              titolo: 'Servizi Scolastici',
-              scadenza: 'Mensa, trasporto, pre/post scuola',
-              importo: '€ ---',
-              stato: 'In attesa',
+              titolo: context.l10n.tributiServiziScolasticiTitle,
+              scadenza: context.l10n.tributiServiziScolasticiDetail,
+              importo: context.l10n.tributiAmountPending,
+              stato: context.l10n.statusPending,
             ),
 
             const SizedBox(height: 20),
 
             // === STORICO PAGAMENTI ===
-            const Text('Storico pagamenti', style: AppTextStyles.heading2),
+            Text(context.l10n.tributiSectionHistoryTitle, style: AppTextStyles.heading2),
             const SizedBox(height: 12),
 
             _buildStoricoPagamento(
-              titolo: 'TARI 2025 - Rata unica',
-              data: '15 Dic 2025',
-              importo: '€ 280,00',
-              stato: 'Pagato',
+              titolo: context.l10n.tributiHistoryTariTitle,
+              data: context.l10n.tributiHistoryTariDate,
+              importo: context.l10n.tributiHistoryTariAmount,
+              stato: context.l10n.statusPaid,
             ),
             _buildStoricoPagamento(
-              titolo: 'IMU 2025 - Saldo',
-              data: '16 Dic 2025',
-              importo: '€ 450,00',
-              stato: 'Pagato',
+              titolo: context.l10n.tributiHistoryImuTitle,
+              data: context.l10n.tributiHistoryImuDate,
+              importo: context.l10n.tributiHistoryImuAmount,
+              stato: context.l10n.statusPaid,
             ),
 
             const SizedBox(height: 16),
@@ -111,7 +112,7 @@ class TributiPagamentiScreen extends StatelessWidget {
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
-                      'I pagamenti sono gestiti tramite la piattaforma PagoPA in conformità con le normative nazionali.',
+                      context.l10n.tributiPagopaNote,
                       style: AppTextStyles.bodySmall.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -150,7 +151,7 @@ class TributiPagamentiScreen extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppColors.surface,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: const Text(
@@ -163,23 +164,27 @@ class TributiPagamentiScreen extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              Icon(Icons.security_rounded, color: Colors.white.withValues(alpha: 0.7), size: 24),
+              Icon(
+                Icons.security_rounded,
+                color: AppColors.textOnPrimary.withValues(alpha: 0.7),
+                size: 24,
+              ),
             ],
           ),
           const SizedBox(height: 16),
-          const Text(
-            'Paga online in sicurezza',
-            style: TextStyle(
-              color: Colors.white,
+          Text(
+            context.l10n.tributiPagopaTitle,
+            style: const TextStyle(
+              color: AppColors.textOnPrimary,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 6),
           Text(
-            'Effettua pagamenti di tributi, multe e servizi comunali tramite la piattaforma certificata PagoPA.',
+            context.l10n.tributiPagopaSubtitle,
             style: TextStyle(
-              color: Colors.white.withValues(alpha: 0.85),
+              color: AppColors.textOnPrimary.withValues(alpha: 0.85),
               fontSize: 13,
               height: 1.4,
             ),
@@ -189,12 +194,12 @@ class TributiPagamentiScreen extends StatelessWidget {
           ElevatedButton.icon(
             onPressed: () {
               // TODO: Integrazione PagoPA
-              SnackBarHelper.showInfo(context, 'Integrazione PagoPA in arrivo...');
+              SnackBarHelper.showInfo(context, context.l10n.messagePagopaComingSoon);
             },
             icon: const Icon(Icons.payment_rounded),
-            label: const Text('Vai a PagoPA'),
+            label: Text(context.l10n.actionGoToPagopa),
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white,
+              backgroundColor: AppColors.textOnPrimary,
               foregroundColor: AppColors.primary,
               elevation: 0,
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
@@ -217,7 +222,7 @@ class TributiPagamentiScreen extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(12),
         boxShadow: AppColors.cardShadow,
       ),
@@ -286,7 +291,7 @@ class TributiPagamentiScreen extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: AppColors.success.withValues(alpha: 0.3)),
       ),

@@ -5,6 +5,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/constants/app_constants.dart';
 import '../../core/utils/snackbar_helper.dart';
+import '../../core/utils/localization_extension.dart';
 
 /// Schermata servizi online del comune
 /// Mostra i link ai servizi digitali disponibili
@@ -14,8 +15,8 @@ class ServiziOnlineScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const ComuneAppBar(
-        titolo: 'Servizi Online',
+      appBar: ComuneAppBar(
+        titolo: context.l10n.screenServiziOnlineTitle,
         mostraBack: true,
       ),
       drawer: const ComuneDrawer(),
@@ -26,56 +27,56 @@ class ServiziOnlineScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header
-            _buildHeader(),
+            _buildHeader(context),
             const SizedBox(height: 24),
 
             // Lista servizi online (link reali dal sito comune.marcianise.ce.it)
             _buildServizioOnlineCard(
               context,
-              'ANPR - Sportello del Cittadino',
-              'Anagrafe Nazionale Popolazione Residente: certificati, cambio residenza.',
+              context.l10n.serviziOnlineAnprTitle,
+              context.l10n.serviziOnlineAnprDesc,
               Icons.badge_rounded,
               AppColors.primary,
             ),
             _buildServizioOnlineCard(
               context,
-              'Pagamenti Online (PagoPA)',
-              'Paga tributi, IMU, TARI, multe e servizi comunali online.',
+              context.l10n.serviziOnlinePagopaTitle,
+              context.l10n.serviziOnlinePagopaDesc,
               Icons.payment_rounded,
               const Color(0xFF43A047),
             ),
             _buildServizioOnlineCard(
               context,
-              'Sportello Telematico IMU e TARI',
-              'Dichiarazioni, calcolo e gestione IMU e TARI online.',
+              context.l10n.serviziOnlineImuTariTitle,
+              context.l10n.serviziOnlineImuTariDesc,
               Icons.receipt_long_rounded,
               const Color(0xFFE65100),
             ),
             _buildServizioOnlineCard(
               context,
-              'SUAP - Attività Produttive',
-              'Sportello Unico Attività Produttive su impresainungiorno.gov.it.',
+              context.l10n.serviziOnlineSuapTitle,
+              context.l10n.serviziOnlineSuapDesc,
               Icons.store_rounded,
               const Color(0xFF6A1B9A),
             ),
             _buildServizioOnlineCard(
               context,
-              'SUE - Sportello Unico Edilizia',
-              'Pratiche edilizie e urbanistiche tramite sportello telematico.',
+              context.l10n.serviziOnlineSueTitle,
+              context.l10n.serviziOnlineSueDesc,
               Icons.apartment_rounded,
               const Color(0xFF00838F),
             ),
             _buildServizioOnlineCard(
               context,
-              'Albo Pretorio Online',
-              'Consulta atti, determine, delibere e ordinanze pubblicate.',
+              context.l10n.serviziOnlineAlboTitle,
+              context.l10n.serviziOnlineAlboDesc,
               Icons.gavel_rounded,
               const Color(0xFF795548),
             ),
             _buildServizioOnlineCard(
               context,
-              'Amministrazione Trasparente',
-              'Accesso agli atti e alle informazioni sulla PA.',
+              context.l10n.serviziOnlineTrasparenzaTitle,
+              context.l10n.serviziOnlineTrasparenzaDesc,
               Icons.visibility_rounded,
               const Color(0xFF546E7A),
             ),
@@ -87,7 +88,7 @@ class ServiziOnlineScreen extends StatelessWidget {
   }
 
   /// Header con icona e descrizione
-  Widget _buildHeader() {
+  Widget _buildHeader(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.paddingLarge),
@@ -111,14 +112,14 @@ class ServiziOnlineScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          const Text(
-            'Servizi Online',
+          Text(
+            context.l10n.screenServiziOnlineTitle,
             style: AppTextStyles.heading2,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
           Text(
-            'Accedi ai servizi digitali del comune comodamente da casa.',
+            context.l10n.serviziOnlineHeaderSubtitle,
             style: AppTextStyles.bodyMedium.copyWith(
               color: AppColors.textSecondary,
             ),
@@ -141,15 +142,9 @@ class ServiziOnlineScreen extends StatelessWidget {
       width: double.infinity,
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.06),
-            blurRadius: 8,
-            offset: const Offset(0, 3),
-          ),
-        ],
+        boxShadow: AppColors.cardShadow,
       ),
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -169,7 +164,7 @@ class ServiziOnlineScreen extends StatelessWidget {
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
         ),
-        trailing: const Icon(
+        trailing: Icon(
           Icons.open_in_new_rounded,
           size: 18,
           color: AppColors.textSecondary,
@@ -177,7 +172,10 @@ class ServiziOnlineScreen extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         onTap: () {
           // TODO: Aprire il servizio online con url_launcher
-          SnackBarHelper.showInfo(context, 'Apertura "$titolo" - integrazione browser in arrivo!');
+          SnackBarHelper.showInfo(
+            context,
+            context.l10n.messageOpenServiceComingSoon(titolo),
+          );
         },
       ),
     );

@@ -3,6 +3,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/utils/snackbar_helper.dart';
+import '../../../core/utils/localization_extension.dart';
 
 /// Form dialog per creare una nuova notizia (sez. 1.1)
 /// Estratto da news_screen.dart per modularità
@@ -30,36 +31,36 @@ class NotiziaFormDialog {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Crea Notizia', style: AppTextStyles.heading2),
+              Text(context.l10n.newsFormTitle, style: AppTextStyles.heading2),
               const SizedBox(height: 16),
               // 1.1.1 - Titolo
-              const TextField(
+              TextField(
                 decoration: InputDecoration(
-                  labelText: '1.1.1 Titolo della notizia',
-                  prefixIcon: Icon(Icons.title_rounded),
+                  labelText: context.l10n.newsFormTitleLabel,
+                  prefixIcon: const Icon(Icons.title_rounded),
                 ),
               ),
               const SizedBox(height: 12),
               // 1.1.2 - Contenuto
-              const TextField(
+              TextField(
                 decoration: InputDecoration(
-                  labelText: '1.1.2 Contenuto della notizia',
-                  prefixIcon: Icon(Icons.edit_note_rounded),
+                  labelText: context.l10n.newsFormContentLabel,
+                  prefixIcon: const Icon(Icons.edit_note_rounded),
                 ),
                 maxLines: 4,
               ),
               const SizedBox(height: 12),
               // 1.1.3 - Criticità
-              const Text('1.1.3 Criticità', style: AppTextStyles.heading3),
+              Text(context.l10n.newsFormCriticalityTitle, style: AppTextStyles.heading3),
               const SizedBox(height: 8),
               // Selettore criticità
               Row(
                 children: [
-                  _buildCriticitaChip('Bassa', Colors.green),
+                  _buildCriticitaChip(context.l10n.criticalityLow, Colors.green),
                   const SizedBox(width: 8),
-                  _buildCriticitaChip('Media', Colors.orange),
+                  _buildCriticitaChip(context.l10n.criticalityMedium, Colors.orange),
                   const SizedBox(width: 8),
-                  _buildCriticitaChip('Alta', Colors.red),
+                  _buildCriticitaChip(context.l10n.criticalityHigh, Colors.red),
                 ],
               ),
               const SizedBox(height: 8),
@@ -76,7 +77,7 @@ class NotiziaFormDialog {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        '1.1.3.1 La notifica push verrà inviata automaticamente in base alla criticità selezionata.',
+                        context.l10n.newsFormNotificationInfo,
                         style: AppTextStyles.bodySmall.copyWith(color: AppColors.info),
                       ),
                     ),
@@ -90,10 +91,13 @@ class NotiziaFormDialog {
                 child: ElevatedButton.icon(
                   onPressed: () {
                     Navigator.pop(ctx);
-                    SnackBarHelper.showSuccess(context, 'Notizia creata (collegare al back office)');
+                    SnackBarHelper.showSuccess(
+                      context,
+                      context.l10n.messageNewsCreated,
+                    );
                   },
                   icon: const Icon(Icons.publish_rounded),
-                  label: const Text('Pubblica Notizia'),
+                  label: Text(context.l10n.newsFormSubmit),
                 ),
               ),
               const SizedBox(height: 16),

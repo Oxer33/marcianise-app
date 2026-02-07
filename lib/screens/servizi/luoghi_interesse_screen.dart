@@ -5,20 +5,38 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/constants/app_constants.dart';
 import '../../core/utils/snackbar_helper.dart';
+import '../../data/mock_data.dart';
+import '../../widgets/skeleton_poi_card.dart';
 import 'widgets/poi_form_dialog.dart';
+import '../../core/utils/localization_extension.dart';
 
 /// Sezione 3 - Punti di Interesse (struttura richiesta)
 /// 3.1. Crea nuovo POI (nome, descrizione, geolocalizzazione)
 /// 3.2. Visualizza POI
 /// 3.3. Modifica/elimina POI
-class LuoghiInteresseScreen extends StatelessWidget {
+class LuoghiInteresseScreen extends StatefulWidget {
   const LuoghiInteresseScreen({super.key});
+
+  @override
+  State<LuoghiInteresseScreen> createState() => _LuoghiInteresseScreenState();
+}
+
+class _LuoghiInteresseScreenState extends State<LuoghiInteresseScreen> {
+  bool _isRefreshing = false;
+
+  /// Gestisce il pull-to-refresh simulando un caricamento breve.
+  Future<void> _handleRefresh() async {
+    setState(() => _isRefreshing = true);
+    await Future.delayed(const Duration(milliseconds: 800));
+    if (!mounted) return;
+    setState(() => _isRefreshing = false);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const ComuneAppBar(
-        titolo: 'Luoghi di Interesse',
+      appBar: ComuneAppBar(
+        titolo: context.l10n.screenLuoghiInteresseTitle,
         mostraBack: true,
       ),
       drawer: const ComuneDrawer(),
@@ -26,73 +44,59 @@ class LuoghiInteresseScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => PoiFormDialog.mostraFormCreaPOI(context),
         backgroundColor: AppColors.primary,
-        icon: const Icon(Icons.add_location_alt_rounded, color: Colors.white),
-        label: const Text('Crea POI', style: TextStyle(color: Colors.white)),
-      ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.all(AppConstants.paddingMedium),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Header
-            _buildHeader(),
-            const SizedBox(height: 24),
-
-            // Lista luoghi di interesse reali di Marcianise (3.2 Visualizza POI)
-            _buildLuogoCard(
-              context,
-              'Duomo dell\'Annunziata',
-              'La chiesa madre di Marcianise, risalente al XIII secolo con campanile medievale.',
-              Icons.church_rounded,
-              'Piazza Umberto I, Marcianise',
-            ),
-            _buildLuogoCard(
-              context,
-              'Palazzo Municipale',
-              'Sede del Comune di Marcianise, edificio storico in Piazza Umberto I.',
-              Icons.account_balance_rounded,
-              'Via Roma, 18 - Marcianise',
-            ),
-            _buildLuogoCard(
-              context,
-              'Castello di Marcianise (Torrione)',
-              'Antico castello medievale con torre cilindrica, simbolo della città.',
-              Icons.castle_rounded,
-              'Via Torrione, Marcianise',
-            ),
-            _buildLuogoCard(
-              context,
-              'Chiesa di San Francesco di Paola',
-              'Chiesa settecentesca con pregevoli decorazioni barocche.',
-              Icons.church_rounded,
-              'Via San Francesco, Marcianise',
-            ),
-            _buildLuogoCard(
-              context,
-              'Villa Comunale',
-              'Parco pubblico principale con giardini, viali alberati e area giochi.',
-              Icons.park_rounded,
-              'Via Roma, Marcianise',
-            ),
-            _buildLuogoCard(
-              context,
-              'Centro Commerciale Campania',
-              'Uno dei centri commerciali più grandi del Sud Italia, a Marcianise.',
-              Icons.shopping_bag_rounded,
-              'SS 87 Sannitica, Marcianise',
-            ),
-            _buildLuogoCard(
-              context,
-              'Reggia di Caserta (a 5 km)',
-              'Patrimonio UNESCO, la Reggia borbonica più grande d\'Europa.',
-              Icons.museum_rounded,
-              'Viale Douhet, Caserta (5 km)',
-            ),
-            const SizedBox(height: 32),
-          ],
+        icon: const Icon(Icons.add_location_alt_rounded, color: AppColors.textOnPrimary),
+        label: Text(
+          context.l10n.actionCreaPoi,
+          style: const TextStyle(color: AppColors.textOnPrimary),
         ),
       ),
+      body: RefreshIndicator(
+        color: AppColors.primary,
+        onRefresh: _handleRefresh,
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(
+            parent: BouncingScrollPhysics(),
+          ),
+          padding: const EdgeInsets.all(AppConstants.paddingMedium),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Header
+              _buildHeader(),
+              const SizedBox(height: 24),
+
+              // Lista luoghi di interesse reali di Marcianise (3.2 Visualizza POI)
+              _buildPoiList(context),
+
+              const SizedBox(height: 32),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPoiList(BuildContext context) {
+    const poiList = MockData.poi;
+    if (_isRefreshing) {
+      return Column(
+        children: List.generate(
+          4,
+          (_) => const SkeletonPoiCard(),
+        ),
+      );
+    }
+
+    return Column(
+      children: poiList
+          .map((poi) => _buildLuogoCard(
+                context,
+                poi.nome,
+                poi.descrizione,
+                poi.icona,
+                poi.indirizzo,
+              ))
+          .toList(),
     );
   }
 
@@ -121,14 +125,14 @@ class LuoghiInteresseScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          const Text(
-            'Luoghi di interesse',
+          Text(
+            context.l10n.poiHeaderTitle,
             style: AppTextStyles.heading2,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
           Text(
-            'Scopri i monumenti, le chiese e i luoghi più belli di Marcianise e dintorni.',
+            context.l10n.poiHeaderSubtitle,
             style: AppTextStyles.bodyMedium.copyWith(
               color: AppColors.textSecondary,
             ),
@@ -151,15 +155,9 @@ class LuoghiInteresseScreen extends StatelessWidget {
       width: double.infinity,
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.06),
-            blurRadius: 8,
-            offset: const Offset(0, 3),
-          ),
-        ],
+        color: AppColors.surface,
+        borderRadius: BorderRadius.circular(AppConstants.borderRadiusMedium),
+        boxShadow: AppColors.cardShadow,
       ),
       child: Padding(
         padding: const EdgeInsets.all(AppConstants.paddingMedium),
@@ -172,7 +170,7 @@ class LuoghiInteresseScreen extends StatelessWidget {
               height: 56,
               decoration: BoxDecoration(
                 color: AppColors.cardService6,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(AppConstants.borderRadiusSmall),
               ),
               child: Icon(icona, color: const Color(0xFF6A1B9A), size: 28),
             ),
@@ -215,32 +213,41 @@ class LuoghiInteresseScreen extends StatelessWidget {
             ),
             // 3.3 - Menu modifica/elimina POI
             PopupMenuButton<String>(
-              icon: const Icon(Icons.more_vert_rounded, color: AppColors.textSecondary, size: 20),
+              icon: Icon(Icons.more_vert_rounded, color: AppColors.textSecondary, size: 20),
               onSelected: (value) {
                 if (value == 'modifica') {
-                  SnackBarHelper.showInfo(context, 'Modifica "$nome" - collegare al back office');
+                  SnackBarHelper.showInfo(
+                    context,
+                    context.l10n.messageBackOfficeEdit(nome),
+                  );
                 } else if (value == 'elimina') {
-                  SnackBarHelper.showWarning(context, 'Eliminazione "$nome" - collegare al back office');
+                  SnackBarHelper.showWarning(
+                    context,
+                    context.l10n.messageBackOfficeDelete(nome),
+                  );
                 }
               },
               itemBuilder: (context) => [
-                const PopupMenuItem(
+                PopupMenuItem(
                   value: 'modifica',
                   child: Row(
                     children: [
-                      Icon(Icons.edit_rounded, size: 20),
-                      SizedBox(width: 8),
-                      Text('Modifica'),
+                      const Icon(Icons.edit_rounded, size: 20),
+                      const SizedBox(width: 8),
+                      Text(context.l10n.actionEdit),
                     ],
                   ),
                 ),
-                const PopupMenuItem(
+                PopupMenuItem(
                   value: 'elimina',
                   child: Row(
                     children: [
-                      Icon(Icons.delete_rounded, size: 20, color: Colors.red),
-                      SizedBox(width: 8),
-                      Text('Elimina', style: TextStyle(color: Colors.red)),
+                      const Icon(Icons.delete_rounded, size: 20, color: Colors.red),
+                      const SizedBox(width: 8),
+                      Text(
+                        context.l10n.actionDelete,
+                        style: const TextStyle(color: Colors.red),
+                      ),
                     ],
                   ),
                 ),

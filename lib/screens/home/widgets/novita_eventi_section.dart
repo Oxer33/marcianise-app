@@ -6,6 +6,7 @@ import '../../../core/routes/app_routes.dart';
 import '../../../data/mock_data.dart';
 import '../../../widgets/news_card.dart';
 import '../../../widgets/evento_card.dart';
+import '../../../core/utils/localization_extension.dart';
 
 /// Sezione in basso nella home con tab Novità / Eventi
 /// Mostra le ultime news e gli eventi in arrivo
@@ -54,15 +55,15 @@ class _NovitaEventiSectionState extends State<NovitaEventiSection>
                 color: AppColors.primary,
                 borderRadius: BorderRadius.circular(AppConstants.borderRadiusMedium),
               ),
-              labelColor: Colors.white,
+              labelColor: AppColors.textOnPrimary,
               unselectedLabelColor: AppColors.primary,
               labelStyle: AppTextStyles.tabLabel,
               unselectedLabelStyle: AppTextStyles.tabLabel,
               dividerColor: Colors.transparent,
               indicatorSize: TabBarIndicatorSize.tab,
-              tabs: const [
-                Tab(text: 'Novità'),
-                Tab(text: 'Eventi'),
+              tabs: [
+                Tab(text: context.l10n.homeTabNews),
+                Tab(text: context.l10n.homeTabEvents),
               ],
             ),
           ),
@@ -108,7 +109,7 @@ class _NovitaEventiSectionState extends State<NovitaEventiSection>
         ),
         // Pulsante "Vedi tutte"
         _buildVediTuttoButton(
-          'Vedi tutte le novità',
+          context.l10n.homeSeeAllNews,
           AppRoutes.newsAvvisi,
         ),
       ],
@@ -133,7 +134,7 @@ class _NovitaEventiSectionState extends State<NovitaEventiSection>
         ),
         // Pulsante "Vedi tutti"
         _buildVediTuttoButton(
-          'Vedi tutti gli eventi',
+          context.l10n.homeSeeAllEvents,
           AppRoutes.eventi,
         ),
       ],

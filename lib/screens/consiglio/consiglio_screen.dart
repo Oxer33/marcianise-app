@@ -5,6 +5,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/constants/app_constants.dart';
 import '../../core/utils/snackbar_helper.dart';
+import '../../core/utils/localization_extension.dart';
 
 /// Modulo B - Diretta live Consiglio Comunale
 /// Mostra i video delle sedute del consiglio comunale
@@ -15,8 +16,8 @@ class ConsiglioScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const ComuneAppBar(
-        titolo: 'Consiglio Comunale',
+      appBar: ComuneAppBar(
+        titolo: context.l10n.screenConsiglioTitle,
         mostraBack: true,
       ),
       drawer: const ComuneDrawer(),
@@ -31,14 +32,17 @@ class ConsiglioScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('Video Recenti', style: AppTextStyles.sectionTitle),
+                  Text(context.l10n.consiglioRecentVideosTitle, style: AppTextStyles.sectionTitle),
                   TextButton.icon(
                     onPressed: () {
                       // TODO: Implementare filtro data
-                      SnackBarHelper.showInfo(context, 'Filtro per data - funzionalità in arrivo!');
+                      SnackBarHelper.showInfo(
+                        context,
+                        context.l10n.messageFilterByDateComingSoon,
+                      );
                     },
                     icon: const Icon(Icons.filter_alt_outlined, size: 18),
-                    label: const Text('Filtra per data'),
+                    label: Text(context.l10n.actionFilterByDate),
                     style: TextButton.styleFrom(
                       foregroundColor: AppColors.primary,
                     ),
@@ -48,11 +52,11 @@ class ConsiglioScreen extends StatelessWidget {
               const SizedBox(height: 16),
 
               // === VIDEO IN EVIDENZA ===
-              _buildVideoEvidenza(),
+              _buildVideoEvidenza(context),
               const SizedBox(height: 24),
 
               // === TITOLO SEDUTE PRECEDENTI ===
-              const Text('Sedute Precedenti', style: AppTextStyles.sectionTitle),
+              Text(context.l10n.consiglioPreviousSessionsTitle, style: AppTextStyles.sectionTitle),
               const SizedBox(height: 12),
 
               // === LISTA SEDUTE ===
@@ -63,7 +67,7 @@ class ConsiglioScreen extends StatelessWidget {
                   physics: const BouncingScrollPhysics(),
                   itemCount: 5,
                   itemBuilder: (context, index) {
-                    return _buildSedutaCard(index);
+                    return _buildSedutaCard(context, index);
                   },
                 ),
               ),
@@ -76,19 +80,13 @@ class ConsiglioScreen extends StatelessWidget {
   }
 
   /// Video principale in evidenza
-  Widget _buildVideoEvidenza() {
+  Widget _buildVideoEvidenza(BuildContext context) {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(AppConstants.borderRadiusMedium),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.08),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        boxShadow: AppColors.cardShadow,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,7 +111,7 @@ class ConsiglioScreen extends StatelessWidget {
                 ),
                 child: const Icon(
                   Icons.play_arrow_rounded,
-                  color: Colors.white,
+                  color: AppColors.textOnPrimary,
                   size: 40,
                 ),
               ),
@@ -125,14 +123,13 @@ class ConsiglioScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Consiglio Comunale: Approvato il nuovo piano urbanistico',
+                Text(
+                  context.l10n.consiglioHighlightTitle,
                   style: AppTextStyles.heading3,
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Si è conclusa ieri sera la seduta del consiglio comunale '
-                  'con l\'approvazione del nuovo piano urbanistico.',
+                  context.l10n.consiglioHighlightSubtitle,
                   style: AppTextStyles.bodyMedium.copyWith(
                     color: AppColors.textSecondary,
                   ),
@@ -146,20 +143,14 @@ class ConsiglioScreen extends StatelessWidget {
   }
 
   /// Card singola seduta precedente
-  Widget _buildSedutaCard(int index) {
+  Widget _buildSedutaCard(BuildContext context, int index) {
     return Container(
       width: 160,
       margin: const EdgeInsets.only(right: 12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(AppConstants.borderRadiusMedium),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.06),
-            blurRadius: 8,
-            offset: const Offset(0, 3),
-          ),
-        ],
+        boxShadow: AppColors.cardShadow,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -186,7 +177,7 @@ class ConsiglioScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8),
             child: Text(
-              'Seduta Straordinaria:\nBilancio di Previsioni 202${6 + index}',
+              context.l10n.consiglioSessionTitle(2026 + index),
               style: AppTextStyles.bodySmall.copyWith(
                 fontWeight: FontWeight.w600,
               ),

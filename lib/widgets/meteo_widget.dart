@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/meteo_model.dart';
+import '../core/theme/app_colors.dart';
 import '../core/theme/app_text_styles.dart';
 import '../data/mock_data.dart';
 
@@ -23,9 +24,9 @@ class MeteoWidget extends StatelessWidget {
             decoration: BoxDecoration(
               // Separatore tra i giorni
               border: index < previsioni.length - 1
-                  ? const Border(
+                  ? Border(
                       right: BorderSide(
-                        color: Colors.white30,
+                        color: AppColors.textOnPrimary.withValues(alpha: 0.3),
                         width: 1,
                       ),
                     )
@@ -46,7 +47,7 @@ class MeteoWidget extends StatelessWidget {
         // Icona meteo
         Icon(
           _getMeteoIcona(giorno.icona),
-          color: Colors.white,
+          color: AppColors.textOnPrimary,
           size: 28,
         ),
         const SizedBox(height: 4),

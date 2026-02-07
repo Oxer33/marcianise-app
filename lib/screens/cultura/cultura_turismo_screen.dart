@@ -4,6 +4,7 @@ import '../../core/theme/app_text_styles.dart';
 import '../../core/constants/app_constants.dart';
 import '../../widgets/comune_app_bar.dart';
 import '../../widgets/comune_drawer.dart';
+import '../../core/utils/localization_extension.dart';
 
 /// Modulo D - Cultura e Turismo
 /// Panoramica del patrimonio culturale e turistico di Marcianise
@@ -14,8 +15,8 @@ class CulturaTurismoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const ComuneAppBar(
-        titolo: 'Cultura e Turismo',
+      appBar: ComuneAppBar(
+        titolo: context.l10n.screenCulturaTurismoTitle,
         mostraBack: true,
       ),
       drawer: const ComuneDrawer(),
@@ -26,10 +27,10 @@ class CulturaTurismoScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // === HEADER SEZIONE ===
-            const Text('Scopri Marcianise', style: AppTextStyles.heading1),
+            Text(context.l10n.culturaHeaderTitle, style: AppTextStyles.heading1),
             const SizedBox(height: 8),
             Text(
-              'Il patrimonio culturale, i luoghi da visitare e le strutture del territorio.',
+              context.l10n.culturaHeaderSubtitle,
               style: AppTextStyles.bodyMedium.copyWith(
                 color: AppColors.textSecondary,
               ),
@@ -40,43 +41,43 @@ class CulturaTurismoScreen extends StatelessWidget {
             _buildCategoriaCard(
               context,
               icona: Icons.church_rounded,
-              titolo: 'Chiese e Siti Religiosi',
-              descrizione: 'Duomo di San Michele Arcangelo, Chiesa dell\'Annunziata, Chiesa di San Carlo Borromeo e altri luoghi di culto.',
+              titolo: context.l10n.culturaCategoryChieseTitle,
+              descrizione: context.l10n.culturaCategoryChieseDesc,
               colore: AppColors.cardService1,
             ),
             _buildCategoriaCard(
               context,
               icona: Icons.account_balance_rounded,
-              titolo: 'Monumenti e Piazze',
-              descrizione: 'Palazzo Municipale, Piazza Umberto I, Fontana monumentale, Monumento ai Caduti.',
+              titolo: context.l10n.culturaCategoryMonumentiTitle,
+              descrizione: context.l10n.culturaCategoryMonumentiDesc,
               colore: AppColors.cardService2,
             ),
             _buildCategoriaCard(
               context,
               icona: Icons.menu_book_rounded,
-              titolo: 'Biblioteca Comunale',
-              descrizione: 'Servizi di prestito, consultazione, sala studio e attività culturali. Orari: Lun-Ven 9:00 - 13:00 / 15:00 - 18:00.',
+              titolo: context.l10n.culturaCategoryBibliotecaTitle,
+              descrizione: context.l10n.culturaCategoryBibliotecaDesc,
               colore: AppColors.cardService3,
             ),
             _buildCategoriaCard(
               context,
               icona: Icons.local_parking_rounded,
-              titolo: 'Parcheggi Pubblici',
-              descrizione: 'Informazioni su disponibilità, gratuità e regolamentazioni dei parcheggi comunali.',
+              titolo: context.l10n.culturaCategoryParcheggiTitle,
+              descrizione: context.l10n.culturaCategoryParcheggiDesc,
               colore: AppColors.cardService4,
             ),
             _buildCategoriaCard(
               context,
               icona: Icons.sports_soccer_rounded,
-              titolo: 'Impianti Sportivi',
-              descrizione: 'Stadio Comunale, Palazzetto dello Sport, campi da tennis, piscina comunale e altre strutture.',
+              titolo: context.l10n.culturaCategorySportTitle,
+              descrizione: context.l10n.culturaCategorySportDesc,
               colore: AppColors.cardService5,
             ),
             _buildCategoriaCard(
               context,
               icona: Icons.park_rounded,
-              titolo: 'Parchi e Aree Verdi',
-              descrizione: 'Parco Comunale, Villa Comunale, aree gioco e percorsi verdi per famiglie.',
+              titolo: context.l10n.culturaCategoryParchiTitle,
+              descrizione: context.l10n.culturaCategoryParchiDesc,
               colore: AppColors.cardService6,
             ),
 
@@ -102,7 +103,7 @@ class CulturaTurismoScreen extends StatelessWidget {
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
-                      'Contenuti gestiti dal back office comunale. Le informazioni verranno aggiornate dagli operatori.',
+                      context.l10n.culturaBackOfficeNote,
                       style: AppTextStyles.bodySmall.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -129,7 +130,7 @@ class CulturaTurismoScreen extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
         boxShadow: AppColors.cardShadow,
       ),
@@ -165,7 +166,7 @@ class CulturaTurismoScreen extends StatelessWidget {
             ),
           ),
           // Freccia navigazione
-          const Icon(
+          Icon(
             Icons.chevron_right_rounded,
             color: AppColors.textSecondary,
           ),

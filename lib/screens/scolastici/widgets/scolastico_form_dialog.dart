@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/utils/snackbar_helper.dart';
+import '../../../core/utils/localization_extension.dart';
 
 /// Form dialog per aggiungere un nuovo servizio scolastico (sez. 5.1)
 /// Estratto da servizi_scolastici_screen.dart per modularità
@@ -27,21 +28,21 @@ class ScolasticoFormDialog {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Aggiungi Servizio Scolastico', style: AppTextStyles.heading2),
+            Text(context.l10n.scolasticoFormTitle, style: AppTextStyles.heading2),
             const SizedBox(height: 16),
             // Nome servizio
-            const TextField(
+            TextField(
               decoration: InputDecoration(
-                labelText: 'Nome del servizio',
-                prefixIcon: Icon(Icons.school_rounded),
+                labelText: context.l10n.scolasticoFormNameLabel,
+                prefixIcon: const Icon(Icons.school_rounded),
               ),
             ),
             const SizedBox(height: 12),
             // Descrizione
-            const TextField(
+            TextField(
               decoration: InputDecoration(
-                labelText: 'Descrizione del servizio',
-                prefixIcon: Icon(Icons.description_rounded),
+                labelText: context.l10n.scolasticoFormDescriptionLabel,
+                prefixIcon: const Icon(Icons.description_rounded),
               ),
               maxLines: 3,
             ),
@@ -52,10 +53,13 @@ class ScolasticoFormDialog {
               child: ElevatedButton.icon(
                 onPressed: () {
                   Navigator.pop(ctx);
-                  SnackBarHelper.showSuccess(context, 'Servizio aggiunto (collegare al back office)');
+                  SnackBarHelper.showSuccess(
+                    context,
+                    context.l10n.messageScolasticoCreated,
+                  );
                 },
                 icon: const Icon(Icons.save_rounded),
-                label: const Text('Salva Servizio'),
+                label: Text(context.l10n.scolasticoFormSubmit),
               ),
             ),
             const SizedBox(height: 16),

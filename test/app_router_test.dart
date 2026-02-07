@@ -67,35 +67,35 @@ void main() {
   });
 
   group('AppRouter - Generazione rotte', () {
-    test('Genera MaterialPageRoute per rotta home', () {
+    test('Genera PageRouteBuilder per rotta home', () {
       final route = AppRouter.generateRoute(
         const RouteSettings(name: AppRoutes.home),
       );
-      expect(route, isA<MaterialPageRoute>());
+      expect(route, isA<PageRouteBuilder>());
     });
 
-    test('Genera MaterialPageRoute per rotta news', () {
+    test('Genera PageRouteBuilder per rotta news', () {
       final route = AppRouter.generateRoute(
         const RouteSettings(name: AppRoutes.newsAvvisi),
       );
-      expect(route, isA<MaterialPageRoute>());
+      expect(route, isA<PageRouteBuilder>());
     });
 
-    test('Genera MaterialPageRoute per rotta eventi', () {
+    test('Genera PageRouteBuilder per rotta eventi', () {
       final route = AppRouter.generateRoute(
         const RouteSettings(name: AppRoutes.eventi),
       );
-      expect(route, isA<MaterialPageRoute>());
+      expect(route, isA<PageRouteBuilder>());
     });
 
     test('Rotta sconosciuta ritorna alla home', () {
       final route = AppRouter.generateRoute(
         const RouteSettings(name: '/rotta-inesistente'),
       );
-      expect(route, isA<MaterialPageRoute>());
+      expect(route, isA<PageRouteBuilder>());
     });
 
-    test('Tutte le 14 rotte generano MaterialPageRoute', () {
+    test('Tutte le 14 rotte generano PageRouteBuilder', () {
       // Lista di tutte le rotte definite nell'app
       final rotte = [
         AppRoutes.home,
@@ -118,7 +118,7 @@ void main() {
         final route = AppRouter.generateRoute(
           RouteSettings(name: rotta),
         );
-        expect(route, isA<MaterialPageRoute>(), reason: 'Rotta $rotta non genera MaterialPageRoute');
+        expect(route, isA<PageRouteBuilder>(), reason: 'Rotta $rotta non genera PageRouteBuilder');
       }
     });
   });

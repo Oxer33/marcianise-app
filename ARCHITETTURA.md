@@ -14,7 +14,8 @@ Sarà collegata ad un back office per la gestione dei contenuti.
 - **Framework:** Flutter 3.38.9
 - **Stato:** StatefulWidget (futuro: Provider/Riverpod)
 - **Navigazione:** Named Routes con Router centralizzato
-- **Tema:** Material Design 3 - Verde Scuro Istituzionale (#008055)
+- **Tema:** Material Design 3 - Verde Scuro Istituzionale (#008055) con colori dinamici per light/dark
+- **Localizzazione:** `gen_l10n` con file ARB (`app_it.arb`) e extension `context.l10n`
 
 ---
 
@@ -23,6 +24,7 @@ Sarà collegata ad un back office per la gestione dei contenuti.
 ```text
 lib/
 ├── main.dart                          # Entry point dell'app
+├── l10n/                              # File ARB localizzazione (app_it.arb)
 ├── core/                              # Configurazioni globali
 │   ├── theme/
 │   │   ├── app_colors.dart            # Palette colori (verde scuro)
@@ -31,7 +33,8 @@ lib/
 │   ├── constants/
 │   │   └── app_constants.dart         # Costanti (nomi, contatti, URL, dimensioni)
 │   ├── utils/
-│   │   └── snackbar_helper.dart       # Helper SnackBar (success/error/info/warning)
+│   │   ├── snackbar_helper.dart       # Helper SnackBar (success/error/info/warning)
+│   │   └── localization_extension.dart # Extension per context.l10n
 │   └── routes/
 │       ├── app_routes.dart            # Definizione percorsi
 │       └── app_router.dart            # Router centralizzato
@@ -39,6 +42,7 @@ lib/
 │   ├── servizio_model.dart            # Modello servizio griglia
 │   ├── news_model.dart                # Modello notizia/avviso
 │   ├── evento_model.dart              # Modello evento
+│   ├── poi_model.dart                 # Modello punto di interesse (POI)
 │   └── meteo_model.dart               # Modello previsioni meteo
 ├── data/
 │   └── mock_data.dart                 # Dati finti per sviluppo
@@ -46,6 +50,13 @@ lib/
 │   ├── comune_app_bar.dart            # AppBar personalizzata (supporta sottotitolo)
 │   ├── comune_drawer.dart             # Menu laterale (hamburger)
 │   ├── responsive_wrapper.dart        # Wrapper responsive per tablet/desktop/web
+│   ├── hoverable_card.dart            # Card con hover/lift/glow
+│   ├── parallax_image.dart            # Immagine con effetto parallax verticale
+│   ├── highlight_card.dart            # Card scenografica per sezione In evidenza
+│   ├── skeleton_box.dart              # Box animato per skeleton loading
+│   ├── skeleton_news_card.dart         # Skeleton card per news
+│   ├── skeleton_evento_card.dart       # Skeleton card per eventi
+│   ├── skeleton_poi_card.dart          # Skeleton card per POI
 │   ├── servizio_card.dart             # Card servizio nella griglia
 │   ├── meteo_widget.dart              # Widget previsioni meteo
 │   ├── news_card.dart                 # Card notizia
@@ -55,6 +66,7 @@ lib/
     │   ├── home_screen.dart           # Schermata principale
     │   └── widgets/
     │       ├── hero_section.dart      # Sezione hero: carousel immagini ufficiali
+    │       ├── highlights_section.dart # Sezione In evidenza (bento + micro-interazioni)
     │       ├── servizi_grid.dart      # Griglia 8 servizi
     │       └── novita_eventi_section.dart  # Tab Novità/Eventi
     ├── news/
@@ -167,9 +179,9 @@ lib/
 
 | Piattaforma | Launch Screen | Tema | Stato |
 | ----------- | ------------- | ---- | ----- |
-| Android | Verde scuro (#008055) | Verde | ✅ |
-| iOS | Verde scuro (r:0, g:0.502, b:0.333) | Verde | ✅ |
-| Web | Loading screen verde + spinner + lang=it + viewport | Verde | ✅ |
+| Android | Splash verde + logo Comune | Verde | ✅ |
+| iOS | Splash verde + logo Comune | Verde | ✅ |
+| Web | Loading screen verde + spinner + logo + lang=it + viewport | Verde | ✅ |
 | Windows | Build release funzionante | Verde | ✅ |
 
 ---
@@ -188,5 +200,8 @@ lib/
 10. Il tema globale include `InputDecorationTheme` e `TabBarTheme` per uniformità
 11. `SnackBarHelper` in `core/utils/` per feedback consistente (success/error/info/warning)
 12. `.editorconfig` per formattazione consistente tra editor
-13. Loading screen verde web con spinner CSS durante caricamento Flutter
+13. Loading screen verde web con spinner e logo durante caricamento Flutter
 14. Manifest PWA con `lang: it`, `categories: [government, utilities]`
+15. Liste principali (News/Eventi/POI) includono pull-to-refresh + skeleton loading
+16. Tutti i testi UI devono usare `context.l10n` con chiavi in `lib/l10n/app_it.arb`
+17. Per il tema light/dark usare `AppColors` ed evitare `Colors.white` diretti

@@ -60,18 +60,19 @@
 - [x] CRUD Eventi (sez.2): crea con titolo/contenuto/geolocalizzazione
 - [x] CRUD POI (sez.3): crea con nome/descrizione/geolocalizzazione + modifica/elimina
 - [x] Home grid espansa a 8 card (5 moduli + sindaco + scolastici + servizi)
+- [x] Home scenografica con hero parallax, sezione In evidenza e micro-interazioni
 
 ### Da Fare UI ⏳
 
 - [x] ~~Aggiungere immagine reale del municipio nella hero section~~ FATTO!
 - [x] ~~Accessibilità base (semanticLabel, tooltip)~~ FATTO!
 - [x] Aggiungere logo reale del Comune di Marcianise (SVG/PNG)
-- [ ] Splash screen con logo comune
-- [ ] Animazioni di transizione tra pagine
-- [ ] Pull-to-refresh nelle liste
-- [ ] Skeleton loading per contenuti in caricamento
-- [ ] Dark mode (opzionale)
-- [ ] Localizzazione multilingua (opzionale)
+- [x] Splash screen con logo comune
+- [x] Animazioni di transizione tra pagine
+- [x] Pull-to-refresh nelle liste
+- [x] Skeleton loading per contenuti in caricamento
+- [x] Dark mode (base) con AppColors dinamici e tema dark
+- [x] Localizzazione base (IT) con `gen_l10n` e chiavi `context.l10n` (multilingua futura)
 
 ---
 

@@ -4,6 +4,7 @@ import '../../widgets/comune_drawer.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/constants/app_constants.dart';
+import '../../core/utils/localization_extension.dart';
 
 /// Schermata contatti degli uffici comunali
 /// Mostra numeri di telefono, email e orari di apertura
@@ -13,8 +14,8 @@ class ContattaUfficiScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const ComuneAppBar(
-        titolo: 'Contatta gli Uffici',
+      appBar: ComuneAppBar(
+        titolo: context.l10n.screenContattaUfficiTitle,
         mostraBack: true,
       ),
       drawer: const ComuneDrawer(),
@@ -25,47 +26,47 @@ class ContattaUfficiScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header
-            _buildHeader(),
+            _buildHeader(context),
             const SizedBox(height: 24),
 
             // === SEDE PRINCIPALE (dati reali) ===
-            _buildSedeCard(),
+            _buildSedeCard(context),
             const SizedBox(height: 16),
 
             // Lista contatti uffici
             _buildContattoCard(
-              'Centralino',
+              context.l10n.contactOfficeCentralino,
               AppConstants.telefono,
               AppConstants.email,
-              'Lun-Ven: 8:30 - 14:00',
+              context.l10n.contactOfficeCentralinoHours,
               Icons.phone_rounded,
             ),
             _buildContattoCard(
-              'Ufficio Anagrafe',
+              context.l10n.contactOfficeAnagrafe,
               AppConstants.telefonoAnagrafe,
               AppConstants.emailAnagrafe,
-              'Lun-Ven: 9:00 - 13:00',
+              context.l10n.contactOfficeAnagrafeHours,
               Icons.badge_rounded,
             ),
             _buildContattoCard(
-              'Ufficio Tributi',
+              context.l10n.contactOfficeTributi,
               AppConstants.telefonoTributi,
               AppConstants.emailTributi,
-              'Lun-Ven: 9:00 - 12:00 | Mar-Gio: 15:00 - 17:00',
+              context.l10n.contactOfficeTributiHours,
               Icons.receipt_long_rounded,
             ),
             _buildContattoCard(
-              'Polizia Municipale',
+              context.l10n.contactOfficePolizia,
               AppConstants.telefonoPoliziaMunicipale,
               AppConstants.emailPolizia,
-              'Lun-Dom: 8:00 - 20:00',
+              context.l10n.contactOfficePoliziaHours,
               Icons.local_police_rounded,
             ),
             _buildContattoCard(
-              'Ufficio Tecnico',
+              context.l10n.contactOfficeTecnico,
               AppConstants.telefonoUfficioTecnico,
               AppConstants.emailTecnico,
-              'Lun-Ven: 9:00 - 13:00',
+              context.l10n.contactOfficeTecnicoHours,
               Icons.engineering_rounded,
             ),
             const SizedBox(height: 32),
@@ -76,7 +77,7 @@ class ContattaUfficiScreen extends StatelessWidget {
   }
 
   /// Header con icona e descrizione
-  Widget _buildHeader() {
+  Widget _buildHeader(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.paddingLarge),
@@ -100,14 +101,14 @@ class ContattaUfficiScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          const Text(
-            'Contatta gli uffici',
+          Text(
+            context.l10n.contactHeaderTitle,
             style: AppTextStyles.heading2,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
           Text(
-            'Trova i contatti di tutti gli uffici comunali.',
+            context.l10n.contactHeaderSubtitle,
             style: AppTextStyles.bodyMedium.copyWith(
               color: AppColors.textSecondary,
             ),
@@ -119,7 +120,7 @@ class ContattaUfficiScreen extends StatelessWidget {
   }
 
   /// Card sede principale del Comune con dati reali
-  Widget _buildSedeCard() {
+  Widget _buildSedeCard(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
@@ -131,14 +132,14 @@ class ContattaUfficiScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Row(
+          Row(
             children: [
-              Icon(Icons.location_city_rounded, color: Colors.white, size: 28),
-              SizedBox(width: 10),
+              const Icon(Icons.location_city_rounded, color: AppColors.textOnPrimary, size: 28),
+              const SizedBox(width: 10),
               Text(
-                'Sede Municipale',
-                style: TextStyle(
-                  color: Colors.white,
+                context.l10n.contactMunicipioTitle,
+                style: const TextStyle(
+                  color: AppColors.textOnPrimary,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -152,7 +153,10 @@ class ContattaUfficiScreen extends StatelessWidget {
           const SizedBox(height: 6),
           _buildInfoRowWhite(Icons.email_rounded, AppConstants.email),
           const SizedBox(height: 6),
-          _buildInfoRowWhite(Icons.mark_email_read_rounded, 'PEC: ${AppConstants.pec}'),
+          _buildInfoRowWhite(
+            Icons.mark_email_read_rounded,
+            context.l10n.contactPecLabel(AppConstants.pec),
+          ),
         ],
       ),
     );
@@ -162,12 +166,12 @@ class ContattaUfficiScreen extends StatelessWidget {
   Widget _buildInfoRowWhite(IconData icona, String testo) {
     return Row(
       children: [
-        Icon(icona, size: 16, color: Colors.white70),
+        Icon(icona, size: 16, color: AppColors.textOnPrimary.withValues(alpha: 0.7)),
         const SizedBox(width: 8),
         Expanded(
           child: Text(
             testo,
-            style: const TextStyle(color: Colors.white, fontSize: 13),
+            style: const TextStyle(color: AppColors.textOnPrimary, fontSize: 13),
           ),
         ),
       ],
@@ -187,15 +191,9 @@ class ContattaUfficiScreen extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(AppConstants.paddingMedium),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.06),
-            blurRadius: 8,
-            offset: const Offset(0, 3),
-          ),
-        ],
+        boxShadow: AppColors.cardShadow,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

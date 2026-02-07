@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants/app_constants.dart';
 import 'app_routes.dart';
 import '../../screens/home/home_screen.dart';
 import '../../screens/news/news_screen.dart';
@@ -26,62 +27,138 @@ class AppRouter {
     switch (settings.name) {
       // === HOME ===
       case AppRoutes.home:
-        return _buildRoute(const HomeScreen());
+        return _buildRoute(
+          screen: const HomeScreen(),
+          settings: settings,
+        );
 
       // === MODULO A: Comunicazioni ===
       case AppRoutes.newsAvvisi:
-        return _buildRoute(const NewsScreen());
+        return _buildRoute(
+          screen: const NewsScreen(),
+          settings: settings,
+        );
 
       // === MODULO B: Consiglio ===
       case AppRoutes.consiglioComunale:
-        return _buildRoute(const ConsiglioScreen());
+        return _buildRoute(
+          screen: const ConsiglioScreen(),
+          settings: settings,
+        );
 
       // === MODULO C: Eventi ===
       case AppRoutes.eventi:
-        return _buildRoute(const EventiScreen());
+        return _buildRoute(
+          screen: const EventiScreen(),
+          settings: settings,
+        );
 
       // === MODULO D: Cultura e Turismo ===
       case AppRoutes.culturaTurismo:
-        return _buildRoute(const CulturaTurismoScreen());
+        return _buildRoute(
+          screen: const CulturaTurismoScreen(),
+          settings: settings,
+        );
 
       // === MODULO E: Tributi e Pagamenti ===
       case AppRoutes.tributiPagamenti:
-        return _buildRoute(const TributiPagamentiScreen());
+        return _buildRoute(
+          screen: const TributiPagamentiScreen(),
+          settings: settings,
+        );
 
       // === SEZIONE 4: Comunicazioni Sindaco ===
       case AppRoutes.comunicazioniSindaco:
-        return _buildRoute(const ComunicazioniSindacoScreen());
+        return _buildRoute(
+          screen: const ComunicazioniSindacoScreen(),
+          settings: settings,
+        );
 
       // === SEZIONE 5: Servizi Scolastici ===
       case AppRoutes.serviziScolastici:
-        return _buildRoute(const ServiziScolasticiScreen());
+        return _buildRoute(
+          screen: const ServiziScolasticiScreen(),
+          settings: settings,
+        );
 
       // === SERVIZI AL CITTADINO ===
       case AppRoutes.segnalaDisservizio:
-        return _buildRoute(const SegnalaDisservizioScreen());
+        return _buildRoute(
+          screen: const SegnalaDisservizioScreen(),
+          settings: settings,
+        );
 
       case AppRoutes.prenotaUfficio:
-        return _buildRoute(const PrenotaUfficioScreen());
+        return _buildRoute(
+          screen: const PrenotaUfficioScreen(),
+          settings: settings,
+        );
 
       case AppRoutes.contattaUffici:
-        return _buildRoute(const ContattaUfficiScreen());
+        return _buildRoute(
+          screen: const ContattaUfficiScreen(),
+          settings: settings,
+        );
 
       case AppRoutes.gestioneRifiuti:
-        return _buildRoute(const GestioneRifiutiScreen());
+        return _buildRoute(
+          screen: const GestioneRifiutiScreen(),
+          settings: settings,
+        );
 
       case AppRoutes.serviziOnline:
-        return _buildRoute(const ServiziOnlineScreen());
+        return _buildRoute(
+          screen: const ServiziOnlineScreen(),
+          settings: settings,
+        );
 
       case AppRoutes.luoghiInteresse:
-        return _buildRoute(const LuoghiInteresseScreen());
+        return _buildRoute(
+          screen: const LuoghiInteresseScreen(),
+          settings: settings,
+        );
 
       default:
-        return _buildRoute(const HomeScreen());
+        return _buildRoute(
+          screen: const HomeScreen(),
+          settings: settings,
+        );
     }
   }
 
-  /// Costruisce una MaterialPageRoute con animazione standard
-  static MaterialPageRoute _buildRoute(Widget screen) {
-    return MaterialPageRoute(builder: (_) => screen);
+  /// Costruisce una PageRouteBuilder con transizione fade/slide/scale
+  static PageRouteBuilder _buildRoute({
+    required Widget screen,
+    required RouteSettings settings,
+  }) {
+    return PageRouteBuilder(
+      settings: settings,
+      transitionDuration: AppConstants.animationNormal,
+      reverseTransitionDuration: AppConstants.animationFast,
+      pageBuilder: (context, animation, secondaryAnimation) => screen,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        final curved = CurvedAnimation(
+          parent: animation,
+          curve: Curves.easeOutCubic,
+          reverseCurve: Curves.easeInCubic,
+        );
+        final slide = Tween<Offset>(
+          begin: const Offset(0, 0.06),
+          end: Offset.zero,
+        ).animate(curved);
+        final scale = Tween<double>(begin: 0.98, end: 1).animate(curved);
+
+        return FadeTransition(
+          opacity: curved,
+          child: SlideTransition(
+            position: slide,
+            child: ScaleTransition(
+              scale: scale,
+              child: child,
+            ),
+          ),
+        );
+      },
+    );
   }
 }

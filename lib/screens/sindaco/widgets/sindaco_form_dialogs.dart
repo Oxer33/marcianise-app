@@ -3,6 +3,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/utils/snackbar_helper.dart';
+import '../../../core/utils/localization_extension.dart';
 
 /// Form dialogs per la sezione Comunicazioni Sindaco (sez.4)
 /// Estratti dal file principale per modularità
@@ -29,13 +30,16 @@ class SindacoFormDialogs {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Carica Immagini', style: AppTextStyles.heading2),
+            Text(context.l10n.sindacoFormImagesTitle, style: AppTextStyles.heading2),
             const SizedBox(height: 16),
             // Area upload
             GestureDetector(
               onTap: () {
                 Navigator.pop(ctx);
-                SnackBarHelper.showInfo(context, 'Upload immagini sarà gestito dal back office');
+                SnackBarHelper.showInfo(
+                  context,
+                  context.l10n.messageBackOfficeImagesUpload,
+                );
               },
               child: Container(
                 width: double.infinity,
@@ -49,12 +53,15 @@ class SindacoFormDialogs {
                   borderRadius: BorderRadius.circular(12),
                   color: AppColors.primary.withValues(alpha: 0.05),
                 ),
-                child: const Column(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.cloud_upload_rounded, color: AppColors.primary, size: 40),
-                    SizedBox(height: 8),
-                    Text('Tocca per selezionare immagini', style: AppTextStyles.bodyMedium),
+                    const Icon(Icons.cloud_upload_rounded, color: AppColors.primary, size: 40),
+                    const SizedBox(height: 8),
+                    Text(
+                      context.l10n.sindacoFormImagesHint,
+                      style: AppTextStyles.bodyMedium,
+                    ),
                   ],
                 ),
               ),
@@ -85,13 +92,16 @@ class SindacoFormDialogs {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Carica Video', style: AppTextStyles.heading2),
+            Text(context.l10n.sindacoFormVideoTitle, style: AppTextStyles.heading2),
             const SizedBox(height: 16),
             // Area upload video
             GestureDetector(
               onTap: () {
                 Navigator.pop(ctx);
-                SnackBarHelper.showInfo(context, 'Upload video sarà gestito dal back office');
+                SnackBarHelper.showInfo(
+                  context,
+                  context.l10n.messageBackOfficeVideoUpload,
+                );
               },
               child: Container(
                 width: double.infinity,
@@ -105,12 +115,15 @@ class SindacoFormDialogs {
                   borderRadius: BorderRadius.circular(12),
                   color: const Color(0xFFC62828).withValues(alpha: 0.05),
                 ),
-                child: const Column(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.video_call_rounded, color: Color(0xFFC62828), size: 40),
-                    SizedBox(height: 8),
-                    Text('Tocca per selezionare un video', style: AppTextStyles.bodyMedium),
+                    const Icon(Icons.video_call_rounded, color: Color(0xFFC62828), size: 40),
+                    const SizedBox(height: 8),
+                    Text(
+                      context.l10n.sindacoFormVideoHint,
+                      style: AppTextStyles.bodyMedium,
+                    ),
                   ],
                 ),
               ),
@@ -141,21 +154,21 @@ class SindacoFormDialogs {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Nuovo Comunicato', style: AppTextStyles.heading2),
+            Text(context.l10n.sindacoFormComunicatoTitle, style: AppTextStyles.heading2),
             const SizedBox(height: 16),
             // Campo titolo
-            const TextField(
+            TextField(
               decoration: InputDecoration(
-                labelText: 'Titolo del comunicato',
-                prefixIcon: Icon(Icons.title_rounded),
+                labelText: context.l10n.sindacoFormComunicatoTitleLabel,
+                prefixIcon: const Icon(Icons.title_rounded),
               ),
             ),
             const SizedBox(height: 12),
             // Campo contenuto
-            const TextField(
+            TextField(
               decoration: InputDecoration(
-                labelText: 'Contenuto del comunicato',
-                prefixIcon: Icon(Icons.edit_note_rounded),
+                labelText: context.l10n.sindacoFormComunicatoContentLabel,
+                prefixIcon: const Icon(Icons.edit_note_rounded),
               ),
               maxLines: 4,
             ),
@@ -166,10 +179,13 @@ class SindacoFormDialogs {
               child: ElevatedButton.icon(
                 onPressed: () {
                   Navigator.pop(ctx);
-                  SnackBarHelper.showSuccess(context, 'Comunicato inserito (collegare al back office)');
+                  SnackBarHelper.showSuccess(
+                    context,
+                    context.l10n.messageComunicatoCreated,
+                  );
                 },
                 icon: const Icon(Icons.send_rounded),
-                label: const Text('Pubblica Comunicato'),
+                label: Text(context.l10n.sindacoFormComunicatoSubmit),
               ),
             ),
             const SizedBox(height: 16),

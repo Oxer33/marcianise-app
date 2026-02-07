@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/utils/snackbar_helper.dart';
+import '../../../core/utils/localization_extension.dart';
 
 /// Form dialog per creare un nuovo Punto di Interesse (sez. 3.1)
 /// Estratto da luoghi_interesse_screen.dart per modularità
@@ -29,31 +30,34 @@ class PoiFormDialog {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Crea Nuovo POI', style: AppTextStyles.heading2),
+              Text(context.l10n.poiFormTitle, style: AppTextStyles.heading2),
               const SizedBox(height: 16),
               // 3.1.1 - Nome
-              const TextField(
+              TextField(
                 decoration: InputDecoration(
-                  labelText: '3.1.1 Nome del punto di interesse',
-                  prefixIcon: Icon(Icons.place_rounded),
+                  labelText: context.l10n.poiFormNameLabel,
+                  prefixIcon: const Icon(Icons.place_rounded),
                 ),
               ),
               const SizedBox(height: 12),
               // 3.1.2 - Descrizione
-              const TextField(
+              TextField(
                 decoration: InputDecoration(
-                  labelText: '3.1.2 Descrizione',
-                  prefixIcon: Icon(Icons.description_rounded),
+                  labelText: context.l10n.poiFormDescriptionLabel,
+                  prefixIcon: const Icon(Icons.description_rounded),
                 ),
                 maxLines: 3,
               ),
               const SizedBox(height: 12),
               // 3.1.3 - Geolocalizzazione
-              const Text('3.1.3 Geolocalizzazione', style: AppTextStyles.heading3),
+              Text(context.l10n.poiFormGeoTitle, style: AppTextStyles.heading3),
               const SizedBox(height: 8),
               GestureDetector(
                 onTap: () {
-                  SnackBarHelper.showInfo(context, 'Seleziona posizione sulla mappa (collegare GPS)');
+                  SnackBarHelper.showInfo(
+                    context,
+                    context.l10n.messageSelectLocationGps,
+                  );
                 },
                 child: Container(
                   width: double.infinity,
@@ -65,12 +69,12 @@ class PoiFormDialog {
                       color: const Color(0xFF6A1B9A).withValues(alpha: 0.3),
                     ),
                   ),
-                  child: const Column(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.map_rounded, color: Color(0xFF6A1B9A), size: 32),
-                      SizedBox(height: 4),
-                      Text('Tocca per selezionare posizione', style: AppTextStyles.bodySmall),
+                      const Icon(Icons.map_rounded, color: Color(0xFF6A1B9A), size: 32),
+                      const SizedBox(height: 4),
+                      Text(context.l10n.poiFormGeoHint, style: AppTextStyles.bodySmall),
                     ],
                   ),
                 ),
@@ -82,10 +86,13 @@ class PoiFormDialog {
                 child: ElevatedButton.icon(
                   onPressed: () {
                     Navigator.pop(ctx);
-                    SnackBarHelper.showSuccess(context, 'POI creato (collegare al back office)');
+                    SnackBarHelper.showSuccess(
+                      context,
+                      context.l10n.messagePoiCreated,
+                    );
                   },
                   icon: const Icon(Icons.save_rounded),
-                  label: const Text('Salva POI'),
+                  label: Text(context.l10n.poiFormSubmit),
                 ),
               ),
               const SizedBox(height: 16),

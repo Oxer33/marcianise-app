@@ -6,6 +6,7 @@ import '../../core/utils/snackbar_helper.dart';
 import '../../widgets/comune_app_bar.dart';
 import 'widgets/scolastico_form_dialog.dart';
 import '../../widgets/comune_drawer.dart';
+import '../../core/utils/localization_extension.dart';
 
 /// Sezione 5 - Servizi Scolastici
 /// Struttura richiesta:
@@ -17,8 +18,8 @@ class ServiziScolasticiScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const ComuneAppBar(
-        titolo: 'Servizi Scolastici',
+      appBar: ComuneAppBar(
+        titolo: context.l10n.screenServiziScolasticiTitle,
         mostraBack: true,
       ),
       drawer: const ComuneDrawer(),
@@ -26,8 +27,11 @@ class ServiziScolasticiScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => ScolasticoFormDialog.mostraFormNuovoServizio(context),
         backgroundColor: AppColors.primary,
-        icon: const Icon(Icons.add_rounded, color: Colors.white),
-        label: const Text('Aggiungi Servizio', style: TextStyle(color: Colors.white)),
+        icon: const Icon(Icons.add_rounded, color: AppColors.textOnPrimary),
+        label: Text(
+          context.l10n.actionAggiungiServizio,
+          style: const TextStyle(color: AppColors.textOnPrimary),
+        ),
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -36,7 +40,7 @@ class ServiziScolasticiScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // === HEADER ===
-            _buildHeader(),
+            _buildHeader(context),
             const SizedBox(height: 24),
 
             // === INFO BACK OFFICE ===
@@ -55,7 +59,7 @@ class ServiziScolasticiScreen extends StatelessWidget {
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
-                      'I servizi scolastici sono gestiti dal back office comunale. Le modifiche verranno pubblicate dopo approvazione.',
+                      context.l10n.scolasticiBackOfficeInfo,
                       style: AppTextStyles.bodySmall.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -67,54 +71,54 @@ class ServiziScolasticiScreen extends StatelessWidget {
             const SizedBox(height: 24),
 
             // === LISTA SERVIZI SCOLASTICI ===
-            const Text('Servizi Attivi', style: AppTextStyles.heading2),
+            Text(context.l10n.scolasticiActiveServicesTitle, style: AppTextStyles.heading2),
             const SizedBox(height: 12),
             _buildServizioCard(
               context,
-              titolo: 'Mensa Scolastica',
-              descrizione: 'Servizio di refezione scolastica per le scuole primarie e dell\'infanzia del territorio.',
+              titolo: context.l10n.scolasticiServiceMensaTitle,
+              descrizione: context.l10n.scolasticiServiceMensaDesc,
               icona: Icons.restaurant_rounded,
-              stato: 'Attivo',
+              stato: context.l10n.statusActive,
               colore: AppColors.success,
             ),
             _buildServizioCard(
               context,
-              titolo: 'Trasporto Scolastico',
-              descrizione: 'Servizio di trasporto con scuolabus per gli alunni delle scuole comunali.',
+              titolo: context.l10n.scolasticiServiceTrasportoTitle,
+              descrizione: context.l10n.scolasticiServiceTrasportoDesc,
               icona: Icons.directions_bus_rounded,
-              stato: 'Attivo',
+              stato: context.l10n.statusActive,
               colore: AppColors.success,
             ),
             _buildServizioCard(
               context,
-              titolo: 'Pre-scuola e Post-scuola',
-              descrizione: 'Servizio di accoglienza anticipata (7:30-8:30) e prolungamento orario (16:00-17:30).',
+              titolo: context.l10n.scolasticiServicePrePostTitle,
+              descrizione: context.l10n.scolasticiServicePrePostDesc,
               icona: Icons.access_time_rounded,
-              stato: 'Attivo',
+              stato: context.l10n.statusActive,
               colore: AppColors.success,
             ),
             _buildServizioCard(
               context,
-              titolo: 'Assistenza Alunni Disabili',
-              descrizione: 'Supporto educativo e assistenziale per alunni con disabilità nelle scuole comunali.',
+              titolo: context.l10n.scolasticiServiceAssistenzaTitle,
+              descrizione: context.l10n.scolasticiServiceAssistenzaDesc,
               icona: Icons.accessibility_new_rounded,
-              stato: 'Attivo',
+              stato: context.l10n.statusActive,
               colore: AppColors.success,
             ),
             _buildServizioCard(
               context,
-              titolo: 'Cedole Librarie',
-              descrizione: 'Distribuzione cedole per la fornitura gratuita dei libri di testo nelle scuole primarie.',
+              titolo: context.l10n.scolasticiServiceCedoleTitle,
+              descrizione: context.l10n.scolasticiServiceCedoleDesc,
               icona: Icons.menu_book_rounded,
-              stato: 'Stagionale',
+              stato: context.l10n.statusSeasonal,
               colore: AppColors.warning,
             ),
             _buildServizioCard(
               context,
-              titolo: 'Centri Estivi',
-              descrizione: 'Attività ricreative e sportive per bambini e ragazzi durante il periodo estivo.',
+              titolo: context.l10n.scolasticiServiceCentriTitle,
+              descrizione: context.l10n.scolasticiServiceCentriDesc,
               icona: Icons.wb_sunny_rounded,
-              stato: 'Stagionale',
+              stato: context.l10n.statusSeasonal,
               colore: AppColors.warning,
             ),
             // Spazio per il FAB
@@ -126,7 +130,7 @@ class ServiziScolasticiScreen extends StatelessWidget {
   }
 
   /// Header con icona e descrizione
-  Widget _buildHeader() {
+  Widget _buildHeader(BuildContext context) {
     return Column(
       children: [
         // Icona scuola
@@ -144,14 +148,14 @@ class ServiziScolasticiScreen extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
-        const Text(
-          'Servizi Scolastici',
+        Text(
+          context.l10n.screenServiziScolasticiTitle,
           style: AppTextStyles.heading2,
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 8),
         Text(
-          'Tutti i servizi scolastici offerti dal Comune di Marcianise per le scuole del territorio.',
+          context.l10n.scolasticiHeaderSubtitle,
           style: AppTextStyles.bodyMedium.copyWith(
             color: AppColors.textSecondary,
           ),
@@ -174,15 +178,9 @@ class ServiziScolasticiScreen extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(AppConstants.paddingMedium),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(AppConstants.borderRadiusMedium),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.06),
-            blurRadius: 8,
-            offset: const Offset(0, 3),
-          ),
-        ],
+        boxShadow: AppColors.cardShadow,
       ),
       child: Row(
         children: [
@@ -238,32 +236,41 @@ class ServiziScolasticiScreen extends StatelessWidget {
           const SizedBox(width: 8),
           // Menu modifica/elimina (5.2)
           PopupMenuButton<String>(
-            icon: const Icon(Icons.more_vert_rounded, color: AppColors.textSecondary),
+            icon: Icon(Icons.more_vert_rounded, color: AppColors.textSecondary),
             onSelected: (value) {
               if (value == 'modifica') {
-                SnackBarHelper.showInfo(context, 'Modifica "$titolo" - collegare al back office');
+                SnackBarHelper.showInfo(
+                  context,
+                  context.l10n.messageBackOfficeEdit(titolo),
+                );
               } else if (value == 'elimina') {
-                SnackBarHelper.showWarning(context, 'Eliminazione "$titolo" - collegare al back office');
+                SnackBarHelper.showWarning(
+                  context,
+                  context.l10n.messageBackOfficeDelete(titolo),
+                );
               }
             },
             itemBuilder: (context) => [
-              const PopupMenuItem(
+              PopupMenuItem(
                 value: 'modifica',
                 child: Row(
                   children: [
-                    Icon(Icons.edit_rounded, size: 20),
-                    SizedBox(width: 8),
-                    Text('Modifica'),
+                    const Icon(Icons.edit_rounded, size: 20),
+                    const SizedBox(width: 8),
+                    Text(context.l10n.actionEdit),
                   ],
                 ),
               ),
-              const PopupMenuItem(
+              PopupMenuItem(
                 value: 'elimina',
                 child: Row(
                   children: [
-                    Icon(Icons.delete_rounded, size: 20, color: Colors.red),
-                    SizedBox(width: 8),
-                    Text('Elimina', style: TextStyle(color: Colors.red)),
+                    const Icon(Icons.delete_rounded, size: 20, color: Colors.red),
+                    const SizedBox(width: 8),
+                    Text(
+                      context.l10n.actionDelete,
+                      style: const TextStyle(color: Colors.red),
+                    ),
                   ],
                 ),
               ),

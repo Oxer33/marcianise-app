@@ -4,6 +4,7 @@ import '../../widgets/comune_drawer.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/constants/app_constants.dart';
+import '../../core/utils/localization_extension.dart';
 
 /// Schermata gestione rifiuti
 /// Mostra il calendario raccolta differenziata e info utili
@@ -13,8 +14,8 @@ class GestioneRifiutiScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const ComuneAppBar(
-        titolo: 'Gestione Rifiuti',
+      appBar: ComuneAppBar(
+        titolo: context.l10n.screenGestioneRifiutiTitle,
         mostraBack: true,
       ),
       drawer: const ComuneDrawer(),
@@ -25,26 +26,46 @@ class GestioneRifiutiScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header
-            _buildHeader(),
+            _buildHeader(context),
             const SizedBox(height: 24),
 
             // Calendario settimanale
-            const Text('Calendario Raccolta', style: AppTextStyles.sectionTitle),
+            Text(context.l10n.rifiutiScheduleTitle, style: AppTextStyles.sectionTitle),
             const SizedBox(height: 12),
 
-            _buildGiornoRaccolta('Lunedì', 'Organico', Colors.brown, Icons.eco_rounded),
-            _buildGiornoRaccolta('Martedì', 'Plastica e Metalli', Colors.orange, Icons.recycling_rounded),
-            _buildGiornoRaccolta('Mercoledì', 'Indifferenziata', Colors.grey, Icons.delete_rounded),
-            _buildGiornoRaccolta('Giovedì', 'Carta e Cartone', Colors.blue, Icons.description_rounded),
-            _buildGiornoRaccolta('Venerdì', 'Vetro', Colors.green, Icons.wine_bar_rounded),
-            _buildGiornoRaccolta('Sabato', 'Organico', Colors.brown, Icons.eco_rounded),
+            _buildGiornoRaccolta(context.l10n.rifiutiDayMonday, context.l10n.rifiutiTypeOrganico, Colors.brown, Icons.eco_rounded),
+            _buildGiornoRaccolta(
+              context.l10n.rifiutiDayTuesday,
+              context.l10n.rifiutiTypePlasticaMetalli,
+              Colors.orange,
+              Icons.recycling_rounded,
+            ),
+            _buildGiornoRaccolta(
+              context.l10n.rifiutiDayWednesday,
+              context.l10n.rifiutiTypeIndifferenziata,
+              Colors.grey,
+              Icons.delete_rounded,
+            ),
+            _buildGiornoRaccolta(
+              context.l10n.rifiutiDayThursday,
+              context.l10n.rifiutiTypeCartaCartone,
+              Colors.blue,
+              Icons.description_rounded,
+            ),
+            _buildGiornoRaccolta(
+              context.l10n.rifiutiDayFriday,
+              context.l10n.rifiutiTypeVetro,
+              Colors.green,
+              Icons.wine_bar_rounded,
+            ),
+            _buildGiornoRaccolta(context.l10n.rifiutiDaySaturday, context.l10n.rifiutiTypeOrganico, Colors.brown, Icons.eco_rounded),
 
             const SizedBox(height: 24),
 
             // Info centro raccolta
-            const Text('Centro Raccolta', style: AppTextStyles.sectionTitle),
+            Text(context.l10n.rifiutiCenterTitle, style: AppTextStyles.sectionTitle),
             const SizedBox(height: 12),
-            _buildInfoCentroRaccolta(),
+            _buildInfoCentroRaccolta(context),
             const SizedBox(height: 32),
           ],
         ),
@@ -53,7 +74,7 @@ class GestioneRifiutiScreen extends StatelessWidget {
   }
 
   /// Header con icona e descrizione
-  Widget _buildHeader() {
+  Widget _buildHeader(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.paddingLarge),
@@ -77,14 +98,14 @@ class GestioneRifiutiScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          const Text(
-            'Gestione dei rifiuti',
+          Text(
+            context.l10n.rifiutiHeaderTitle,
             style: AppTextStyles.heading2,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
           Text(
-            'Consulta il calendario della raccolta differenziata e le informazioni utili.',
+            context.l10n.rifiutiHeaderSubtitle,
             style: AppTextStyles.bodyMedium.copyWith(
               color: AppColors.textSecondary,
             ),
@@ -101,15 +122,9 @@ class GestioneRifiutiScreen extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.04),
-            blurRadius: 6,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        boxShadow: AppColors.cardShadow,
       ),
       child: Row(
         children: [
@@ -148,39 +163,33 @@ class GestioneRifiutiScreen extends StatelessWidget {
   }
 
   /// Info centro raccolta comunale
-  Widget _buildInfoCentroRaccolta() {
+  Widget _buildInfoCentroRaccolta(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.paddingMedium),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.06),
-            blurRadius: 8,
-            offset: const Offset(0, 3),
-          ),
-        ],
+        boxShadow: AppColors.cardShadow,
       ),
-      child: const Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(Icons.location_on_rounded, color: AppColors.primary),
-              SizedBox(width: 8),
-              Text('Centro Raccolta Comunale', style: AppTextStyles.heading3),
+              const Icon(Icons.location_on_rounded, color: AppColors.primary),
+              const SizedBox(width: 8),
+              Text(context.l10n.rifiutiCenterName, style: AppTextStyles.heading3),
             ],
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Text(
-            'Zona Industriale - Marcianise (CE)',
+            context.l10n.rifiutiCenterAddress,
             style: AppTextStyles.bodyMedium,
           ),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           Text(
-            'Orari: Lun-Sab 8:00 - 13:00 | Mar-Gio 15:00 - 18:00',
+            context.l10n.rifiutiCenterHours,
             style: AppTextStyles.bodySmall,
           ),
         ],

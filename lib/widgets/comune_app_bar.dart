@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../core/theme/app_colors.dart';
 import '../core/theme/app_text_styles.dart';
 import '../core/utils/snackbar_helper.dart';
+import '../core/utils/localization_extension.dart';
 
 /// AppBar personalizzata per tutte le schermate
 /// Mostra il logo del comune, il titolo e il pulsante menu
@@ -31,13 +32,13 @@ class ComuneAppBar extends StatelessWidget implements PreferredSizeWidget {
       toolbarHeight: sottotitolo != null ? 70 : 60,
       leading: mostraBack
           ? IconButton(
-              icon: const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
-              tooltip: 'Torna indietro',
+              icon: const Icon(Icons.arrow_back_ios_new_rounded, color: AppColors.textOnPrimary),
+              tooltip: context.l10n.tooltipBack,
               onPressed: () => Navigator.of(context).pop(),
             )
           : IconButton(
-              icon: const Icon(Icons.menu_rounded, color: Colors.white),
-              tooltip: 'Apri menu',
+              icon: const Icon(Icons.menu_rounded, color: AppColors.textOnPrimary),
+              tooltip: context.l10n.tooltipMenu,
               onPressed: () => Scaffold.of(context).openDrawer(),
             ),
       title: Row(
@@ -45,14 +46,14 @@ class ComuneAppBar extends StatelessWidget implements PreferredSizeWidget {
         children: [
           // Logo ufficiale del comune (stemma)
           Semantics(
-            label: 'Logo Comune di Marcianise',
+            label: context.l10n.semanticLogoComune,
             child: Container(
               width: 36,
               height: 36,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white,
-                border: Border.all(color: Colors.white, width: 2),
+                color: AppColors.textOnPrimary,
+                border: Border.all(color: AppColors.textOnPrimary, width: 2),
               ),
               child: ClipOval(
                 child: Image.asset(
@@ -108,11 +109,14 @@ class ComuneAppBar extends StatelessWidget implements PreferredSizeWidget {
           [
             // Icona notifiche
             IconButton(
-              icon: const Icon(Icons.notifications_outlined, color: Colors.white),
-              tooltip: 'Notifiche',
+              icon: const Icon(Icons.notifications_outlined, color: AppColors.textOnPrimary),
+              tooltip: context.l10n.tooltipNotifications,
               onPressed: () {
                 // TODO: Implementare notifiche
-                SnackBarHelper.showInfo(context, 'Notifiche push in arrivo con il back office!');
+                SnackBarHelper.showInfo(
+                  context,
+                  context.l10n.messageNotificationsComingSoon,
+                );
               },
             ),
           ],

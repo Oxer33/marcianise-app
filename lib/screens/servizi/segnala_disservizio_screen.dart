@@ -5,6 +5,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/constants/app_constants.dart';
 import '../../core/utils/snackbar_helper.dart';
+import '../../core/utils/localization_extension.dart';
 
 /// Schermata per segnalare un disservizio al comune
 /// L'utente potrà compilare un form con descrizione, categoria e foto
@@ -14,8 +15,8 @@ class SegnalaDisservizioScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const ComuneAppBar(
-        titolo: 'Segnala Disservizio',
+      appBar: ComuneAppBar(
+        titolo: context.l10n.screenSegnalaDisservizioTitle,
         mostraBack: true,
       ),
       drawer: const ComuneDrawer(),
@@ -26,21 +27,36 @@ class SegnalaDisservizioScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Icona e titolo
-            _buildHeader(),
+            _buildHeader(context),
             const SizedBox(height: 24),
 
             // Form segnalazione
-            _buildFormField('Categoria', 'Seleziona categoria', Icons.category_rounded),
+            _buildFormField(
+              context.l10n.disservizioFieldCategoryLabel,
+              context.l10n.disservizioFieldCategoryHint,
+              Icons.category_rounded,
+            ),
             const SizedBox(height: 16),
-            _buildFormField('Titolo', 'Descrivi brevemente il problema', Icons.title_rounded),
+            _buildFormField(
+              context.l10n.disservizioFieldTitleLabel,
+              context.l10n.disservizioFieldTitleHint,
+              Icons.title_rounded,
+            ),
             const SizedBox(height: 16),
-            _buildTextArea('Descrizione', 'Descrivi il disservizio in dettaglio...'),
+            _buildTextArea(
+              context.l10n.disservizioFieldDescriptionLabel,
+              context.l10n.disservizioFieldDescriptionHint,
+            ),
             const SizedBox(height: 16),
-            _buildFormField('Indirizzo', 'Dove si trova il problema?', Icons.place_rounded),
+            _buildFormField(
+              context.l10n.disservizioFieldAddressLabel,
+              context.l10n.disservizioFieldAddressHint,
+              Icons.place_rounded,
+            ),
             const SizedBox(height: 16),
 
             // Pulsante aggiungi foto
-            _buildFotoButton(),
+            _buildFotoButton(context),
             const SizedBox(height: 24),
 
             // Pulsante invio
@@ -53,7 +69,7 @@ class SegnalaDisservizioScreen extends StatelessWidget {
   }
 
   /// Header con icona e descrizione
-  Widget _buildHeader() {
+  Widget _buildHeader(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.paddingLarge),
@@ -77,14 +93,14 @@ class SegnalaDisservizioScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          const Text(
-            'Segnala un disservizio',
+          Text(
+            context.l10n.disservizioHeaderTitle,
             style: AppTextStyles.heading2,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
           Text(
-            'Hai notato un problema nella tua città? Segnalalo qui e il comune provvederà a risolverlo.',
+            context.l10n.disservizioHeaderSubtitle,
             style: AppTextStyles.bodyMedium.copyWith(
               color: AppColors.textSecondary,
             ),
@@ -122,7 +138,7 @@ class SegnalaDisservizioScreen extends StatelessWidget {
               borderSide: const BorderSide(color: AppColors.primary, width: 2),
             ),
             filled: true,
-            fillColor: Colors.white,
+            fillColor: AppColors.surface,
           ),
         ),
       ],
@@ -156,7 +172,7 @@ class SegnalaDisservizioScreen extends StatelessWidget {
               borderSide: const BorderSide(color: AppColors.primary, width: 2),
             ),
             filled: true,
-            fillColor: Colors.white,
+            fillColor: AppColors.surface,
           ),
         ),
       ],
@@ -164,7 +180,7 @@ class SegnalaDisservizioScreen extends StatelessWidget {
   }
 
   /// Pulsante per aggiungere foto
-  Widget _buildFotoButton() {
+  Widget _buildFotoButton(BuildContext context) {
     return Container(
       width: double.infinity,
       height: 100,
@@ -183,7 +199,7 @@ class SegnalaDisservizioScreen extends StatelessWidget {
           const Icon(Icons.camera_alt_rounded, color: AppColors.primary, size: 32),
           const SizedBox(height: 8),
           Text(
-            'Aggiungi foto',
+            context.l10n.disservizioAddPhoto,
             style: AppTextStyles.bodyMedium.copyWith(
               color: AppColors.primary,
               fontWeight: FontWeight.w600,
@@ -202,7 +218,10 @@ class SegnalaDisservizioScreen extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {
           // TODO: Implementare invio segnalazione al back office
-          SnackBarHelper.showSuccess(context, 'Segnalazione inviata con successo!');
+          SnackBarHelper.showSuccess(
+            context,
+            context.l10n.messageDisservizioSent,
+          );
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
@@ -210,12 +229,12 @@ class SegnalaDisservizioScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
         ),
-        child: const Text(
-          'Invia Segnalazione',
-          style: TextStyle(
+        child: Text(
+          context.l10n.disservizioSubmit,
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
-            color: Colors.white,
+            color: AppColors.textOnPrimary,
           ),
         ),
       ),

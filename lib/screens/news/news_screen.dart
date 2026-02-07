@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import '../../widgets/comune_app_bar.dart';
 import '../../widgets/comune_drawer.dart';
 import '../../widgets/news_card.dart';
+import '../../widgets/skeleton_news_card.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../core/constants/app_constants.dart';
 import '../../data/mock_data.dart';
 import 'widgets/notizia_form_dialog.dart';
+import '../../core/utils/localization_extension.dart';
 
 /// Sezione 1 - Notizie (struttura richiesta)
 /// 1.1. Crea Notizie (titolo, contenuto, criticità + notifica)
@@ -22,6 +24,7 @@ class NewsScreen extends StatefulWidget {
 class _NewsScreenState extends State<NewsScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  bool _isRefreshing = false;
 
   @override
   void initState() {
@@ -35,11 +38,19 @@ class _NewsScreenState extends State<NewsScreen>
     super.dispose();
   }
 
+  /// Gestisce il pull-to-refresh simulando un caricamento breve.
+  Future<void> _handleRefresh() async {
+    setState(() => _isRefreshing = true);
+    await Future.delayed(const Duration(milliseconds: 800));
+    if (!mounted) return;
+    setState(() => _isRefreshing = false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const ComuneAppBar(
-        titolo: 'News e Avvisi',
+      appBar: ComuneAppBar(
+        titolo: context.l10n.screenNewsTitle,
         mostraBack: true,
       ),
       drawer: const ComuneDrawer(),
@@ -47,8 +58,11 @@ class _NewsScreenState extends State<NewsScreen>
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => NotiziaFormDialog.mostraFormCreaNotizia(context),
         backgroundColor: AppColors.primary,
-        icon: const Icon(Icons.add_rounded, color: Colors.white),
-        label: const Text('Crea Notizia', style: TextStyle(color: Colors.white)),
+        icon: const Icon(Icons.add_rounded, color: AppColors.textOnPrimary),
+        label: Text(
+          context.l10n.actionCreaNotizia,
+          style: const TextStyle(color: AppColors.textOnPrimary),
+        ),
       ),
       body: Column(
         children: [
@@ -64,7 +78,7 @@ class _NewsScreenState extends State<NewsScreen>
                 TextButton.icon(
                   onPressed: () => _mostraStatisticheDettaglio(context),
                   icon: const Icon(Icons.bar_chart_rounded, size: 18),
-                  label: const Text('Statistiche'),
+                  label: Text(context.l10n.actionStatistiche),
                   style: TextButton.styleFrom(
                     foregroundColor: AppColors.primary,
                   ),
@@ -89,15 +103,15 @@ class _NewsScreenState extends State<NewsScreen>
                   color: AppColors.primary,
                   borderRadius: BorderRadius.circular(AppConstants.borderRadiusMedium),
                 ),
-                labelColor: Colors.white,
+                labelColor: AppColors.textOnPrimary,
                 unselectedLabelColor: AppColors.primary,
                 labelStyle: AppTextStyles.tabLabel,
                 unselectedLabelStyle: AppTextStyles.tabLabel,
                 dividerColor: Colors.transparent,
                 indicatorSize: TabBarIndicatorSize.tab,
-                tabs: const [
-                  Tab(text: 'News'),
-                  Tab(text: 'Avvisi'),
+                tabs: [
+                  Tab(text: context.l10n.newsTabNews),
+                  Tab(text: context.l10n.newsTabAvvisi),
                 ],
               ),
             ),
@@ -128,37 +142,84 @@ class _NewsScreenState extends State<NewsScreen>
         .where((n) => n.categoria == categoria)
         .toList();
 
+    const physics = AlwaysScrollableScrollPhysics(
+      parent: BouncingScrollPhysics(),
+    );
+
+    if (_isRefreshing) {
+      return _buildRefreshWrapper(
+        ListView.builder(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.paddingMedium,
+          ),
+          physics: physics,
+          itemCount: 3,
+          itemBuilder: (context, index) {
+            return const SkeletonNewsCard();
+          },
+        ),
+      );
+    }
+
     if (filtrate.isEmpty) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      return _buildRefreshWrapper(
+        ListView(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.paddingMedium,
+          ),
+          physics: physics,
           children: [
-            Icon(
-              Icons.inbox_rounded,
-              size: 64,
-              color: AppColors.textSecondary.withValues(alpha: 0.3),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'Nessun elemento trovato',
-              style: AppTextStyles.bodyMedium.copyWith(
-                color: AppColors.textSecondary,
-              ),
-            ),
+            const SizedBox(height: 80),
+            _buildEmptyState(),
+            const SizedBox(height: 80),
           ],
         ),
       );
     }
 
-    return ListView.builder(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppConstants.paddingMedium,
+    return _buildRefreshWrapper(
+      ListView.builder(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppConstants.paddingMedium,
+        ),
+        physics: physics,
+        itemCount: filtrate.length,
+        itemBuilder: (context, index) {
+          return NewsCard(news: filtrate[index]);
+        },
       ),
-      physics: const BouncingScrollPhysics(),
-      itemCount: filtrate.length,
-      itemBuilder: (context, index) {
-        return NewsCard(news: filtrate[index]);
-      },
+    );
+  }
+
+  /// Wrapper riutilizzabile per il RefreshIndicator.
+  Widget _buildRefreshWrapper(Widget child) {
+    return RefreshIndicator(
+      color: AppColors.primary,
+      onRefresh: _handleRefresh,
+      child: child,
+    );
+  }
+
+  /// Stato vuoto con stile coerente.
+  Widget _buildEmptyState() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.inbox_rounded,
+            size: 64,
+            color: AppColors.textSecondary.withValues(alpha: 0.3),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            context.l10n.emptyGeneric,
+            style: AppTextStyles.bodyMedium.copyWith(
+              color: AppColors.textSecondary,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -183,13 +244,13 @@ class _NewsScreenState extends State<NewsScreen>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _buildStatItem('$totaleNews', 'News'),
+          _buildStatItem('$totaleNews', context.l10n.statsNews),
           _buildStatDivider(),
-          _buildStatItem('$totaleAvvisi', 'Avvisi'),
+          _buildStatItem('$totaleAvvisi', context.l10n.statsAvvisi),
           _buildStatDivider(),
-          _buildStatItem('$urgenti', 'Urgenti'),
+          _buildStatItem('$urgenti', context.l10n.statsUrgenti),
           _buildStatDivider(),
-          _buildStatItem('${totaleNews + totaleAvvisi}', 'Totale'),
+          _buildStatItem('${totaleNews + totaleAvvisi}', context.l10n.statsTotale),
         ],
       ),
     );
@@ -198,18 +259,31 @@ class _NewsScreenState extends State<NewsScreen>
   Widget _buildStatItem(String valore, String label) {
     return Column(
       children: [
-        Text(valore, style: const TextStyle(
-          color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold,
-        )),
-        Text(label, style: const TextStyle(
-          color: Colors.white70, fontSize: 11,
-        )),
+        Text(
+          valore,
+          style: const TextStyle(
+            color: AppColors.textOnPrimary,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          label,
+          style: TextStyle(
+            color: AppColors.textOnPrimary.withValues(alpha: 0.7),
+            fontSize: 11,
+          ),
+        ),
       ],
     );
   }
 
   Widget _buildStatDivider() {
-    return Container(width: 1, height: 30, color: Colors.white30);
+    return Container(
+      width: 1,
+      height: 30,
+      color: AppColors.textOnPrimary.withValues(alpha: 0.3),
+    );
   }
 
   /// 1.2.1 - Dialog statistiche dettagliate
@@ -221,17 +295,17 @@ class _NewsScreenState extends State<NewsScreen>
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Statistiche Notizie', style: AppTextStyles.heading2),
+        title: Text(context.l10n.newsStatsDialogTitle, style: AppTextStyles.heading2),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            _buildStatRow('News pubblicate', '$totaleNews', Icons.newspaper_rounded),
-            _buildStatRow('Avvisi pubblicati', '$totaleAvvisi', Icons.warning_amber_rounded),
-            _buildStatRow('Urgenti', '$urgenti', Icons.priority_high_rounded),
-            _buildStatRow('Totale', '${totaleNews + totaleAvvisi}', Icons.summarize_rounded),
+            _buildStatRow(context.l10n.newsStatsPublished, '$totaleNews', Icons.newspaper_rounded),
+            _buildStatRow(context.l10n.newsStatsAvvisi, '$totaleAvvisi', Icons.warning_amber_rounded),
+            _buildStatRow(context.l10n.statsUrgenti, '$urgenti', Icons.priority_high_rounded),
+            _buildStatRow(context.l10n.statsTotale, '${totaleNews + totaleAvvisi}', Icons.summarize_rounded),
             const Divider(),
             Text(
-              'Statistiche dettagliate saranno disponibili con il back office.',
+              context.l10n.newsStatsFooter,
               style: AppTextStyles.bodySmall.copyWith(color: AppColors.textSecondary),
             ),
           ],
@@ -239,7 +313,7 @@ class _NewsScreenState extends State<NewsScreen>
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Chiudi'),
+            child: Text(context.l10n.actionClose),
           ),
         ],
       ),

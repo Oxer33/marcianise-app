@@ -39,12 +39,14 @@ class SnackBarHelper {
       SnackBar(
         content: Row(
           children: [
-            Icon(icona, color: Colors.white, size: 20),
+            Icon(icona, color: AppColors.textOnPrimary, size: 20),
             const SizedBox(width: 12),
             Expanded(
               child: Text(
                 messaggio,
-                style: AppTextStyles.bodyMedium.copyWith(color: Colors.white),
+                style: AppTextStyles.bodyMedium.copyWith(
+                  color: AppColors.textOnPrimary,
+                ),
               ),
             ),
           ],

@@ -2,7 +2,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/constants/app_constants.dart';
+import '../../../core/theme/app_text_styles.dart';
+import '../../../core/utils/localization_extension.dart';
 import '../../../widgets/meteo_widget.dart';
+import '../../../widgets/parallax_image.dart';
 
 /// Sezione hero della home page
 /// Carousel animato con immagini ufficiali del Comune + meteo sovrapposto
@@ -45,8 +48,10 @@ class _HeroSectionState extends State<HeroSection> {
 
   @override
   Widget build(BuildContext context) {
+    final heroHeight = _calcolaHeroHeight(context);
+
     return SizedBox(
-      height: AppConstants.heroImageHeight,
+      height: heroHeight,
       width: double.infinity,
       child: Stack(
         children: [
@@ -66,7 +71,7 @@ class _HeroSectionState extends State<HeroSection> {
                   ),
                 );
               },
-              child: _buildHeroImage(_heroImages[_currentIndex]),
+              child: _buildHeroImage(_heroImages[_currentIndex], heroHeight),
             ),
           ),
 
@@ -110,6 +115,25 @@ class _HeroSectionState extends State<HeroSection> {
             ),
           ),
 
+          // === TAGLINE SCENOGRAFICO ===
+          Positioned(
+            left: 16,
+            right: 16,
+            bottom: 92,
+            child: TweenAnimationBuilder<double>(
+              tween: Tween(begin: 0, end: 1),
+              duration: AppConstants.animationNormal,
+              builder: (context, value, child) => Opacity(
+                opacity: value,
+                child: Transform.translate(
+                  offset: Offset(0, (1 - value) * 10),
+                  child: child,
+                ),
+              ),
+              child: _buildHeroTagline(),
+            ),
+          ),
+
           // === WIDGET METEO SOVRAPPOSTO IN BASSO ===
           Positioned(
             bottom: 12,
@@ -134,39 +158,80 @@ class _HeroSectionState extends State<HeroSection> {
   }
 
   /// Costruisce l'immagine hero con fallback elegante
-  Widget _buildHeroImage(String path) {
-    return SizedBox(
+  Widget _buildHeroImage(String path, double height) {
+    return ParallaxImage(
       key: ValueKey(path),
+      imagePath: path,
+      height: height,
+      semanticLabel: context.l10n.heroImageSemantic,
+      fallbackBuilder: (context) => _buildHeroFallback(height),
+    );
+  }
+
+  Widget _buildHeroFallback(double height) {
+    return SizedBox(
+      height: height,
       width: double.infinity,
-      height: AppConstants.heroImageHeight,
-      child: Image.asset(
-        path,
-        fit: BoxFit.cover,
-        filterQuality: FilterQuality.high,
-        semanticLabel: 'Immagine ufficiale del Comune di Marcianise',
-        // Fallback in caso di errore caricamento immagine
-        errorBuilder: (context, error, stackTrace) {
-          return Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  AppColors.primaryDark,
-                  AppColors.primary.withValues(alpha: 0.8),
-                ],
-              ),
-            ),
-            child: Center(
-              child: Icon(
-                Icons.account_balance_rounded,
-                size: 80,
-                color: Colors.white.withValues(alpha: 0.3),
-              ),
-            ),
-          );
-        },
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              AppColors.primaryDark,
+              AppColors.primary.withValues(alpha: 0.8),
+            ],
+          ),
+        ),
+        child: Center(
+          child: Icon(
+            Icons.account_balance_rounded,
+            size: 80,
+            color: AppColors.textOnPrimary.withValues(alpha: 0.3),
+          ),
+        ),
       ),
     );
+  }
+
+  Widget _buildHeroTagline() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      decoration: BoxDecoration(
+        color: Colors.black.withValues(alpha: 0.35),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: AppColors.textOnPrimary.withValues(alpha: 0.2),
+        ),
+      ),
+      child: RichText(
+        text: TextSpan(
+          style: AppTextStyles.bodyMedium.copyWith(
+            color: AppColors.textOnPrimary,
+            height: 1.3,
+          ),
+          children: [
+            TextSpan(text: context.l10n.heroTaglinePrefix),
+            TextSpan(
+              text: context.l10n.heroTaglineEmphasis,
+              style: const TextStyle(fontStyle: FontStyle.italic),
+            ),
+            TextSpan(text: context.l10n.heroTaglineSuffix),
+          ],
+        ),
+      ),
+    );
+  }
+
+  double _calcolaHeroHeight(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    var heroHeight = screenHeight * 0.36;
+    if (heroHeight < AppConstants.heroImageHeight) {
+      heroHeight = AppConstants.heroImageHeight;
+    }
+    if (heroHeight > 360) {
+      heroHeight = 360;
+    }
+    return heroHeight;
   }
 }

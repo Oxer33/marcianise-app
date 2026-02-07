@@ -3,6 +3,7 @@ import '../models/servizio_model.dart';
 import '../models/news_model.dart';
 import '../models/evento_model.dart';
 import '../models/meteo_model.dart';
+import '../models/poi_model.dart';
 import '../core/theme/app_colors.dart';
 import '../core/routes/app_routes.dart';
 
@@ -76,6 +77,52 @@ class MockData {
       coloreSfondo: AppColors.cardService2,
       coloreIcona: Color(0xFF00695C),
       rotta: AppRoutes.serviziOnline,
+    ),
+  ];
+
+  // === PUNTI DI INTERESSE (POI) ===
+  static const List<PoiModel> poi = [
+    PoiModel(
+      nome: 'Duomo dell\'Annunziata',
+      descrizione: 'La chiesa madre di Marcianise, risalente al XIII secolo con campanile medievale.',
+      icona: Icons.church_rounded,
+      indirizzo: 'Piazza Umberto I, Marcianise',
+    ),
+    PoiModel(
+      nome: 'Palazzo Municipale',
+      descrizione: 'Sede del Comune di Marcianise, edificio storico in Piazza Umberto I.',
+      icona: Icons.account_balance_rounded,
+      indirizzo: 'Via Roma, 18 - Marcianise',
+    ),
+    PoiModel(
+      nome: 'Castello di Marcianise (Torrione)',
+      descrizione: 'Antico castello medievale con torre cilindrica, simbolo della città.',
+      icona: Icons.castle_rounded,
+      indirizzo: 'Via Torrione, Marcianise',
+    ),
+    PoiModel(
+      nome: 'Chiesa di San Francesco di Paola',
+      descrizione: 'Chiesa settecentesca con pregevoli decorazioni barocche.',
+      icona: Icons.church_rounded,
+      indirizzo: 'Via San Francesco, Marcianise',
+    ),
+    PoiModel(
+      nome: 'Villa Comunale',
+      descrizione: 'Parco pubblico principale con giardini, viali alberati e area giochi.',
+      icona: Icons.park_rounded,
+      indirizzo: 'Via Roma, Marcianise',
+    ),
+    PoiModel(
+      nome: 'Centro Commerciale Campania',
+      descrizione: 'Uno dei centri commerciali più grandi del Sud Italia, a Marcianise.',
+      icona: Icons.shopping_bag_rounded,
+      indirizzo: 'SS 87 Sannitica, Marcianise',
+    ),
+    PoiModel(
+      nome: 'Reggia di Caserta (a 5 km)',
+      descrizione: 'Patrimonio UNESCO, la Reggia borbonica più grande d\'Europa.',
+      icona: Icons.museum_rounded,
+      indirizzo: 'Viale Douhet, Caserta (5 km)',
     ),
   ];
 

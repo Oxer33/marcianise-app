@@ -3,6 +3,7 @@ import '../core/theme/app_colors.dart';
 import '../core/theme/app_text_styles.dart';
 import '../core/constants/app_constants.dart';
 import '../core/routes/app_routes.dart';
+import '../core/utils/localization_extension.dart';
 
 /// Drawer laterale (menu hamburger) dell'app
 /// Mostra tutte le sezioni navigabili dell'applicazione
@@ -12,12 +13,12 @@ class ComuneDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.surface,
       child: SafeArea(
         child: Column(
           children: [
             // === HEADER DRAWER ===
-            _buildHeader(),
+            _buildHeader(context),
             const Divider(height: 1),
 
             // === MENU ITEMS (organizzati per moduli progetto MTK) ===
@@ -28,98 +29,98 @@ class ComuneDrawer extends StatelessWidget {
                   _buildMenuItem(
                     context,
                     icona: Icons.home_rounded,
-                    titolo: 'Home',
+                    titolo: context.l10n.navHome,
                     rotta: AppRoutes.home,
                   ),
                   const Divider(),
-                  _buildSectionLabel('Moduli Principali'),
+                  _buildSectionLabel(context.l10n.drawerSectionMain),
                   // Modulo A
                   _buildMenuItem(
                     context,
                     icona: Icons.newspaper_rounded,
-                    titolo: 'News e Avvisi',
+                    titolo: context.l10n.navNews,
                     rotta: AppRoutes.newsAvvisi,
                   ),
                   // Modulo B
                   _buildMenuItem(
                     context,
                     icona: Icons.groups_rounded,
-                    titolo: 'Consiglio Comunale',
+                    titolo: context.l10n.navConsiglio,
                     rotta: AppRoutes.consiglioComunale,
                   ),
                   // Modulo C
                   _buildMenuItem(
                     context,
                     icona: Icons.event_rounded,
-                    titolo: 'Eventi e Manifestazioni',
+                    titolo: context.l10n.navEventiManifestazioni,
                     rotta: AppRoutes.eventi,
                   ),
                   // Modulo D
                   _buildMenuItem(
                     context,
                     icona: Icons.museum_rounded,
-                    titolo: 'Cultura e Turismo',
+                    titolo: context.l10n.navCultura,
                     rotta: AppRoutes.culturaTurismo,
                   ),
                   // Modulo E
                   _buildMenuItem(
                     context,
                     icona: Icons.payment_rounded,
-                    titolo: 'Tributi e Pagamenti',
+                    titolo: context.l10n.navTributi,
                     rotta: AppRoutes.tributiPagamenti,
                   ),
                   const Divider(),
-                  _buildSectionLabel('Struttura App'),
+                  _buildSectionLabel(context.l10n.drawerSectionStructure),
                   // Sezione 4 - Comunicazioni Sindaco
                   _buildMenuItem(
                     context,
                     icona: Icons.record_voice_over_rounded,
-                    titolo: 'Comunicazioni Sindaco',
+                    titolo: context.l10n.navComunicazioniSindaco,
                     rotta: AppRoutes.comunicazioniSindaco,
                   ),
                   // Sezione 5 - Servizi Scolastici
                   _buildMenuItem(
                     context,
                     icona: Icons.school_rounded,
-                    titolo: 'Servizi Scolastici',
+                    titolo: context.l10n.navServiziScolastici,
                     rotta: AppRoutes.serviziScolastici,
                   ),
                   const Divider(),
-                  _buildSectionLabel('Servizi al Cittadino'),
+                  _buildSectionLabel(context.l10n.drawerSectionServices),
                   _buildMenuItem(
                     context,
                     icona: Icons.warning_amber_rounded,
-                    titolo: 'Segnala Disservizio',
+                    titolo: context.l10n.navSegnalaDisservizio,
                     rotta: AppRoutes.segnalaDisservizio,
                   ),
                   _buildMenuItem(
                     context,
                     icona: Icons.business_rounded,
-                    titolo: 'Prenota Ufficio',
+                    titolo: context.l10n.navPrenotaUfficio,
                     rotta: AppRoutes.prenotaUfficio,
                   ),
                   _buildMenuItem(
                     context,
                     icona: Icons.headset_mic_rounded,
-                    titolo: 'Contatta Uffici',
+                    titolo: context.l10n.navContattaUffici,
                     rotta: AppRoutes.contattaUffici,
                   ),
                   _buildMenuItem(
                     context,
                     icona: Icons.delete_outline_rounded,
-                    titolo: 'Gestione Rifiuti',
+                    titolo: context.l10n.navGestioneRifiuti,
                     rotta: AppRoutes.gestioneRifiuti,
                   ),
                   _buildMenuItem(
                     context,
                     icona: Icons.language_rounded,
-                    titolo: 'Servizi Online',
+                    titolo: context.l10n.navServiziOnline,
                     rotta: AppRoutes.serviziOnline,
                   ),
                   _buildMenuItem(
                     context,
                     icona: Icons.place_rounded,
-                    titolo: 'Luoghi di Interesse',
+                    titolo: context.l10n.navLuoghiInteresse,
                     rotta: AppRoutes.luoghiInteresse,
                   ),
                 ],
@@ -127,7 +128,7 @@ class ComuneDrawer extends StatelessWidget {
             ),
 
             // === FOOTER ===
-            _buildFooter(),
+            _buildFooter(context),
           ],
         ),
       ),
@@ -135,7 +136,7 @@ class ComuneDrawer extends StatelessWidget {
   }
 
   /// Header del drawer con logo e nome comune
-  Widget _buildHeader() {
+  Widget _buildHeader(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(AppConstants.paddingLarge),
@@ -151,8 +152,8 @@ class ComuneDrawer extends StatelessWidget {
             height: 60,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: Colors.white,
-              border: Border.all(color: Colors.white, width: 3),
+              color: AppColors.textOnPrimary,
+              border: Border.all(color: AppColors.textOnPrimary, width: 3),
             ),
             child: ClipOval(
               child: Image.asset(
@@ -171,17 +172,17 @@ class ComuneDrawer extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          const Text(
-            AppConstants.comuneNome,
+          Text(
+            context.l10n.homeTitleComune,
             style: TextStyle(
-              color: Colors.white70,
+              color: AppColors.textOnPrimary.withValues(alpha: 0.7),
               fontSize: 14,
             ),
           ),
-          const Text(
-            AppConstants.comuneCitta,
-            style: TextStyle(
-              color: Colors.white,
+          Text(
+            context.l10n.homeSubtitleCity,
+            style: const TextStyle(
+              color: AppColors.textOnPrimary,
               fontSize: 22,
               fontWeight: FontWeight.bold,
               letterSpacing: 1,
@@ -234,32 +235,35 @@ class ComuneDrawer extends StatelessWidget {
   }
 
   /// Footer con info app, contatti e social del comune
-  Widget _buildFooter() {
+  Widget _buildFooter(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(AppConstants.paddingMedium),
       decoration: BoxDecoration(
         border: Border(
-          top: BorderSide(color: Colors.grey.shade200),
+          top: BorderSide(color: AppColors.textSecondary.withValues(alpha: 0.2)),
         ),
       ),
       child: Column(
         children: [
           // Info sede
-          const Text(
+          Text(
             AppConstants.indirizzoCompleto,
             style: AppTextStyles.bodySmall,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 4),
-          const Text(
-            'Tel: ${AppConstants.telefono}',
+          Text(
+            context.l10n.drawerFooterPhone(AppConstants.telefono),
             style: AppTextStyles.bodySmall,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
           // Copyright
           Text(
-            '© 2026 ${AppConstants.comuneNomeCompleto}',
+            context.l10n.drawerFooterCopyright(
+              DateTime.now().year,
+              AppConstants.comuneNomeCompleto,
+            ),
             style: AppTextStyles.bodySmall.copyWith(
               fontWeight: FontWeight.w500,
             ),
